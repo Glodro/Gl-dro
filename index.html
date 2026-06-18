@@ -29,7 +29,7 @@ body{background:var(--dark);color:var(--light);font-family:'Jost',sans-serif;fon
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s,padding .4s}
 nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8rem 2rem;border-bottom:1px solid rgba(200,169,110,.1)}
-.nav-logo{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--sand);font-weight:700;letter-spacing:.04em}
+.nav-logo{display:flex;align-items:center}.nav-logo img{height:42px;width:auto}
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
 .nav-links a:hover{color:var(--sand)}
@@ -198,7 +198,7 @@ footer a{color:var(--sand);text-decoration:none}
 <body>
 
 <nav id="nav">
-  <div class="nav-logo">Glødro</div>
+  <div class="nav-logo"><img src="/logo.png" alt="Glødro"/></div>
   <ul class="nav-links">
     <li><a href="#om">Om</a></li>
     <li><a href="#galleri">Galleri</a></li>
