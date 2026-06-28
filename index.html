@@ -145,14 +145,14 @@ nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:slowZoom 20s ease-in-out infinite alternate}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.55) 0%,rgba(0,0,0,.25) 55%,rgba(26,22,18,.96) 100%)}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.62) 0%,rgba(0,0,0,.45) 50%,rgba(26,22,18,.97) 100%)}
 @keyframes slowZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
 .hero-content{position:relative;text-align:center;padding:2rem}
-.hero-tag{display:inline-block;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sand);border:1px solid rgba(200,169,110,.4);padding:.4em 1.2em;border-radius:100px;margin-bottom:1.5rem;animation:fadeUp 1.2s .2s ease both}
-.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,6rem);line-height:1.05;font-weight:700;animation:fadeUp 1.2s .35s ease both}
+.hero-tag{display:inline-block;font-size:.75rem;letter-spacing:.25em;text-transform:uppercase;color:var(--sand);background:rgba(0,0,0,.28);border:1px solid rgba(200,169,110,.55);padding:.4em 1.2em;border-radius:100px;margin-bottom:1.5rem;text-shadow:0 1px 8px rgba(0,0,0,.6);animation:fadeUp 1.2s .2s ease both}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,8vw,6rem);line-height:1.05;font-weight:700;text-shadow:0 2px 24px rgba(0,0,0,.55);animation:fadeUp 1.2s .35s ease both}
 .hero h1 em{font-style:italic;color:var(--sand)}
-.hero-sub{margin-top:1.2rem;font-size:clamp(1rem,2.5vw,1.2rem);font-weight:300;color:var(--muted);letter-spacing:.04em;animation:fadeUp 1.2s .5s ease both}
+.hero-sub{margin-top:1.2rem;font-size:clamp(1rem,2.5vw,1.2rem);font-weight:400;color:var(--light);letter-spacing:.04em;text-shadow:0 1px 14px rgba(0,0,0,.7);animation:fadeUp 1.2s .5s ease both}
 .hero-cta{margin-top:2.5rem;display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fadeUp 1.2s .65s ease both}
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.5rem;font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);animation:fadeUp 1.2s 1s ease both}
 .scroll-hint::after{content:'';display:block;width:1px;height:40px;background:linear-gradient(to bottom,var(--sand),transparent);animation:scrollLine 1.5s ease-in-out infinite}
@@ -365,14 +365,14 @@ footer a{color:var(--sand);text-decoration:none}
     <div class="section-label">Galleri</div>
     <h2 class="section-title">Se opplevelsen</h2>
     <div class="divider"></div>
-    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem">Vi tilbyr telt fra <strong style="color:var(--sand)">Bast Saunatelt</strong>, <strong style="color:var(--sand)">Kuno</strong> og <strong style="color:var(--sand)">Hott Sauna</strong> — alle med vedovn og topp kvalitet.</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
     <div class="gallery-wrap">
       <div class="img-big"><img src="/galleri-badstu-fjord.webp" loading="lazy" alt="Mobil badstu ved fjorden med utsikt til fjell"/></div>
       <div><img src="/galleri-interior-vedovn.webp" loading="lazy" alt="Innvendig i badstuteltet med vedovn og fjordutsikt"/></div>
-      <div><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></div>
+      <div><img src="/galleri-sommer-vann.webp" loading="lazy" style="object-position:center top" alt="Smilende gjest i badstutelt ved vannet"/></div>
     </div>
     <div class="gallery-wrap" style="margin-top:.75rem">
-      <div class="img-big"><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></div>
+      <div class="img-big"><img src="/galleri-host-venner.webp" loading="lazy" style="object-position:center top" alt="To venner ved badstuteltet en høstdag"/></div>
       <div><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></div>
       <div><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></div>
     </div>
@@ -710,18 +710,6 @@ function submitGc(){
             <div class="tent-specs">4–6 pers · panoramavinduer · 90°C</div>
             <div class="tent-desc">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
           </div>
-          <div class="tent-card unavailable">
-            <div class="tent-badge">Kommer snart</div>
-            <div class="tent-name">Bast Björk Premium</div>
-            <div class="tent-specs">8–10 pers · 100°C+ · svensk</div>
-            <div class="tent-desc">Det største alternativet — perfekt for grupper, bedriftsevents og store vennegjenger.</div>
-          </div>
-          <div class="tent-card unavailable">
-            <div class="tent-badge">Kommer snart</div>
-            <div class="tent-name">Hott Sauna</div>
-            <div class="tent-specs">4–6 pers · premium design · YKK-glidelås</div>
-            <div class="tent-desc">Svensk premium-kvalitet med fokus på detaljer, holdbarhet og design.</div>
-          </div>
         </div>
         <div class="sl">Antall personer</div>
         <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)">personer</span></div>
@@ -789,18 +777,6 @@ function submitGc(){
             <div class="tent-specs">4–6 pers · panoramavinduer</div>
             <div class="tent-desc">Norskutviklet med unike panoramavinduer.</div>
           </div>
-          <div class="tent-card unavailable">
-            <div class="tent-badge">Kommer snart</div>
-            <div class="tent-name">Bast Björk Premium</div>
-            <div class="tent-specs">8–10 pers · 100°C+</div>
-            <div class="tent-desc">Det største alternativet — perfekt for større grupper.</div>
-          </div>
-          <div class="tent-card unavailable">
-            <div class="tent-badge">Kommer snart</div>
-            <div class="tent-name">Hott Sauna</div>
-            <div class="tent-specs">4–6 pers · premium design</div>
-            <div class="tent-desc">Svensk premium-kvalitet med fokus på detaljer.</div>
-          </div>
         </div>
         <div class="sl">Hentetidspunkt</div>
         <div class="tg" style="margin-bottom:1.5rem">
@@ -859,7 +835,7 @@ function submitGc(){
     <span style="margin:0 .5rem;color:rgba(200,169,110,.4)">·</span>
     <a href="mailto:Kontakt@glodro.no">Kontakt@glodro.no</a>
   </div>
-  <p style="margin-top:1.5rem;font-size:.75rem">Badstutelt fra Bast Saunatelt, Kuno og Hott Sauna</p>
+  <p style="margin-top:1.5rem;font-size:.75rem">Badstutelt fra Kuno</p>
   <p style="margin-top:.5rem">© 2026 Glødro AS · <a href="#personvern" onclick="document.getElementById('pvModal').style.display='flex'" style="color:var(--muted);text-decoration:underline">Personvernerklæring</a></p>
 </footer>
 
