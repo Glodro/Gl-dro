@@ -213,7 +213,7 @@ section{padding:6rem 1.5rem}
 .price-features li::before{content:'✦';color:var(--sand);font-size:.6rem}
 
 /* BOOKING */
-.booking-section{background:var(--warm)}
+.booking-section{background:var(--warm);scroll-margin-top:72px}
 #bk{max-width:680px;margin:0 auto;padding:1rem 0}
 #bk .bk-step{display:none}
 #bk .bk-step.active{display:block}
@@ -315,7 +315,7 @@ footer a{color:var(--sand);text-decoration:none}
 .biz-stripe{margin-top:2.5rem;border:1px solid rgba(200,169,110,.18);border-radius:8px;padding:1.4rem 1.8rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .biz-right{display:flex;align-items:center;gap:1.5rem}
 .biz-price{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--sand);white-space:nowrap}
-#bk .tc.tc-primary{border-color:var(--ember);background:rgba(201,107,42,.05)}
+#bk .tc.tc-primary{border-color:rgba(200,169,110,.4)}
 #bk .tc-flag{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ember);margin-top:8px}
 @media(max-width:700px){.henting-hero{grid-template-columns:1fr;padding:1.8rem;gap:1.5rem}.delivery-row{grid-template-columns:1fr}.biz-stripe{flex-direction:column;align-items:flex-start}}
 </style>
@@ -1311,7 +1311,7 @@ const faqsEN = [
 ];
 
 let NO_TEXT = {}, NO_HTML = {}, NO_FAQS = null;
-let currentLang = localStorage.getItem('glodro-lang') || 'no';
+let currentLang = 'no';
 
 function snapshot() {
   document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -1356,7 +1356,6 @@ function applyLang(lang) {
 
 function toggleLang() {
   currentLang = currentLang === 'no' ? 'en' : 'no';
-  localStorage.setItem('glodro-lang', currentLang);
   applyLang(currentLang);
 }
 
