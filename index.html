@@ -138,10 +138,10 @@ nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:
 nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8rem 2rem;border-bottom:1px solid rgba(200,169,110,.1)}
 .nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--sand);font-weight:700;letter-spacing:.04em}.nav-logo img{height:36px;width:auto}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
+.nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);text-decoration:none;transition:color .25s}
 .nav-links a:hover{color:var(--sand)}
 @media(max-width:600px){.nav-links{display:none}}
-.lang-btn{background:none;border:1px solid rgba(200,169,110,.4);color:var(--muted);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .85em;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .25s;white-space:nowrap}
+.lang-btn{background:none;border:1px solid rgba(200,169,110,.4);color:var(--light);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .85em;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .25s;white-space:nowrap}
 .lang-btn:hover{border-color:var(--sand);color:var(--sand)}
 
 /* HERO */
@@ -603,6 +603,7 @@ footer a{color:var(--sand);text-decoration:none}
 
 <script>
 let selectedGc=null,selectedGcPrice=0;
+const GC_NAMES_EN={'Vennekveld':"Friends' Evening",'Opplevelse':'Experience','Hyttetur':'Cabin Trip','Bedrift':'Corporate','Egendefinert':'Custom'};
 function selectGc(el,name,price){
   document.querySelectorAll('.gc-pack').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
@@ -617,8 +618,9 @@ function updateCustomGc(){
   }
 }
 function openGcModal(){
-  if(!selectedGc){alert('Velg en pakke eller skriv inn et beløp først');return;}
-  document.getElementById('gcSelectedTitle').textContent=selectedGc+' — '+selectedGcPrice.toLocaleString('nb-NO')+' kr';
+  if(!selectedGc){alert(currentLang==='en'?'Choose a package or enter an amount first':'Velg en pakke eller skriv inn et beløp først');return;}
+  const displayName=currentLang==='en'?(GC_NAMES_EN[selectedGc]||selectedGc):selectedGc;
+  document.getElementById('gcSelectedTitle').textContent=displayName+' — '+selectedGcPrice.toLocaleString('nb-NO')+' kr';
   document.getElementById('gcTotal').textContent=selectedGcPrice.toLocaleString('nb-NO')+' kr';
   document.getElementById('gcModal').style.display='flex';
 }
@@ -628,9 +630,9 @@ async function submitGc(btn){
   const rn=document.getElementById('gcRecipientName').value.trim();
   const re=document.getElementById('gcRecipientEmail').value.trim();
   const msg=document.getElementById('gcMessage').value.trim();
-  if(!be||!rn||!re){alert('Fyll ut alle obligatoriske felt');return;}
-  if(!selectedGc){alert('Velg en pakke eller skriv inn et beløp først');return;}
-  const orig=btn.textContent;btn.disabled=true;btn.textContent='Sender...';
+  if(!be||!rn||!re){alert(currentLang==='en'?'Please fill in all required fields':'Fyll ut alle obligatoriske felt');return;}
+  if(!selectedGc){alert(currentLang==='en'?'Choose a package or enter an amount first':'Velg en pakke eller skriv inn et beløp først');return;}
+  const orig=btn.textContent;btn.disabled=true;btn.textContent=currentLang==='en'?'Sending...':'Sender...';
   const payload={
     Type:'Gavekort',
     Pakke:selectedGc,
@@ -650,10 +652,10 @@ async function submitGc(btn){
     if(!res.ok)throw new Error('http '+res.status);
     closeGcModal();
     btn.disabled=false;btn.textContent=orig;
-    alert('Takk! Bestillingen er mottatt. Vi sender deg en Vipps-link på '+be+' for betaling. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
+    alert(currentLang==='en'?'Thank you! Your order has been received. We\'ll send you a payment link to '+be+'. The gift card for '+rn+' will be sent as soon as payment is confirmed.':'Takk! Bestillingen er mottatt. Vi sender deg en Vipps-link på '+be+' for betaling. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
   }catch(e){
     btn.disabled=false;btn.textContent=orig;
-    alert('Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
+    alert(currentLang==='en'?'Sorry, something went wrong. Try again or contact us at kontakt@glodro.no':'Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
   }
 }
 </script>
@@ -912,11 +914,12 @@ async function submitGc(btn){
 
 <script>
 const MN=['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'];
+const MN_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
 let cur=new Date();cur.setDate(1);
 let vType=null,vDate=null,vTime=null,vPkg=null,vPrice=0,vPpl=4,vLoc=null,vDur=null,vDurP=0,vPickup=null,vKulp=false,vTent=null;
 const bkd=['2026-04-19','2026-04-20','2026-04-26','2026-05-03','2026-05-10'];
 
-function fmt(iso){const[y,m,d]=iso.split('-');return parseInt(d)+'. '+MN[parseInt(m)-1]+' '+y;}
+function fmt(iso){const[y,m,d]=iso.split('-');return currentLang==='en'?parseInt(d)+' '+MN_EN[parseInt(m)-1]+' '+y:parseInt(d)+'. '+MN[parseInt(m)-1]+' '+y;}
 
 function renderCal(tId,gId){
   const y=cur.getFullYear(),m=cur.getMonth();
@@ -972,13 +975,38 @@ function chk2(){if(vType==='lev')document.getElementById('b2a').disabled=!(vDate
 function bkChk3(){const n=document.getElementById('fN').value.trim(),e=document.getElementById('fE').value.trim();document.getElementById('b3').disabled=!(n&&e);}
 
 function buildSum(el){
+  const isEN=currentLang==='en';
+  const s={
+    type:isEN?'Type':'Type',
+    deliver:isEN?'We deliver':'Vi leverer',
+    pickup:isEN?'You pick up':'Du henter',
+    date:isEN?'Date':'Dato',
+    time:isEN?'Time':'Tidspunkt',
+    pkg:isEN?'Package':'Pakke',
+    tent:isEN?'Tent':'Telt',
+    num:isEN?'Number':'Antall',
+    ppl:isEN?'people':'personer',
+    loc:isEN?'Location':'Lokasjon',
+    total:isEN?'Total':'Totalt',
+    agreed:isEN?'To be agreed':'Avtales',
+    inclKulp:isEN?'incl. cold plunge':'inkl. kaldkulp',
+    pickupDate:isEN?'Pickup date':'Hentedato',
+    pickupTime:isEN?'Pickup time':'Hentetid',
+    period:isEN?'Rental period':'Leieperiode',
+    ret:isEN?'Return':'Retur',
+    coldPlunge:isEN?'cold plunge':'kaldkulp',
+    dep:isEN?'deposit':'dep.',
+  };
+  function dur(n){return n===1?(1+' '+(isEN?'day':'dag')):(n+' '+(isEN?'days':'dager'));}
+  function row(l,v){return'<div class="sr"><span>'+l+'</span><span>'+v+'</span></div>';}
   let h='';
   if(vType==='lev'){
-    const totalPrice=vPrice;const p=vPrice===0?'Avtales':totalPrice.toLocaleString('nb-NO')+' kr (inkl. kaldkulp)';
-    h='<div class="sr"><span>Type</span><span>Vi leverer</span></div><div class="sr"><span>Dato</span><span>'+fmt(vDate)+'</span></div><div class="sr"><span>Tidspunkt</span><span>'+vTime+'</span></div><div class="sr"><span>Pakke</span><span>'+vPkg+'</span></div><div class="sr"><span>Telt</span><span>'+vTent+'</span></div><div class="sr"><span>Antall</span><span>'+vPpl+' personer</span></div><div class="sr"><span>Lokasjon</span><span>'+vLoc+'</span></div><div class="sr"><span>Totalt</span><span>'+p+'</span></div>';
+    const p=vPrice===0?s.agreed:vPrice.toLocaleString('nb-NO')+' kr ('+s.inclKulp+')';
+    h=row(s.type,s.deliver)+row(s.date,fmt(vDate))+row(s.time,vTime)+row(s.pkg,vPkg)+row(s.tent,vTent)+row(s.num,vPpl+' '+s.ppl)+row(s.loc,vLoc)+row(s.total,p);
   } else {
     const ret=new Date(vDate);ret.setDate(ret.getDate()+vDur);const ri=ret.toISOString().split('T')[0];
-    const kulpExtraH=vKulp?400:0;h='<div class="sr"><span>Type</span><span>Du henter</span></div><div class="sr"><span>Hentedato</span><span>'+fmt(vDate)+'</span></div><div class="sr"><span>Hentetid</span><span>'+vPickup+'</span></div><div class="sr"><span>Leieperiode</span><span>'+vDur+' dag'+(vDur>1?'er':'')+'</span></div><div class="sr"><span>Telt</span><span>'+vTent+'</span></div><div class="sr"><span>Retur</span><span>'+fmt(ri)+'</span></div><div class="sr"><span>Totalt</span><span>'+vDurP.toLocaleString('nb-NO')+' kr'+(vKulp?' + 400 kr kaldkulp':'')+' + 1 000 kr dep.</span></div>';
+    const totStr=vDurP.toLocaleString('nb-NO')+' kr'+(vKulp?' + 400 kr '+s.coldPlunge:'')+' + 1 000 kr '+s.dep;
+    h=row(s.type,s.pickup)+row(s.pickupDate,fmt(vDate))+row(s.pickupTime,vPickup)+row(s.period,dur(vDur))+row(s.tent,vTent)+row(s.ret,fmt(ri))+row(s.total,totStr);
   }
   el.innerHTML=h;
 }
@@ -990,7 +1018,7 @@ function bkGo(n){
   else document.getElementById('s'+n).classList.add('active');
   for(let i=1;i<=4;i++)document.getElementById('pd'+i).classList.toggle('done',i<=(n===2?2:n));
   if(n===3)buildSum(document.getElementById('sumBox'));
-  if(n===4){buildSum(document.getElementById('cfBox'));const cb=document.getElementById('cfBox');const navn=document.getElementById('fN').value;cb.innerHTML='<div class="sr"><span>Navn</span><span>'+navn+'</span></div>'+cb.innerHTML;}
+  if(n===4){buildSum(document.getElementById('cfBox'));const cb=document.getElementById('cfBox');const navn=document.getElementById('fN').value;cb.innerHTML='<div class="sr"><span>'+(currentLang==='en'?'Name':'Navn')+'</span><span>'+navn+'</span></div>'+cb.innerHTML;}
 }
 
 async function bkSubmit(){
@@ -1320,6 +1348,8 @@ function applyLang(lang) {
     el.innerHTML = isEN ? (EN[key] ?? el.innerHTML) : (NO_HTML[key] ?? el.innerHTML);
   });
   renderFAQ(isEN ? faqsEN : (NO_FAQS || faqs));
+  // Placeholders
+  [['gcCustom',isEN?'Amount':'Beløp'],['fM',isEN?'Questions or requests...':'Spørsmål eller ønsker...'],['gcMessage',isEN?'Happy birthday! Enjoy the warmth and the view ❤️':'Gratulerer med dagen! Nyt varmen og utsikten ❤️']].forEach(([id,ph])=>{const el=document.getElementById(id);if(el)el.placeholder=ph;});
   document.getElementById('langBtn').textContent = isEN ? 'NORSK' : 'ENGLISH';
   document.documentElement.lang = isEN ? 'en' : 'no';
 }
