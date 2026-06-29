@@ -462,24 +462,24 @@ footer a{color:var(--sand);text-decoration:none}
           <div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,107,42,.15) 0%,transparent 70%)"></div>
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;position:relative">
             <div>
-              <div style="font-size:.7rem;letter-spacing:.3em;color:var(--sand);text-transform:uppercase;margin-bottom:4px">Gavekort</div>
+              <div style="font-size:.7rem;letter-spacing:.3em;color:var(--sand);text-transform:uppercase;margin-bottom:4px" data-i18n="gc-card-label">Gavekort</div>
               <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--light);font-weight:500">Glødro</div>
-              <div style="font-size:.75rem;color:var(--muted);margin-top:4px">Mobil badstu</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:4px" data-i18n="gc-card-sub">Mobil badstu</div>
             </div>
             <div style="font-size:1.8rem">🔥</div>
           </div>
           <div style="margin:2.5rem 0 1.5rem;position:relative">
-            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:6px">Verdi</div>
+            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:6px" data-i18n="gc-card-value">Verdi</div>
             <div style="font-family:'Playfair Display',serif;font-size:3rem;color:var(--ember);font-weight:500">1 990 kr</div>
           </div>
           <div style="border-top:1px solid rgba(200,169,110,.15);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:flex-end;position:relative">
             <div>
-              <div style="font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Kode</div>
+              <div style="font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:3px" data-i18n="gc-card-code">Kode</div>
               <div style="font-family:'Courier New',monospace;font-size:.85rem;color:var(--sand);letter-spacing:.1em">GLODRO-2026-XXXX</div>
             </div>
             <div style="text-align:right">
-              <div style="font-size:.65rem;color:var(--muted);margin-bottom:3px">Gyldig til</div>
-              <div style="font-size:.85rem;color:var(--sand)">12 mnd fra kjøp</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-bottom:3px" data-i18n="gc-card-valid">Gyldig til</div>
+              <div style="font-size:.85rem;color:var(--sand)" data-i18n="gc-card-validity">12 mnd fra kjøp</div>
             </div>
           </div>
         </div>
@@ -518,7 +518,7 @@ footer a{color:var(--sand);text-decoration:none}
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 490 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
         <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-1-desc">Én kveldssession for opptil 6 personer. 4 timer med levering og henting inkludert.</div>
       </div>
-      <div class="gc-pack" onclick="selectGc(this,'Opplevelse',1990)" style="background:rgba(255,255,255,.02);border:2px solid var(--ember);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
+      <div class="gc-pack" onclick="selectGc(this,'Opplevelse',1990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
         <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
         <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-2-name">Opplevelse</div>
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
@@ -529,12 +529,6 @@ footer a{color:var(--sand);text-decoration:none}
         <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-3-name">Hyttetur</div>
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">2 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
         <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-3-desc">Helg-utleie (2 dager) inkludert 2 vedsekker. Ta badstuen med på hytta eller i hagen.</div>
-      </div>
-      <div class="gc-pack" onclick="selectGc(this,'Bedrift',4990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-4-name">Bedrift</div>
-        <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">4 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-4-desc">Dagsleie med levering og kaldkulp inkludert. Unik teambuilding for hele avdelingen.</div>
       </div>
     </div>
 
@@ -1198,8 +1192,8 @@ const EN = {
   'hh-pickup-name':'Self pickup','hh-title':'Take the sauna wherever you want',
   'hh-desc':'Pick up the tent from us, assemble in 20 minutes and fire it up anywhere — by the fjord, on the mountain, in your garden or at the cabin. Full freedom over time and place.',
   'hh-cta':'Book pickup','hh-from':'From <strong>790 kr</strong>',
-  'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1,190 kr','pris-li-3':'3 days — 1,490 kr',
-  'pris-li-4':'1 week — 3,490 kr','pris-li-5':'1,000 kr deposit',
+  'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1 190 kr','pris-li-3':'3 days — 1 490 kr',
+  'pris-li-4':'1 week — 3 490 kr','pris-li-5':'1 000 kr deposit',
   'delivery-label':'Want it served? We deliver, set up and fire it up.',
   'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
   'day-name':'Day rental','day-desc':'Up to 8 hours · up to 8 people',
@@ -1207,6 +1201,10 @@ const EN = {
   'pkg-f3':'Cold plunge included','pkg-f4':'Location by agreement',
   'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
   'biz-price':'Price by agreement','biz-cta':'Get in touch',
+  // Gift cards – card preview
+  'gc-card-label':'Gift Card','gc-card-sub':'Mobile sauna',
+  'gc-card-value':'Value','gc-card-code':'Code',
+  'gc-card-valid':'Valid until','gc-card-validity':'12 months from purchase',
   // Gift cards – section header
   'gc-label':'Gift Cards','gc-title':'Give an <em>experience</em>',
   'gc-desc':'The perfect gift for him who has everything, or her who needs a break. Gift cards from Glødro are valid for 12 months and can be used on all our services.',
