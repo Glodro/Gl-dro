@@ -682,30 +682,30 @@ async function submitGc(btn){
 
       <!-- Step 1 -->
       <div class="bk-step active" id="s1">
-        <h2 class="sh">Hvordan vil du booke?</h2>
-        <p class="sub">Velg om vi leverer og setter opp, eller om du henter selv</p>
+        <h2 class="sh" data-i18n="bk-s1-h">Hvordan vil du booke?</h2>
+        <p class="sub" data-i18n="bk-s1-sub">Velg om vi leverer og setter opp, eller om du henter selv</p>
         <div class="type-grid">
           <div class="tc tc-primary" id="tc-hen" onclick="bkType(this,'hen')">
             <div class="tc-icon">🎒</div>
-            <div class="tc-name">Du henter</div>
-            <div class="tc-desc">Hent hos oss, monter selv og ta badstuen med dit du vil — full frihet over tid og sted.</div>
-            <span class="tc-flag">Mest fleksibelt</span>
+            <div class="tc-name" data-i18n="bk-hen-name">Du henter</div>
+            <div class="tc-desc" data-i18n="bk-hen-desc">Hent hos oss, monter selv og ta badstuen med dit du vil — full frihet over tid og sted.</div>
+            <span class="tc-flag" data-i18n="bk-flag">Mest fleksibelt</span>
           </div>
           <div class="tc" id="tc-lev" onclick="bkType(this,'lev')">
             <div class="tc-icon">🚐</div>
-            <div class="tc-name">Vi leverer</div>
-            <div class="tc-desc">Vi kjører ut, setter opp og fyrer opp. Du møter opp og nyter.</div>
+            <div class="tc-name" data-i18n="bk-lev-name">Vi leverer</div>
+            <div class="tc-desc" data-i18n="bk-lev-desc">Vi kjører ut, setter opp og fyrer opp. Du møter opp og nyter.</div>
           </div>
         </div>
-        <button class="bmain" id="b1" onclick="bkGo(2)" disabled>Gå videre →</button>
+        <button class="bmain" id="b1" onclick="bkGo(2)" disabled data-i18n="bk-go">Gå videre →</button>
       </div>
 
       <!-- Step 2A levering -->
       <div class="bk-step" id="s2a">
-        <span class="badge bl">Vi leverer</span>
-        <h2 class="sh">Velg dato og detaljer</h2>
-        <p class="sub">Dato, tidspunkt, pakke og lokasjon</p>
-        <div class="sl">Dato</div>
+        <span class="badge bl" data-i18n="bk-lev-name">Vi leverer</span>
+        <h2 class="sh" data-i18n="bk-s2a-h">Velg dato og detaljer</h2>
+        <p class="sub" data-i18n="bk-s2a-sub">Dato, tidspunkt, pakke og lokasjon</p>
+        <div class="sl" data-i18n="bk-sl-date">Dato</div>
         <div class="cal-header">
           <button class="cal-nav" onclick="bkPrev()">←</button>
           <span class="cal-title" id="ctA"></span>
@@ -714,62 +714,62 @@ async function submitGc(btn){
         <div class="cal-grid" id="cgA">
           <div class="cdl">Ma</div><div class="cdl">Ti</div><div class="cdl">On</div><div class="cdl">To</div><div class="cdl">Fr</div><div class="cdl">Lø</div><div class="cdl">Sø</div>
         </div>
-        <div class="sl">Tidspunkt</div>
+        <div class="sl" data-i18n="bk-sl-time">Tidspunkt</div>
         <div class="tg">
           <div class="ts" onclick="bkTime(this,'12:00–16:00')">12:00–16:00</div>
           <div class="ts" onclick="bkTime(this,'14:00–18:00')">14:00–18:00</div>
           <div class="ts una">16:00–20:00</div>
           <div class="ts" onclick="bkTime(this,'18:00–22:00')">18:00–22:00</div>
           <div class="ts" onclick="bkTime(this,'19:00–23:00')">19:00–23:00</div>
-          <div class="ts una">Opptatt</div>
+          <div class="ts una" data-i18n="bk-taken">Opptatt</div>
         </div>
-        <div class="sl">Pakke</div>
+        <div class="sl" data-i18n="bk-sl-pkg">Pakke</div>
         <div class="pkg-grid">
-          <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2">Opptil 6 pers · 4 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2">Opptil 8 pers · 8 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2">Tilpasset · faktura</div></div>
+          <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 8 pers · 8 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
         </div>
-        <div class="sl">Velg telt</div>
+        <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
-            <div class="tent-specs">4–6 pers · panoramavinduer · 90°C</div>
-            <div class="tent-desc">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
+            <div class="tent-specs" data-i18n="bk-tent-specs-a">4–6 pers · panoramavinduer · 90°C</div>
+            <div class="tent-desc" data-i18n="bk-tent-desc-a">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
           </div>
         </div>
-        <div class="sl">Antall personer</div>
-        <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)">personer</span></div>
-        <div class="sl">Inkludert</div>
+        <div class="sl" data-i18n="bk-sl-ppl">Antall personer</div>
+        <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)" data-i18n="bk-ppl">personer</span></div>
+        <div class="sl" data-i18n="bk-sl-incl">Inkludert</div>
         <div class="kulp-wrap active" style="cursor:default">
           <div class="kulp-left">
             <div class="kulp-icon">🧊</div>
             <div>
-              <div class="kulp-name">Kaldkulp</div>
-              <div class="kulp-desc">Inkludert i prisen — ingen ekstra kostnad</div>
+              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
+              <div class="kulp-desc" data-i18n="bk-kulp-incl">Inkludert i prisen — ingen ekstra kostnad</div>
             </div>
           </div>
           <div class="kulp-check">✓</div>
         </div>
-        <div class="sl">Lokasjon</div>
+        <div class="sl" data-i18n="bk-sl-loc">Lokasjon</div>
         <div class="lo">
           <label class="lopt" onclick="bkLoc(this,'Sjøkanten, Bodø')"><input type="radio" name="loc"> Sjøkanten, Bodø</label>
           <label class="lopt" onclick="bkLoc(this,'Saltstraumen')"><input type="radio" name="loc"> Saltstraumen</label>
-          <label class="lopt" onclick="bkLoc(this,'Egen adresse')"><input type="radio" name="loc"> Egen adresse</label>
+          <label class="lopt" onclick="bkLoc(this,'Egen adresse')"><input type="radio" name="loc"> <span data-i18n="bk-own-addr">Egen adresse</span></label>
         </div>
         <div class="brow">
-          <button class="bback" onclick="bkGo(1)">← Tilbake</button>
-          <button class="bmain" id="b2a" onclick="bkGo(3)" disabled>Kontaktinfo →</button>
+          <button class="bback" onclick="bkGo(1)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b2a" onclick="bkGo(3)" disabled data-i18n="bk-next-contact">Kontaktinfo →</button>
         </div>
       </div>
 
       <!-- Step 2B henting -->
       <div class="bk-step" id="s2b">
-        <span class="badge bh">Du henter</span>
-        <h2 class="sh">Velg dato og varighet</h2>
-        <p class="sub">Hent hos oss i Bodø — ta med dit du vil!</p>
-        <div class="infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting. Depositum på 1 000 kr refunderes ved retur i god stand.</div>
-        <div class="sl">Hentedato</div>
+        <span class="badge bh" data-i18n="bk-hen-name">Du henter</span>
+        <h2 class="sh" data-i18n="bk-s2b-h">Velg dato og varighet</h2>
+        <p class="sub" data-i18n="bk-s2b-sub">Hent hos oss i Bodø — ta med dit du vil!</p>
+        <div class="infobox" data-i18n="bk-infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting. Depositum på 1 000 kr refunderes ved retur i god stand.</div>
+        <div class="sl" data-i18n="bk-sl-pickup-date">Hentedato</div>
         <div class="cal-header">
           <button class="cal-nav" onclick="bkPrev()">←</button>
           <span class="cal-title" id="ctB"></span>
@@ -778,63 +778,63 @@ async function submitGc(btn){
         <div class="cal-grid" id="cgB">
           <div class="cdl">Ma</div><div class="cdl">Ti</div><div class="cdl">On</div><div class="cdl">To</div><div class="cdl">Fr</div><div class="cdl">Lø</div><div class="cdl">Sø</div>
         </div>
-        <div class="sl">Leieperiode</div>
+        <div class="sl" data-i18n="bk-sl-duration">Leieperiode</div>
         <div class="dg">
-          <div class="ds" onclick="bkDur(this,1,790)"><div>1 dag</div><div class="dsp">790 kr</div></div>
-          <div class="ds" onclick="bkDur(this,2,1190)"><div>2 dager</div><div class="dsp">1 190 kr</div></div>
-          <div class="ds" onclick="bkDur(this,3,1490)"><div>3 dager</div><div class="dsp">1 490 kr</div></div>
-          <div class="ds" onclick="bkDur(this,7,3490)"><div>1 uke</div><div class="dsp">3 490 kr</div></div>
+          <div class="ds" onclick="bkDur(this,1,790)"><div data-i18n="bk-dur-1d">1 dag</div><div class="dsp">790 kr</div></div>
+          <div class="ds" onclick="bkDur(this,2,1190)"><div data-i18n="bk-dur-2d">2 dager</div><div class="dsp">1 190 kr</div></div>
+          <div class="ds" onclick="bkDur(this,3,1490)"><div data-i18n="bk-dur-3d">3 dager</div><div class="dsp">1 490 kr</div></div>
+          <div class="ds" onclick="bkDur(this,7,3490)"><div data-i18n="bk-dur-1w">1 uke</div><div class="dsp">3 490 kr</div></div>
         </div>
-        <div class="sl">Tilvalg</div>
+        <div class="sl" data-i18n="bk-sl-addons">Tilvalg</div>
         <div class="kulp-wrap" onclick="bkKulp()" id="kulpBtnB">
           <div class="kulp-left">
             <div class="kulp-icon">🧊</div>
             <div>
-              <div class="kulp-name">Kaldkulp</div>
-              <div class="kulp-desc">Oppblåsbar · klar på 5 min · +400 kr</div>
+              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
+              <div class="kulp-desc" data-i18n="bk-kulp-addon">Oppblåsbar · klar på 5 min · +400 kr</div>
             </div>
           </div>
           <div class="kulp-check" id="kulpCheckB"></div>
         </div>
-        <div class="sl">Velg telt</div>
+        <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
-            <div class="tent-specs">4–6 pers · panoramavinduer</div>
-            <div class="tent-desc">Norskutviklet med unike panoramavinduer.</div>
+            <div class="tent-specs" data-i18n="bk-tent-specs-b">4–6 pers · panoramavinduer</div>
+            <div class="tent-desc" data-i18n="bk-tent-desc-b">Norskutviklet med unike panoramavinduer.</div>
           </div>
         </div>
-        <div class="sl">Hentetidspunkt</div>
+        <div class="sl" data-i18n="bk-sl-pickup-time">Hentetidspunkt</div>
         <div class="tg" style="margin-bottom:1.5rem">
           <div class="ts" onclick="bkPickup(this,'09:00')">09:00</div>
           <div class="ts" onclick="bkPickup(this,'11:00')">11:00</div>
           <div class="ts" onclick="bkPickup(this,'13:00')">13:00</div>
           <div class="ts" onclick="bkPickup(this,'15:00')">15:00</div>
           <div class="ts" onclick="bkPickup(this,'17:00')">17:00</div>
-          <div class="ts una">Stengt</div>
+          <div class="ts una" data-i18n="bk-closed">Stengt</div>
         </div>
         <div class="brow">
-          <button class="bback" onclick="bkGo(1)">← Tilbake</button>
-          <button class="bmain" id="b2b" onclick="bkGo(3)" disabled>Kontaktinfo →</button>
+          <button class="bback" onclick="bkGo(1)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b2b" onclick="bkGo(3)" disabled data-i18n="bk-next-contact">Kontaktinfo →</button>
         </div>
       </div>
 
       <!-- Step 3 -->
       <div class="bk-step" id="s3">
-        <h2 class="sh">Kontaktinfo</h2>
-        <p class="sub">Vi bekrefter innen 24 timer</p>
+        <h2 class="sh" data-i18n="bk-s3-h">Kontaktinfo</h2>
+        <p class="sub" data-i18n="bk-s3-sub">Vi bekrefter innen 24 timer</p>
         <div class="sumcard" id="sumBox"></div>
         <div class="fg">
-          <div><label>Navn</label><input type="text" id="fN" placeholder="Ola Nordmann" oninput="bkChk3()"/></div>
-          <div><label>Telefon</label><input type="tel" id="fT" placeholder="+47 000 00 000" oninput="bkChk3()"/></div>
-          <div class="full"><label>E-post</label><input type="email" id="fE" placeholder="ola@eksempel.no" oninput="bkChk3()"/></div>
-          <div class="full"><label>Melding (valgfritt)</label><textarea id="fM" placeholder="Spørsmål eller ønsker..."></textarea></div>
+          <div><label data-i18n="bk-label-name">Navn</label><input type="text" id="fN" placeholder="Ola Nordmann" oninput="bkChk3()"/></div>
+          <div><label data-i18n="bk-label-phone">Telefon</label><input type="tel" id="fT" placeholder="+47 000 00 000" oninput="bkChk3()"/></div>
+          <div class="full"><label data-i18n="bk-label-email">E-post</label><input type="email" id="fE" placeholder="ola@eksempel.no" oninput="bkChk3()"/></div>
+          <div class="full"><label data-i18n="bk-label-msg">Melding (valgfritt)</label><textarea id="fM" placeholder="Spørsmål eller ønsker..."></textarea></div>
         </div>
-        <p id="b3err" style="display:none;color:var(--ember);font-size:.85rem;margin:0 0 .75rem">Beklager, noe gikk galt. Prøv igjen eller kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.</p>
+        <p id="b3err" style="display:none;color:var(--ember);font-size:.85rem;margin:0 0 .75rem" data-i18n-html="bk-err">Beklager, noe gikk galt. Prøv igjen eller kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.</p>
         <div class="brow">
-          <button class="bback" onclick="bkGo(2)">← Tilbake</button>
-          <button class="bmain" id="b3" onclick="bkSubmit()" disabled>Send forespørsel →</button>
+          <button class="bback" onclick="bkGo(2)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b3" onclick="bkSubmit()" disabled data-i18n="bk-send">Send forespørsel →</button>
         </div>
       </div>
 
@@ -844,8 +844,8 @@ async function submitGc(btn){
           <div class="cficon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c96b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <h2 class="sh" style="font-size:1.6rem;margin-bottom:.5rem">Forespørsel sendt!</h2>
-          <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem">Vi tar kontakt innen 24 timer for å bekrefte.</p>
+          <h2 class="sh" style="font-size:1.6rem;margin-bottom:.5rem" data-i18n="bk-sent-h">Forespørsel sendt!</h2>
+          <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem" data-i18n="bk-sent-p">Vi tar kontakt innen 24 timer for å bekrefte.</p>
           <div class="sumcard" id="cfBox" style="text-align:left"></div>
         </div>
       </div>
@@ -1147,7 +1147,7 @@ const EN = {
   // Nav
   'nav-om':'About','nav-galleri':'Gallery','nav-pris':'Pricing','nav-gavekort':'Gift Cards','nav-book':'Book',
   // Hero
-  'hero-tag':'Now open · Bodø &amp; Trondheim',
+  'hero-tag':'Now open · Bodø & Trondheim',
   'hero-h1':'Sauna where<br><em>nature is the wall</em>',
   'hero-sub':'Now operating in Bodø and Trondheim — book your mobile sauna today. Take it wherever you want, or let us deliver and fire it up.',
   'hero-cta-1':'Book sauna now','hero-cta-2':'Learn more','scroll':'Scroll',
@@ -1183,15 +1183,81 @@ const EN = {
   'gc-label':'Gift Cards','gc-title':'Give an <em>experience</em>',
   'gc-desc':'The perfect gift for him who has everything, or her who needs a break. Gift cards from Glødro are valid for 12 months and can be used on all our services.',
   'gc-buy':'Buy gift card →',
-  // FAQ & Booking
+  // FAQ
   'faq-label':'Q & A','faq-title':'Frequently asked questions',
+  // Booking section header
   'book-label':'Book now','book-title':'Reserve your<br><em>sauna experience</em>',
+  // Booking form – step 1
+  'bk-s1-h':'How would you like to book?',
+  'bk-s1-sub':'Choose whether we deliver and set up, or you pick up yourself',
+  'bk-hen-name':'You pick up',
+  'bk-hen-desc':'Pick up from us, assemble yourself and take the sauna wherever you want — full freedom over time and place.',
+  'bk-flag':'Most flexible',
+  'bk-lev-name':'We deliver',
+  'bk-lev-desc':'We drive out, set up and fire it up. You just show up and enjoy.',
+  'bk-go':'Continue →',
+  // Booking form – step 2A
+  'bk-s2a-h':'Choose date and details',
+  'bk-s2a-sub':'Date, time slot, package and location',
+  'bk-sl-date':'Date','bk-sl-time':'Time slot',
+  'bk-taken':'Taken',
+  'bk-sl-pkg':'Package',
+  'bk-pkg-eve':'Evening session','bk-pkg-eve-sub':'Up to 6 pers · 4 hours',
+  'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 8 pers · 8 hours',
+  'bk-pkg-biz':'Corporate','bk-pkg-biz-sub':'Custom · invoice',
+  'bk-sl-tent':'Choose tent',
+  'bk-tent-specs-a':'4–6 pers · panoramic windows · 90°C',
+  'bk-tent-desc-a':'Norwegian-developed with unique panoramic windows. Perfect view of the flames and nature.',
+  'bk-sl-ppl':'Number of people','bk-ppl':'people',
+  'bk-sl-incl':'Included',
+  'bk-kulp-name':'Cold plunge',
+  'bk-kulp-incl':'Included in the price — no extra cost',
+  'bk-sl-loc':'Location',
+  'bk-own-addr':'Own address',
+  'bk-back':'← Back',
+  'bk-next-contact':'Contact info →',
+  // Booking form – step 2B
+  'bk-s2b-h':'Choose date and duration',
+  'bk-s2b-sub':'Pick up from us in Bodø — take it wherever you want!',
+  'bk-infobox':'The tent is assembled in about 20 min for 2 people. You receive an instruction video and receipt at pickup. The 1,000 kr deposit is refunded when the tent is returned in good condition.',
+  'bk-sl-pickup-date':'Pickup date',
+  'bk-sl-duration':'Rental period',
+  'bk-dur-1d':'1 day','bk-dur-2d':'2 days','bk-dur-3d':'3 days','bk-dur-1w':'1 week',
+  'bk-sl-addons':'Add-ons',
+  'bk-kulp-addon':'Inflatable · ready in 5 min · +400 kr',
+  'bk-tent-specs-b':'4–6 pers · panoramic windows',
+  'bk-tent-desc-b':'Norwegian-developed with unique panoramic windows.',
+  'bk-sl-pickup-time':'Pickup time',
+  'bk-closed':'Closed',
+  // Booking form – step 3
+  'bk-s3-h':'Contact information',
+  'bk-s3-sub':'We confirm within 24 hours',
+  'bk-label-name':'Name','bk-label-phone':'Phone',
+  'bk-label-email':'E-mail','bk-label-msg':'Message (optional)',
+  'bk-err':'Sorry, something went wrong. Try again or contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.',
+  'bk-send':'Send request →',
+  // Booking form – step 4
+  'bk-sent-h':'Request sent!',
+  'bk-sent-p':'We\'ll get in touch within 24 hours to confirm.',
   // Footer
   'footer-tagline':'Mobile sauna rental in Bodø and Trondheim',
   'footer-book':'Book now','footer-tents':'Sauna tents from Kuno','footer-privacy':'Privacy Policy',
 };
 
-let NO_TEXT = {}, NO_HTML = {};
+const faqsEN = [
+  { q:'How long does it take to set up the tent?', a:'We set up the tent and fire up the stove — everything is ready when you arrive. If you choose the pickup option, assembly takes about 20 minutes for two people.' },
+  { q:'How many people fit in the tent?', a:'Depending on package: up to 6 people for the evening session and up to 8 for the day rental. Get in touch if you are a larger group — we\'ll find a solution.' },
+  { q:'How hot does it get?', a:'The wood stove reaches temperatures above 100°C — genuine, dry sauna heat. Exactly as it should be.' },
+  { q:'What happens in bad weather?', a:'The tent is designed for Nordic climate and handles wind and rain well. In fact, bathing in a sauna while a storm rages outside is something special! In extreme weather we contact you and find a solution.' },
+  { q:'Can we choose the location ourselves?', a:'Yes! We deliver to any location in the Bodø area and the Trondheim area. Whether you want the sauna by the fjord, on the mountain or in your garden — we set up wherever you want.' },
+  { q:'What is included in the price?', a:'Delivery, setup, firewood and firing of the stove, as well as teardown and pickup afterwards. You don\'t need to do anything other than show up and enjoy.' },
+  { q:'How do I pay?', a:'We accept payment via Vipps or invoice. Details are agreed when we confirm the booking.' },
+  { q:'Can we book for a company or larger event?', a:'Absolutely! We offer tailored packages for companies, team building and events. Get in touch and we\'ll put together something that fits your group perfectly.' },
+  { q:'What about the deposit for the pickup option?', a:'For the pickup option we charge a deposit of 1,000 kr which is refunded when the tent is returned in good condition.' },
+  { q:'How quickly do I get a reply to my booking?', a:'We confirm all enquiries within 24 hours.' }
+];
+
+let NO_TEXT = {}, NO_HTML = {}, NO_FAQS = null;
 let currentLang = localStorage.getItem('glodro-lang') || 'no';
 
 function snapshot() {
@@ -1200,6 +1266,21 @@ function snapshot() {
   });
   document.querySelectorAll('[data-i18n-html]').forEach(el => {
     NO_HTML[el.getAttribute('data-i18n-html')] = el.innerHTML;
+  });
+}
+
+function renderFAQ(list) {
+  const container = document.getElementById('faq-list');
+  container.innerHTML = '';
+  list.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = '<div class="faq-q" onclick="toggleFaq(' + i + ')">' +
+      item.q + '<span class="faq-arrow" id="arrow' + i + '">+</span></div>' +
+      '<div class="faq-a" id="faq' + i + '">' + item.a + '</div>';
+    container.appendChild(div);
+    const ans = document.getElementById('faq' + i);
+    ans.style.display = 'none';
   });
 }
 
@@ -1213,6 +1294,7 @@ function applyLang(lang) {
     const key = el.getAttribute('data-i18n-html');
     el.innerHTML = isEN ? (EN[key] ?? el.innerHTML) : (NO_HTML[key] ?? el.innerHTML);
   });
+  renderFAQ(isEN ? faqsEN : (NO_FAQS || faqs));
   document.getElementById('langBtn').textContent = isEN ? 'NORSK' : 'ENGLISH';
   document.documentElement.lang = isEN ? 'en' : 'no';
 }
@@ -1224,6 +1306,7 @@ function toggleLang() {
 }
 
 snapshot();
+NO_FAQS = faqs;
 if (currentLang === 'en') applyLang('en');
 </script>
 </body></html>
