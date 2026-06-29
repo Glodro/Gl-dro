@@ -141,6 +141,8 @@ nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8
 .nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
 .nav-links a:hover{color:var(--sand)}
 @media(max-width:600px){.nav-links{display:none}}
+.lang-btn{background:none;border:1px solid rgba(200,169,110,.4);color:var(--muted);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .85em;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .25s;white-space:nowrap}
+.lang-btn:hover{border-color:var(--sand);color:var(--sand)}
 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
@@ -323,10 +325,13 @@ footer a{color:var(--sand);text-decoration:none}
 <nav id="nav">
   <div class="nav-logo"><img src="/icon.png" alt=""/>Glødro</div>
   <ul class="nav-links">
-    <li><a href="#om">Om</a></li>
-    <li><a href="#galleri">Galleri</a></li>
-    <li><a href="#pris">Pris</a></li>
-    <li><a href="#faq">FAQ</a></li><li><a href="#gavekort">Gavekort</a></li><li><a href="#book">Book</a></li>
+    <li><a href="#om" data-i18n="nav-om">Om</a></li>
+    <li><a href="#galleri" data-i18n="nav-galleri">Galleri</a></li>
+    <li><a href="#pris" data-i18n="nav-pris">Pris</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#gavekort" data-i18n="nav-gavekort">Gavekort</a></li>
+    <li><a href="#book" data-i18n="nav-book">Book</a></li>
+    <li><button id="langBtn" onclick="toggleLang()" class="lang-btn">ENGLISH</button></li>
   </ul>
 </nav>
 
@@ -334,37 +339,37 @@ footer a{color:var(--sand);text-decoration:none}
   <div class="hero-bg" id="heroBg" style="background-image:url('/galleri-badstu-fjord.webp')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
-    <h1>Badstu der<br><em>naturen er veggen</em></h1>
-    <p class="hero-sub">Vi er i gang i Bodø og Trondheim — book din mobile badstu i dag. Ta den med dit du vil, eller la oss levere og fyre.</p>
+    <div class="hero-tag" data-i18n="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
+    <h1 data-i18n-html="hero-h1">Badstu der<br><em>naturen er veggen</em></h1>
+    <p class="hero-sub" data-i18n="hero-sub">Vi er i gang i Bodø og Trondheim — book din mobile badstu i dag. Ta den med dit du vil, eller la oss levere og fyre.</p>
     <div class="hero-cta">
-      <a href="#book" class="btn-primary">Book badstu nå</a>
-      <a href="#om" class="btn-outline">Les mer</a>
+      <a href="#book" class="btn-primary" data-i18n="hero-cta-1">Book badstu nå</a>
+      <a href="#om" class="btn-outline" data-i18n="hero-cta-2">Les mer</a>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
+  <div class="scroll-hint" data-i18n="scroll">Scroll</div>
 </section>
 
 <section class="features" id="om">
   <div class="container">
-    <div class="section-label">Hva vi tilbyr</div>
-    <h2 class="section-title">Ekte badstu,<br>ingen kompromiss</h2>
+    <div class="section-label" data-i18n="feat-label">Hva vi tilbyr</div>
+    <h2 class="section-title" data-i18n-html="feat-title">Ekte badstu,<br>ingen kompromiss</h2>
     <div class="divider"></div>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">🔥</div><h3>Over 100°C</h3><p>Vedovn som gir ekte, tørr badstuevarme.</p></div>
-      <div class="feature-card"><div class="feature-icon">📍</div><h3>Valgfri lokasjon</h3><p>Rett ved sjøen, på fjellet, i hagen — vi rigger opp der du vil i Bodø- eller Trondheim-området.</p></div>
-      <div class="feature-card"><div class="feature-icon">❄️</div><h3>Kald dukk</h3><p>Ingen nordnorsk badstuopplevelse er komplett uten et hopp i fjorden etterpå.</p></div>
-      <div class="feature-card"><div class="feature-icon">🎉</div><h3>Alle anledninger</h3><p>Bursdag, jobb-teambuilding, vennetreff eller bare en kveld med ro og varme.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔥</div><h3 data-i18n="feat-1-h">Over 100°C</h3><p data-i18n="feat-1-p">Vedovn som gir ekte, tørr badstuevarme.</p></div>
+      <div class="feature-card"><div class="feature-icon">📍</div><h3 data-i18n="feat-2-h">Valgfri lokasjon</h3><p data-i18n="feat-2-p">Rett ved sjøen, på fjellet, i hagen — vi rigger opp der du vil i Bodø- eller Trondheim-området.</p></div>
+      <div class="feature-card"><div class="feature-icon">❄️</div><h3 data-i18n="feat-3-h">Kald dukk</h3><p data-i18n="feat-3-p">Ingen nordnorsk badstuopplevelse er komplett uten et hopp i fjorden etterpå.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎉</div><h3 data-i18n="feat-4-h">Alle anledninger</h3><p data-i18n="feat-4-p">Bursdag, jobb-teambuilding, vennetreff eller bare en kveld med ro og varme.</p></div>
     </div>
   </div>
 </section>
 
 <section id="galleri">
   <div class="container">
-    <div class="section-label">Galleri</div>
-    <h2 class="section-title">Se opplevelsen</h2>
+    <div class="section-label" data-i18n="gal-label">Galleri</div>
+    <h2 class="section-title" data-i18n="gal-title">Se opplevelsen</h2>
     <div class="divider"></div>
-    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem" data-i18n-html="gal-desc">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
     <div class="gallery-grid">
       <figure><img src="/galleri-badstu-fjord.webp" loading="lazy" alt="Mobil badstu ved fjorden med utsikt til fjell"/></figure>
       <figure><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></figure>
@@ -378,65 +383,65 @@ footer a{color:var(--sand);text-decoration:none}
 
 <section class="how">
   <div class="container">
-    <div class="section-label">Slik fungerer det</div>
-    <h2 class="section-title">Tre enkle steg</h2>
+    <div class="section-label" data-i18n="how-label">Slik fungerer det</div>
+    <h2 class="section-title" data-i18n="how-title">Tre enkle steg</h2>
     <div class="divider"></div>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Kontakt oss</h3><p>Send oss en melding med ønsket dato, antall personer og foretrukket lokasjon.</p></div>
-      <div class="step"><div class="step-num">02</div><h3>Vi rigger opp</h3><p>Vi leverer, setter opp og fyrer opp badstuen — klar til bruk når du ankommer.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Nyt opplevelsen</h3><p>Badstu, frisk luft, kald dukk — vi henter alt igjen etterpå.</p></div>
+      <div class="step"><div class="step-num">01</div><h3 data-i18n="step-1-h">Kontakt oss</h3><p data-i18n="step-1-p">Send oss en melding med ønsket dato, antall personer og foretrukket lokasjon.</p></div>
+      <div class="step"><div class="step-num">02</div><h3 data-i18n="step-2-h">Vi rigger opp</h3><p data-i18n="step-2-p">Vi leverer, setter opp og fyrer opp badstuen — klar til bruk når du ankommer.</p></div>
+      <div class="step"><div class="step-num">03</div><h3 data-i18n="step-3-h">Nyt opplevelsen</h3><p data-i18n="step-3-p">Badstu, frisk luft, kald dukk — vi henter alt igjen etterpå.</p></div>
     </div>
   </div>
 </section>
 
 <section id="pris">
   <div class="container">
-    <div class="section-label">Priser</div>
-    <h2 class="section-title">Enkle, transparente priser</h2>
+    <div class="section-label" data-i18n="pris-label">Priser</div>
+    <h2 class="section-title" data-i18n="pris-title">Enkle, transparente priser</h2>
     <div class="divider"></div>
     <div class="henting-hero">
       <div class="hh-left">
-        <div class="price-name">Du henter selv</div>
-        <h3 class="hh-title">Ta badstuen med dit du vil</h3>
-        <p class="hh-desc">Hent teltet hos oss, monter på 20 minutter og fyr opp hvor som helst — ved fjorden, på fjellet, i hagen eller på hytta. Full frihet over tid og sted.</p>
-        <a href="#book" class="btn-primary">Book henting</a>
+        <div class="price-name" data-i18n="hh-pickup-name">Du henter selv</div>
+        <h3 class="hh-title" data-i18n="hh-title">Ta badstuen med dit du vil</h3>
+        <p class="hh-desc" data-i18n="hh-desc">Hent teltet hos oss, monter på 20 minutter og fyr opp hvor som helst — ved fjorden, på fjellet, i hagen eller på hytta. Full frihet over tid og sted.</p>
+        <a href="#book" class="btn-primary" data-i18n="hh-cta">Book henting</a>
       </div>
       <div class="hh-right">
-        <div class="hh-from">Fra <strong>790 kr</strong></div>
+        <div class="hh-from" data-i18n-html="hh-from">Fra <strong>790 kr</strong></div>
         <ul class="price-features">
-          <li>1 dag — 790 kr</li>
-          <li>2 dager — 1 190 kr</li>
-          <li>3 dager — 1 490 kr</li>
-          <li>1 uke — 3 490 kr</li>
-          <li>Depositum 1 000 kr</li>
+          <li data-i18n="pris-li-1">1 dag — 790 kr</li>
+          <li data-i18n="pris-li-2">2 dager — 1 190 kr</li>
+          <li data-i18n="pris-li-3">3 dager — 1 490 kr</li>
+          <li data-i18n="pris-li-4">1 uke — 3 490 kr</li>
+          <li data-i18n="pris-li-5">Depositum 1 000 kr</li>
         </ul>
       </div>
     </div>
 
-    <div class="delivery-label">Vil du ha det servert? Vi leverer, rigger og fyrer.</div>
+    <div class="delivery-label" data-i18n="delivery-label">Vil du ha det servert? Vi leverer, rigger og fyrer.</div>
     <div class="delivery-row">
       <div class="price-card price-card--soft">
-        <div class="price-name">Kveldssession</div>
+        <div class="price-name" data-i18n="eve-name">Kveldssession</div>
         <div class="price-amount">1 490 <span>kr</span></div>
-        <div class="price-desc">Inntil 4 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li>Levering, oppsett og fyring</li><li>Vedovn med bjørkved</li><li>Kaldkulp inkludert</li><li>Lokasjon etter avtale</li></ul>
+        <div class="price-desc" data-i18n="eve-desc">Inntil 4 timer · opptil 6 pers.</div>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
       <div class="price-card price-card--soft">
-        <div class="price-name">Dagsleie</div>
+        <div class="price-name" data-i18n="day-name">Dagsleie</div>
         <div class="price-amount">2 490 <span>kr</span></div>
-        <div class="price-desc">Inntil 8 timer · opptil 8 pers.</div>
-        <ul class="price-features"><li>Levering, oppsett og fyring</li><li>Vedovn med bjørkved</li><li>Kaldkulp inkludert</li><li>Lokasjon etter avtale</li></ul>
+        <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 8 pers.</div>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
     </div>
 
     <div class="biz-stripe">
       <div>
-        <div class="price-name" style="margin-bottom:.4rem">Bedrift / Event</div>
-        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0">Tilpasset pakke for grupper, teambuilding og arrangement — med faktura og eget program.</p>
+        <div class="price-name" style="margin-bottom:.4rem" data-i18n="biz-name">Bedrift / Event</div>
+        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0" data-i18n="biz-desc">Tilpasset pakke for grupper, teambuilding og arrangement — med faktura og eget program.</p>
       </div>
       <div class="biz-right">
-        <div class="biz-price">Pris etter avtale</div>
-        <a href="#book" class="btn-outline" style="padding:.7rem 1.6rem">Ta kontakt</a>
+        <div class="biz-price" data-i18n="biz-price">Pris etter avtale</div>
+        <a href="#book" class="btn-outline" style="padding:.7rem 1.6rem" data-i18n="biz-cta">Ta kontakt</a>
       </div>
     </div>
   </div>
@@ -446,10 +451,10 @@ footer a{color:var(--sand);text-decoration:none}
 <section id="gavekort" style="background:linear-gradient(135deg,#211d18 0%,#1a1612 100%);position:relative;overflow:hidden">
   <div style="position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(201,107,42,.08) 0%,transparent 70%);pointer-events:none"></div>
   <div style="max-width:1100px;margin:0 auto;position:relative">
-    <div class="section-label">Gavekort</div>
-    <h2 class="section-title">Gi bort en <em>opplevelse</em></h2>
+    <div class="section-label" data-i18n="gc-label">Gavekort</div>
+    <h2 class="section-title" data-i18n-html="gc-title">Gi bort en <em>opplevelse</em></h2>
     <div class="divider"></div>
-    <p style="max-width:600px;color:var(--muted);margin:0 0 3rem;font-size:1.05rem;line-height:1.7">Den perfekte gaven til han som har alt, eller hun som trenger en pause. Gavekort fra Glødro er gyldig i 12 måneder og kan brukes på alle våre tjenester.</p>
+    <p style="max-width:600px;color:var(--muted);margin:0 0 3rem;font-size:1.05rem;line-height:1.7" data-i18n="gc-desc">Den perfekte gaven til han som har alt, eller hun som trenger en pause. Gavekort fra Glødro er gyldig i 12 måneder og kan brukes på alle våre tjenester.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4rem;align-items:center" id="gcPreview">
       <div>
@@ -547,7 +552,7 @@ footer a{color:var(--sand);text-decoration:none}
     </div>
 
     <div style="text-align:center">
-      <button onclick="openGcModal()" style="padding:16px 40px;font-size:.85rem;letter-spacing:.1em;background:var(--ember);color:var(--dark);border:none;border-radius:50px;cursor:pointer;font-weight:500;text-transform:uppercase;transition:all .2s;font-family:inherit">Kjøp gavekort →</button>
+      <button onclick="openGcModal()" style="padding:16px 40px;font-size:.85rem;letter-spacing:.1em;background:var(--ember);color:var(--dark);border:none;border-radius:50px;cursor:pointer;font-weight:500;text-transform:uppercase;transition:all .2s;font-family:inherit" data-i18n="gc-buy">Kjøp gavekort →</button>
       <p style="color:var(--muted);font-size:.8rem;margin-top:1rem">Betales med Vipps eller kort · Sendes umiddelbart på e-post</p>
     </div>
   </div>
@@ -655,8 +660,8 @@ async function submitGc(btn){
 
 <section id="faq">
   <div class="container">
-    <div class="section-label">Spørsmål og svar</div>
-    <h2 class="section-title">Vanlige spørsmål</h2>
+    <div class="section-label" data-i18n="faq-label">Spørsmål og svar</div>
+    <h2 class="section-title" data-i18n="faq-title">Vanlige spørsmål</h2>
     <div class="divider"></div>
     <div id="faq-list"></div>
   </div>
@@ -664,8 +669,8 @@ async function submitGc(btn){
 
 <section class="booking-section" id="book">
   <div class="container">
-    <div class="section-label">Book nå</div>
-    <h2 class="section-title">Reserver din<br><em>badstu-opplevelse</em></h2>
+    <div class="section-label" data-i18n="book-label">Book nå</div>
+    <h2 class="section-title" data-i18n-html="book-title">Reserver din<br><em>badstu-opplevelse</em></h2>
     <div class="divider"></div>
     <div id="bk">
       <div class="progress">
@@ -850,7 +855,7 @@ async function submitGc(btn){
 
 <footer>
   <div class="footer-logo"><img src="/icon.png" alt=""/>Glødro</div>
-  <p>Mobil badstu-utleie i Bodø og Trondheim · <a href="#book">Book nå</a></p>
+  <p><span data-i18n="footer-tagline">Mobil badstu-utleie i Bodø og Trondheim</span> · <a href="#book" data-i18n="footer-book">Book nå</a></p>
   <p style="margin-top:.5rem">✉️ <a href="mailto:Kontakt@glodro.no">Kontakt@glodro.no</a></p>
   <div style="margin-top:1rem;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted)">
     <div>
@@ -874,8 +879,8 @@ async function submitGc(btn){
       <a href="tel:+4740695519">+47 40 69 55 19</a>
     </div>
   </div>
-  <p style="margin-top:1.5rem;font-size:.75rem">Badstutelt fra Kuno</p>
-  <p style="margin-top:.5rem">© 2026 Glødro AS · <a href="#personvern" onclick="document.getElementById('pvModal').style.display='flex'" style="color:var(--muted);text-decoration:underline">Personvernerklæring</a></p>
+  <p style="margin-top:1.5rem;font-size:.75rem" data-i18n="footer-tents">Badstutelt fra Kuno</p>
+  <p style="margin-top:.5rem">© 2026 Glødro AS · <a href="#personvern" onclick="document.getElementById('pvModal').style.display='flex'" style="color:var(--muted);text-decoration:underline" data-i18n="footer-privacy">Personvernerklæring</a></p>
 </footer>
 
 <!-- Personvernerklæring Modal -->
@@ -1136,4 +1141,89 @@ function toggleFaq(i) {
 .faq-a { display: none; padding: 0 0 1.2rem; font-size: .875rem; color: var(--muted); line-height: 1.8; max-width: 680px; }
 </style>
 
+<script>
+// ── LANGUAGE TOGGLE ──────────────────────────────────────────────────────
+const EN = {
+  // Nav
+  'nav-om':'About','nav-galleri':'Gallery','nav-pris':'Pricing','nav-gavekort':'Gift Cards','nav-book':'Book',
+  // Hero
+  'hero-tag':'Now open · Bodø &amp; Trondheim',
+  'hero-h1':'Sauna where<br><em>nature is the wall</em>',
+  'hero-sub':'Now operating in Bodø and Trondheim — book your mobile sauna today. Take it wherever you want, or let us deliver and fire it up.',
+  'hero-cta-1':'Book sauna now','hero-cta-2':'Learn more','scroll':'Scroll',
+  // Features
+  'feat-label':'What we offer','feat-title':'Authentic sauna,<br>no compromise',
+  'feat-1-h':'Over 100°C','feat-1-p':'Wood-burning stove delivering genuine, dry sauna heat.',
+  'feat-2-h':'Any location','feat-2-p':'By the sea, on the mountain, in your garden — we set up wherever you want in the Bodø or Trondheim area.',
+  'feat-3-h':'Cold plunge','feat-3-p':'No North Norwegian sauna experience is complete without a jump in the fjord afterwards.',
+  'feat-4-h':'Any occasion','feat-4-p':'Birthday, corporate team building, friend gathering or just an evening of warmth and relaxation.',
+  // Gallery
+  'gal-label':'Gallery','gal-title':'See the experience',
+  'gal-desc':'We offer sauna tents from <strong style="color:var(--sand)">Kuno</strong> — Norwegian-developed, with wood stove and top quality.',
+  // How it works
+  'how-label':'How it works','how-title':'Three simple steps',
+  'step-1-h':'Contact us','step-1-p':'Send us a message with your desired date, number of people and preferred location.',
+  'step-2-h':'We set up','step-2-p':'We deliver, set up and fire up the sauna — ready when you arrive.',
+  'step-3-h':'Enjoy the experience','step-3-p':'Sauna, fresh air, cold plunge — we pick everything up afterwards.',
+  // Pricing
+  'pris-label':'Pricing','pris-title':'Simple, transparent prices',
+  'hh-pickup-name':'Self pickup','hh-title':'Take the sauna wherever you want',
+  'hh-desc':'Pick up the tent from us, assemble in 20 minutes and fire it up anywhere — by the fjord, on the mountain, in your garden or at the cabin. Full freedom over time and place.',
+  'hh-cta':'Book pickup','hh-from':'From <strong>790 kr</strong>',
+  'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1,190 kr','pris-li-3':'3 days — 1,490 kr',
+  'pris-li-4':'1 week — 3,490 kr','pris-li-5':'1,000 kr deposit',
+  'delivery-label':'Want it served? We deliver, set up and fire it up.',
+  'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
+  'day-name':'Day rental','day-desc':'Up to 8 hours · up to 8 people',
+  'pkg-f1':'Delivery, setup and firing','pkg-f2':'Wood stove with birch wood',
+  'pkg-f3':'Cold plunge included','pkg-f4':'Location by agreement',
+  'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
+  'biz-price':'Price by agreement','biz-cta':'Get in touch',
+  // Gift cards
+  'gc-label':'Gift Cards','gc-title':'Give an <em>experience</em>',
+  'gc-desc':'The perfect gift for him who has everything, or her who needs a break. Gift cards from Glødro are valid for 12 months and can be used on all our services.',
+  'gc-buy':'Buy gift card →',
+  // FAQ & Booking
+  'faq-label':'Q & A','faq-title':'Frequently asked questions',
+  'book-label':'Book now','book-title':'Reserve your<br><em>sauna experience</em>',
+  // Footer
+  'footer-tagline':'Mobile sauna rental in Bodø and Trondheim',
+  'footer-book':'Book now','footer-tents':'Sauna tents from Kuno','footer-privacy':'Privacy Policy',
+};
+
+let NO_TEXT = {}, NO_HTML = {};
+let currentLang = localStorage.getItem('glodro-lang') || 'no';
+
+function snapshot() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    NO_TEXT[el.getAttribute('data-i18n')] = el.textContent;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    NO_HTML[el.getAttribute('data-i18n-html')] = el.innerHTML;
+  });
+}
+
+function applyLang(lang) {
+  const isEN = lang === 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = isEN ? (EN[key] ?? el.textContent) : (NO_TEXT[key] ?? el.textContent);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = isEN ? (EN[key] ?? el.innerHTML) : (NO_HTML[key] ?? el.innerHTML);
+  });
+  document.getElementById('langBtn').textContent = isEN ? 'NORSK' : 'ENGLISH';
+  document.documentElement.lang = isEN ? 'en' : 'no';
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'no' ? 'en' : 'no';
+  localStorage.setItem('glodro-lang', currentLang);
+  applyLang(currentLang);
+}
+
+snapshot();
+if (currentLang === 'en') applyLang('en');
+</script>
 </body></html>
