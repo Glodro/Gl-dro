@@ -413,7 +413,6 @@ footer a{color:var(--sand);text-decoration:none}
           <li data-i18n="pris-li-2">2 dager — 1 190 kr</li>
           <li data-i18n="pris-li-3">3 dager — 1 490 kr</li>
           <li data-i18n="pris-li-4">1 uke — 3 490 kr</li>
-          <li data-i18n="pris-li-5">Depositum 1 000 kr</li>
         </ul>
       </div>
     </div>
@@ -764,7 +763,7 @@ async function submitGc(btn){
         <span class="badge bh" data-i18n="bk-hen-name">Du henter</span>
         <h2 class="sh" data-i18n="bk-s2b-h">Velg dato og varighet</h2>
         <p class="sub" data-i18n="bk-s2b-sub">Hent hos oss i Bodø — ta med dit du vil!</p>
-        <div class="infobox" data-i18n="bk-infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting. Depositum på 1 000 kr refunderes ved retur i god stand.</div>
+        <div class="infobox" data-i18n="bk-infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting.</div>
         <div class="sl" data-i18n="bk-sl-pickup-date">Hentedato</div>
         <div class="cal-header">
           <button class="cal-nav" onclick="bkPrev()">←</button>
@@ -883,9 +882,9 @@ async function submitGc(btn){
 <div id="pvModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:10000;justify-content:center;align-items:center;padding:20px">
   <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:2.5rem;position:relative">
     <button onclick="document.getElementById('pvModal').style.display='none'" style="position:absolute;top:16px;right:20px;background:none;border:none;color:var(--sand);font-size:1.5rem;cursor:pointer">&times;</button>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.5rem;margin-bottom:.5rem">Personvernerklæring</h2>
-    <p style="color:var(--ember);font-size:.8rem;margin-bottom:1.5rem">Glødro AS · Sist oppdatert: April 2026</p>
-    <div style="color:var(--muted);font-size:.85rem;line-height:1.8">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.5rem;margin-bottom:.5rem" data-i18n="pv-title">Personvernerklæring</h2>
+    <p style="color:var(--ember);font-size:.8rem;margin-bottom:1.5rem" data-i18n="pv-updated">Glødro AS · Sist oppdatert: April 2026</p>
+    <div style="color:var(--muted);font-size:.85rem;line-height:1.8" data-i18n-html="pv-body">
       <h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">1. Behandlingsansvarlig</h3>
       <p>Glødro AS er behandlingsansvarlig for personopplysninger som samles inn via denne nettsiden. Kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> ved spørsmål om personvern.</p>
       <h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">2. Hvilke opplysninger samler vi inn?</h3>
@@ -989,7 +988,6 @@ function buildSum(el){
     period:isEN?'Rental period':'Leieperiode',
     ret:isEN?'Return':'Retur',
     coldPlunge:isEN?'cold plunge':'kaldkulp',
-    dep:isEN?'deposit':'dep.',
   };
   function dur(n){return n===1?(1+' '+(isEN?'day':'dag')):(n+' '+(isEN?'days':'dager'));}
   function row(l,v){return'<div class="sr"><span>'+l+'</span><span>'+v+'</span></div>';}
@@ -1098,10 +1096,6 @@ const faqs = [
     a: "Absolutt! Vi tilbyr tilpassede pakker for bedrifter, teambuilding og events. Ta kontakt så setter vi opp noe som passer akkurat deres gruppe."
   },
   {
-    q: "Hva med depositum på hentealternativet?",
-    a: "Ved henting tar vi et depositum på 1 000 kr som refunderes når teltet er levert tilbake i god stand."
-  },
-  {
     q: "Hvor raskt får jeg svar på bookingen min?",
     a: "Vi bekrefter alle forespørsler innen 24 timer."
   }
@@ -1193,7 +1187,7 @@ const EN = {
   'hh-desc':'Pick up the tent from us, assemble in 20 minutes and fire it up anywhere — by the fjord, on the mountain, in your garden or at the cabin. Full freedom over time and place.',
   'hh-cta':'Book pickup','hh-from':'From <strong>790 kr</strong>',
   'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1 190 kr','pris-li-3':'3 days — 1 490 kr',
-  'pris-li-4':'1 week — 3 490 kr','pris-li-5':'1 000 kr deposit',
+  'pris-li-4':'1 week — 3 490 kr',
   'delivery-label':'Want it served? We deliver, set up and fire it up.',
   'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
   'day-name':'Day rental','day-desc':'Up to 8 hours · up to 8 people',
@@ -1270,7 +1264,7 @@ const EN = {
   // Booking form – step 2B
   'bk-s2b-h':'Choose date and duration',
   'bk-s2b-sub':'Pick up from us in Bodø — take it wherever you want!',
-  'bk-infobox':'The tent is assembled in about 20 min for 2 people. You receive an instruction video and receipt at pickup. The 1,000 kr deposit is refunded when the tent is returned in good condition.',
+  'bk-infobox':'The tent is assembled in about 20 min for 2 people. You receive an instruction video and receipt at pickup.',
   'bk-sl-pickup-date':'Pickup date',
   'bk-sl-duration':'Rental period',
   'bk-dur-1d':'1 day','bk-dur-2d':'2 days','bk-dur-3d':'3 days','bk-dur-1w':'1 week',
@@ -1290,6 +1284,10 @@ const EN = {
   // Booking form – step 4
   'bk-sent-h':'Request sent!',
   'bk-sent-p':'We\'ll get in touch within 24 hours to confirm.',
+  // Privacy policy modal
+  'pv-title':'Privacy Policy',
+  'pv-updated':'Glødro AS · Last updated: April 2026',
+  'pv-body':'<h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">1. Data Controller</h3><p>Glødro AS is the data controller for personal data collected through this website. Contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> for any privacy-related questions.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">2. What data do we collect?</h3><p>We collect information you voluntarily provide through the booking form: name, phone number, e-mail address and any message. We do not collect sensitive personal data.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">3. Purpose of processing</h3><p>The information is used solely to respond to your enquiry, confirm bookings, send payment information and provide relevant information about the service you have ordered. The legal basis is GDPR Article 6(1)(b) (performance of a contract).</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">4. Sharing of data</h3><p>We do not share your personal data with third parties, except to the payment provider (Vipps) for processing payments.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">5. Retention and deletion</h3><p>Personal data is stored for as long as necessary to fulfil the purpose for which it was collected, and deleted no later than 12 months after the last customer contact, unless accounting legislation requires longer retention.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">6. Your rights</h3><p>You have the right to access, correct and delete your personal data. You may also request restriction of processing, object to processing and request data portability. Contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> to exercise your rights.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">7. Cookies</h3><p>This website uses only technically necessary cookies for the website to function. We do not use analytics or tracking tools.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">8. Right to complain</h3><p>If you believe our processing of personal data violates applicable law, you may lodge a complaint with the Norwegian Data Protection Authority. See <a href="https://www.datatilsynet.no" target="_blank" style="color:var(--ember)">datatilsynet.no</a> for more information.</p>',
   // Footer
   'footer-tagline':'Mobile sauna rental in Bodø and Trondheim',
   'footer-book':'Book now','footer-tents':'Sauna tents from Kuno','footer-privacy':'Privacy Policy',
@@ -1304,7 +1302,6 @@ const faqsEN = [
   { q:'What is included in the price?', a:'Delivery, setup, firewood and firing of the stove, as well as teardown and pickup afterwards. You don\'t need to do anything other than show up and enjoy.' },
   { q:'How do I pay?', a:'We accept payment via Vipps or invoice. Details are agreed when we confirm the booking.' },
   { q:'Can we book for a company or larger event?', a:'Absolutely! We offer tailored packages for companies, team building and events. Get in touch and we\'ll put together something that fits your group perfectly.' },
-  { q:'What about the deposit for the pickup option?', a:'For the pickup option we charge a deposit of 1,000 kr which is refunded when the tent is returned in good condition.' },
   { q:'How quickly do I get a reply to my booking?', a:'We confirm all enquiries within 24 hours.' }
 ];
 
