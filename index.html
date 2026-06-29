@@ -136,11 +136,13 @@ body{background:var(--dark);color:var(--light);font-family:'Jost',sans-serif;fon
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:1.2rem 2rem;display:flex;justify-content:space-between;align-items:center;transition:background .4s,padding .4s}
 nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8rem 2rem;border-bottom:1px solid rgba(200,169,110,.1)}
-.nav-logo{display:flex;align-items:center;gap:.5rem;font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--sand);font-weight:700;letter-spacing:.04em}.nav-logo img{height:36px;width:auto}
+.nav-logo{display:flex;align-items:center;gap:.6rem;font-family:'Playfair Display',serif;font-size:1.45rem;color:var(--sand);font-weight:700;letter-spacing:.04em}.nav-logo img{height:44px;width:auto}
 .nav-links{display:flex;gap:2rem;list-style:none}
-.nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .25s}
+.nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);text-decoration:none;transition:color .25s}
 .nav-links a:hover{color:var(--sand)}
 @media(max-width:600px){.nav-links{display:none}}
+.lang-btn{background:none;border:1px solid rgba(200,169,110,.4);color:var(--light);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .85em;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .25s;white-space:nowrap}
+.lang-btn:hover{border-color:var(--sand);color:var(--sand)}
 
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
@@ -182,12 +184,13 @@ section{padding:6rem 1.5rem}
 .feature-card p{font-size:.9rem;line-height:1.7;color:var(--muted)}
 
 /* GALLERY */
-.gallery-grid{column-count:3;column-gap:.75rem;margin-top:3.5rem}
-.gallery-grid figure{margin:0 0 .75rem;break-inside:avoid;overflow:hidden;border-radius:3px}
-.gallery-grid img{width:100%;height:auto;display:block;border-radius:3px;transition:transform .5s ease}
+.gallery-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:3.5rem}
+.gallery-grid figure{margin:0;overflow:hidden;border-radius:3px}
+.gallery-grid img{width:100%;height:280px;object-fit:cover;display:block;border-radius:3px;transition:transform .5s ease}
 .gallery-grid figure:hover img{transform:scale(1.04)}
-@media(max-width:820px){.gallery-grid{column-count:2}}
-@media(max-width:520px){.gallery-grid{column-count:1}}
+.gallery-extra{display:none}.gallery-extra.visible{display:block}
+@media(max-width:820px){.gallery-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:520px){.gallery-grid{grid-template-columns:1fr}.gallery-grid img{height:220px}}
 
 /* HOW */
 .how{background:var(--warm)}
@@ -211,7 +214,7 @@ section{padding:6rem 1.5rem}
 .price-features li::before{content:'✦';color:var(--sand);font-size:.6rem}
 
 /* BOOKING */
-.booking-section{background:var(--warm)}
+.booking-section{background:var(--warm);scroll-margin-top:72px}
 #bk{max-width:680px;margin:0 auto;padding:1rem 0}
 #bk .bk-step{display:none}
 #bk .bk-step.active{display:block}
@@ -313,7 +316,7 @@ footer a{color:var(--sand);text-decoration:none}
 .biz-stripe{margin-top:2.5rem;border:1px solid rgba(200,169,110,.18);border-radius:8px;padding:1.4rem 1.8rem;display:flex;justify-content:space-between;align-items:center;gap:1.5rem;flex-wrap:wrap}
 .biz-right{display:flex;align-items:center;gap:1.5rem}
 .biz-price{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--sand);white-space:nowrap}
-#bk .tc.tc-primary{border-color:var(--ember);background:rgba(201,107,42,.05)}
+#bk .tc.tc-primary{border-color:rgba(200,169,110,.4)}
 #bk .tc-flag{display:inline-block;font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:var(--ember);margin-top:8px}
 @media(max-width:700px){.henting-hero{grid-template-columns:1fr;padding:1.8rem;gap:1.5rem}.delivery-row{grid-template-columns:1fr}.biz-stripe{flex-direction:column;align-items:flex-start}}
 </style>
@@ -323,10 +326,13 @@ footer a{color:var(--sand);text-decoration:none}
 <nav id="nav">
   <div class="nav-logo"><img src="/icon.png" alt=""/>Glødro</div>
   <ul class="nav-links">
-    <li><a href="#om">Om</a></li>
-    <li><a href="#galleri">Galleri</a></li>
-    <li><a href="#pris">Pris</a></li>
-    <li><a href="#faq">FAQ</a></li><li><a href="#gavekort">Gavekort</a></li><li><a href="#book">Book</a></li>
+    <li><a href="#om" data-i18n="nav-om">Om</a></li>
+    <li><a href="#galleri" data-i18n="nav-galleri">Galleri</a></li>
+    <li><a href="#pris" data-i18n="nav-pris">Pris</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#gavekort" data-i18n="nav-gavekort">Gavekort</a></li>
+    <li><a href="#book" data-i18n="nav-book">Book</a></li>
+    <li><button id="langBtn" onclick="toggleLang()" class="lang-btn">ENGLISH</button></li>
   </ul>
 </nav>
 
@@ -334,109 +340,111 @@ footer a{color:var(--sand);text-decoration:none}
   <div class="hero-bg" id="heroBg" style="background-image:url('/galleri-badstu-fjord.webp')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
-    <div class="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
-    <h1>Badstu der<br><em>naturen er veggen</em></h1>
-    <p class="hero-sub">Vi er i gang i Bodø og Trondheim — book din mobile badstu i dag. Ta den med dit du vil, eller la oss levere og fyre.</p>
+    <div class="hero-tag" data-i18n="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
+    <h1 data-i18n-html="hero-h1">Badstu der<br><em>naturen er veggen</em></h1>
+    <p class="hero-sub" data-i18n="hero-sub">Vi er i gang i Bodø og Trondheim — book din mobile badstu i dag. Ta den med dit du vil, eller la oss levere og fyre.</p>
     <div class="hero-cta">
-      <a href="#book" class="btn-primary">Book badstu nå</a>
-      <a href="#om" class="btn-outline">Les mer</a>
+      <a href="#book" class="btn-primary" data-i18n="hero-cta-1">Book badstu nå</a>
+      <a href="#om" class="btn-outline" data-i18n="hero-cta-2">Les mer</a>
     </div>
   </div>
-  <div class="scroll-hint">Scroll</div>
+  <div class="scroll-hint" data-i18n="scroll">Scroll</div>
 </section>
 
 <section class="features" id="om">
   <div class="container">
-    <div class="section-label">Hva vi tilbyr</div>
-    <h2 class="section-title">Ekte badstu,<br>ingen kompromiss</h2>
+    <div class="section-label" data-i18n="feat-label">Hva vi tilbyr</div>
+    <h2 class="section-title" data-i18n-html="feat-title">Ekte badstu,<br>ingen kompromiss</h2>
     <div class="divider"></div>
     <div class="features-grid">
-      <div class="feature-card"><div class="feature-icon">🔥</div><h3>Over 100°C</h3><p>Vedovn som gir ekte, tørr badstuevarme.</p></div>
-      <div class="feature-card"><div class="feature-icon">📍</div><h3>Valgfri lokasjon</h3><p>Rett ved sjøen, på fjellet, i hagen — vi rigger opp der du vil i Bodø- eller Trondheim-området.</p></div>
-      <div class="feature-card"><div class="feature-icon">❄️</div><h3>Kald dukk</h3><p>Ingen nordnorsk badstuopplevelse er komplett uten et hopp i fjorden etterpå.</p></div>
-      <div class="feature-card"><div class="feature-icon">🎉</div><h3>Alle anledninger</h3><p>Bursdag, jobb-teambuilding, vennetreff eller bare en kveld med ro og varme.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔥</div><h3 data-i18n="feat-1-h">Over 100°C</h3><p data-i18n="feat-1-p">Vedovn som gir ekte, tørr badstuevarme.</p></div>
+      <div class="feature-card"><div class="feature-icon">📍</div><h3 data-i18n="feat-2-h">Valgfri lokasjon</h3><p data-i18n="feat-2-p">Rett ved sjøen, på fjellet, i hagen — vi rigger opp der du vil i Bodø- eller Trondheim-området.</p></div>
+      <div class="feature-card"><div class="feature-icon">❄️</div><h3 data-i18n="feat-3-h">Kald dukk</h3><p data-i18n="feat-3-p">Ingen nordnorsk badstuopplevelse er komplett uten et hopp i fjorden etterpå.</p></div>
+      <div class="feature-card"><div class="feature-icon">🎉</div><h3 data-i18n="feat-4-h">Alle anledninger</h3><p data-i18n="feat-4-p">Bursdag, jobb-teambuilding, vennetreff eller bare en kveld med ro og varme.</p></div>
     </div>
   </div>
 </section>
 
 <section id="galleri">
   <div class="container">
-    <div class="section-label">Galleri</div>
-    <h2 class="section-title">Se opplevelsen</h2>
+    <div class="section-label" data-i18n="gal-label">Galleri</div>
+    <h2 class="section-title" data-i18n="gal-title">Se opplevelsen</h2>
     <div class="divider"></div>
-    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
+    <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem" data-i18n-html="gal-desc">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
     <div class="gallery-grid">
       <figure><img src="/galleri-badstu-fjord.webp" loading="lazy" alt="Mobil badstu ved fjorden med utsikt til fjell"/></figure>
       <figure><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></figure>
       <figure><img src="/galleri-interior-vedovn.webp" loading="lazy" alt="Innvendig i badstuteltet med vedovn og fjordutsikt"/></figure>
-      <figure><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></figure>
-      <figure><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></figure>
-      <figure><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></figure>
+    </div>
+    <div style="margin-top:.75rem">
+      <button id="galleryBtn" onclick="toggleGallery()" class="lang-btn" style="font-size:.75rem;padding:.5em 1.4em" data-i18n="gal-show-more">Vis alle</button>
     </div>
   </div>
 </section>
 
 <section class="how">
   <div class="container">
-    <div class="section-label">Slik fungerer det</div>
-    <h2 class="section-title">Tre enkle steg</h2>
+    <div class="section-label" data-i18n="how-label">Slik fungerer det</div>
+    <h2 class="section-title" data-i18n="how-title">Tre enkle steg</h2>
     <div class="divider"></div>
     <div class="steps">
-      <div class="step"><div class="step-num">01</div><h3>Kontakt oss</h3><p>Send oss en melding med ønsket dato, antall personer og foretrukket lokasjon.</p></div>
-      <div class="step"><div class="step-num">02</div><h3>Vi rigger opp</h3><p>Vi leverer, setter opp og fyrer opp badstuen — klar til bruk når du ankommer.</p></div>
-      <div class="step"><div class="step-num">03</div><h3>Nyt opplevelsen</h3><p>Badstu, frisk luft, kald dukk — vi henter alt igjen etterpå.</p></div>
+      <div class="step"><div class="step-num">01</div><h3 data-i18n="step-1-h">Kontakt oss</h3><p data-i18n="step-1-p">Send oss en melding med ønsket dato, antall personer og foretrukket lokasjon.</p></div>
+      <div class="step"><div class="step-num">02</div><h3 data-i18n="step-2-h">Vi rigger opp</h3><p data-i18n="step-2-p">Vi leverer, setter opp og fyrer opp badstuen — klar til bruk når du ankommer.</p></div>
+      <div class="step"><div class="step-num">03</div><h3 data-i18n="step-3-h">Nyt opplevelsen</h3><p data-i18n="step-3-p">Badstu, frisk luft, kald dukk — vi henter alt igjen etterpå.</p></div>
     </div>
   </div>
 </section>
 
 <section id="pris">
   <div class="container">
-    <div class="section-label">Priser</div>
-    <h2 class="section-title">Enkle, transparente priser</h2>
+    <div class="section-label" data-i18n="pris-label">Priser</div>
+    <h2 class="section-title" data-i18n="pris-title">Enkle, transparente priser</h2>
     <div class="divider"></div>
     <div class="henting-hero">
       <div class="hh-left">
-        <div class="price-name">Du henter selv</div>
-        <h3 class="hh-title">Ta badstuen med dit du vil</h3>
-        <p class="hh-desc">Hent teltet hos oss, monter på 20 minutter og fyr opp hvor som helst — ved fjorden, på fjellet, i hagen eller på hytta. Full frihet over tid og sted.</p>
-        <a href="#book" class="btn-primary">Book henting</a>
+        <div class="price-name" data-i18n="hh-pickup-name">Du henter selv</div>
+        <h3 class="hh-title" data-i18n="hh-title">Ta badstuen med dit du vil</h3>
+        <p class="hh-desc" data-i18n="hh-desc">Hent teltet hos oss, monter på 20 minutter og fyr opp hvor som helst — ved fjorden, på fjellet, i hagen eller på hytta. Full frihet over tid og sted.</p>
+        <a href="#book" class="btn-primary" data-i18n="hh-cta">Book henting</a>
       </div>
       <div class="hh-right">
-        <div class="hh-from">Fra <strong>790 kr</strong></div>
+        <div class="hh-from" data-i18n-html="hh-from">Fra <strong>790 kr</strong></div>
         <ul class="price-features">
-          <li>1 dag — 790 kr</li>
-          <li>2 dager — 1 190 kr</li>
-          <li>3 dager — 1 490 kr</li>
-          <li>1 uke — 3 490 kr</li>
-          <li>Depositum 1 000 kr</li>
+          <li data-i18n="pris-li-1">1 dag — 790 kr</li>
+          <li data-i18n="pris-li-2">2 dager — 1 190 kr</li>
+          <li data-i18n="pris-li-3">3 dager — 1 490 kr</li>
+          <li data-i18n="pris-li-4">1 uke — 3 490 kr</li>
         </ul>
       </div>
     </div>
 
-    <div class="delivery-label">Vil du ha det servert? Vi leverer, rigger og fyrer.</div>
+    <div class="delivery-label" data-i18n="delivery-label">Vil du ha det servert? Vi leverer, rigger og fyrer.</div>
     <div class="delivery-row">
       <div class="price-card price-card--soft">
-        <div class="price-name">Kveldssession</div>
+        <div class="price-name" data-i18n="eve-name">Kveldssession</div>
         <div class="price-amount">1 490 <span>kr</span></div>
-        <div class="price-desc">Inntil 4 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li>Levering, oppsett og fyring</li><li>Vedovn med bjørkved</li><li>Kaldkulp inkludert</li><li>Lokasjon etter avtale</li></ul>
+        <div class="price-desc" data-i18n="eve-desc">Inntil 4 timer · opptil 6 pers.</div>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
       <div class="price-card price-card--soft">
-        <div class="price-name">Dagsleie</div>
+        <div class="price-name" data-i18n="day-name">Dagsleie</div>
         <div class="price-amount">2 490 <span>kr</span></div>
-        <div class="price-desc">Inntil 8 timer · opptil 8 pers.</div>
-        <ul class="price-features"><li>Levering, oppsett og fyring</li><li>Vedovn med bjørkved</li><li>Kaldkulp inkludert</li><li>Lokasjon etter avtale</li></ul>
+        <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 8 pers.</div>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
     </div>
 
     <div class="biz-stripe">
       <div>
-        <div class="price-name" style="margin-bottom:.4rem">Bedrift / Event</div>
-        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0">Tilpasset pakke for grupper, teambuilding og arrangement — med faktura og eget program.</p>
+        <div class="price-name" style="margin-bottom:.4rem" data-i18n="biz-name">Bedrift / Event</div>
+        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0" data-i18n="biz-desc">Tilpasset pakke for grupper, teambuilding og arrangement — med faktura og eget program.</p>
       </div>
       <div class="biz-right">
-        <div class="biz-price">Pris etter avtale</div>
-        <a href="#book" class="btn-outline" style="padding:.7rem 1.6rem">Ta kontakt</a>
+        <div class="biz-price" data-i18n="biz-price">Pris etter avtale</div>
+        <a href="#book" class="btn-outline" style="padding:.7rem 1.6rem" data-i18n="biz-cta">Ta kontakt</a>
       </div>
     </div>
   </div>
@@ -446,10 +454,10 @@ footer a{color:var(--sand);text-decoration:none}
 <section id="gavekort" style="background:linear-gradient(135deg,#211d18 0%,#1a1612 100%);position:relative;overflow:hidden">
   <div style="position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(201,107,42,.08) 0%,transparent 70%);pointer-events:none"></div>
   <div style="max-width:1100px;margin:0 auto;position:relative">
-    <div class="section-label">Gavekort</div>
-    <h2 class="section-title">Gi bort en <em>opplevelse</em></h2>
+    <div class="section-label" data-i18n="gc-label">Gavekort</div>
+    <h2 class="section-title" data-i18n-html="gc-title">Gi bort en <em>opplevelse</em></h2>
     <div class="divider"></div>
-    <p style="max-width:600px;color:var(--muted);margin:0 0 3rem;font-size:1.05rem;line-height:1.7">Den perfekte gaven til han som har alt, eller hun som trenger en pause. Gavekort fra Glødro er gyldig i 12 måneder og kan brukes på alle våre tjenester.</p>
+    <p style="max-width:600px;color:var(--muted);margin:0 0 3rem;font-size:1.05rem;line-height:1.7" data-i18n="gc-desc">Den perfekte gaven til han som har alt, eller hun som trenger en pause. Gavekort fra Glødro er gyldig i 12 måneder og kan brukes på alle våre tjenester.</p>
 
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:3rem;margin-bottom:4rem;align-items:center" id="gcPreview">
       <div>
@@ -457,87 +465,81 @@ footer a{color:var(--sand);text-decoration:none}
           <div style="position:absolute;top:-50px;right:-50px;width:200px;height:200px;background:radial-gradient(circle,rgba(201,107,42,.15) 0%,transparent 70%)"></div>
           <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:2rem;position:relative">
             <div>
-              <div style="font-size:.7rem;letter-spacing:.3em;color:var(--sand);text-transform:uppercase;margin-bottom:4px">Gavekort</div>
+              <div style="font-size:.7rem;letter-spacing:.3em;color:var(--sand);text-transform:uppercase;margin-bottom:4px" data-i18n="gc-card-label">Gavekort</div>
               <div style="font-family:'Playfair Display',serif;font-size:2rem;color:var(--light);font-weight:500">Glødro</div>
-              <div style="font-size:.75rem;color:var(--muted);margin-top:4px">Mobil badstu</div>
+              <div style="font-size:.75rem;color:var(--muted);margin-top:4px" data-i18n="gc-card-sub">Mobil badstu</div>
             </div>
             <div style="font-size:1.8rem">🔥</div>
           </div>
           <div style="margin:2.5rem 0 1.5rem;position:relative">
-            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:6px">Verdi</div>
+            <div style="font-size:.65rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:6px" data-i18n="gc-card-value">Verdi</div>
             <div style="font-family:'Playfair Display',serif;font-size:3rem;color:var(--ember);font-weight:500">1 990 kr</div>
           </div>
           <div style="border-top:1px solid rgba(200,169,110,.15);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:flex-end;position:relative">
             <div>
-              <div style="font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:3px">Kode</div>
+              <div style="font-size:.65rem;letter-spacing:.15em;color:var(--muted);text-transform:uppercase;margin-bottom:3px" data-i18n="gc-card-code">Kode</div>
               <div style="font-family:'Courier New',monospace;font-size:.85rem;color:var(--sand);letter-spacing:.1em">GLODRO-2026-XXXX</div>
             </div>
             <div style="text-align:right">
-              <div style="font-size:.65rem;color:var(--muted);margin-bottom:3px">Gyldig til</div>
-              <div style="font-size:.85rem;color:var(--sand)">12 mnd fra kjøp</div>
+              <div style="font-size:.65rem;color:var(--muted);margin-bottom:3px" data-i18n="gc-card-valid">Gyldig til</div>
+              <div style="font-size:.85rem;color:var(--sand)" data-i18n="gc-card-validity">12 mnd fra kjøp</div>
             </div>
           </div>
         </div>
       </div>
       <div>
-        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:var(--light);margin:0 0 1.2rem">Slik fungerer det</h3>
+        <h3 style="font-family:'Playfair Display',serif;font-size:1.8rem;font-weight:400;color:var(--light);margin:0 0 1.2rem" data-i18n="gc-how-title">Slik fungerer det</h3>
         <div style="display:flex;gap:1rem;margin-bottom:1.5rem">
           <div style="background:var(--ember);color:var(--dark);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">1</div>
           <div>
-            <div style="color:var(--light);font-weight:500;margin-bottom:3px">Velg beløp</div>
-            <div style="color:var(--muted);font-size:.9rem;line-height:1.5">Velg mellom våre ferdige pakker, eller bestem selv hvor mye du vil gi bort.</div>
+            <div style="color:var(--light);font-weight:500;margin-bottom:3px" data-i18n="gc-step-1-h">Velg beløp</div>
+            <div style="color:var(--muted);font-size:.9rem;line-height:1.5" data-i18n="gc-step-1-p">Velg mellom våre ferdige pakker, eller bestem selv hvor mye du vil gi bort.</div>
           </div>
         </div>
         <div style="display:flex;gap:1rem;margin-bottom:1.5rem">
           <div style="background:var(--ember);color:var(--dark);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">2</div>
           <div>
-            <div style="color:var(--light);font-weight:500;margin-bottom:3px">Personliggjør</div>
-            <div style="color:var(--muted);font-size:.9rem;line-height:1.5">Legg til en hilsen til mottakeren og velg om det skal sendes digitalt eller som fysisk kort.</div>
+            <div style="color:var(--light);font-weight:500;margin-bottom:3px" data-i18n="gc-step-2-h">Personliggjør</div>
+            <div style="color:var(--muted);font-size:.9rem;line-height:1.5" data-i18n="gc-step-2-p">Legg til en hilsen til mottakeren og velg om det skal sendes digitalt eller som fysisk kort.</div>
           </div>
         </div>
         <div style="display:flex;gap:1rem">
           <div style="background:var(--ember);color:var(--dark);width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:500;flex-shrink:0">3</div>
           <div>
-            <div style="color:var(--light);font-weight:500;margin-bottom:3px">Motta gavekort</div>
-            <div style="color:var(--muted);font-size:.9rem;line-height:1.5">Du får gavekortet på e-post umiddelbart, eller i posten innen 3 dager.</div>
+            <div style="color:var(--light);font-weight:500;margin-bottom:3px" data-i18n="gc-step-3-h">Motta gavekort</div>
+            <div style="color:var(--muted);font-size:.9rem;line-height:1.5" data-i18n="gc-step-3-p">Du får gavekortet på e-post umiddelbart, eller i posten innen 3 dager.</div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="section-label" style="margin-bottom:1.5rem">Velg pakke</div>
+    <div class="section-label" style="margin-bottom:1.5rem" data-i18n="gc-velg-pakke">Velg pakke</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem">
       <div class="gc-pack" onclick="selectGc(this,'Vennekveld',1490)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px">Vennekveld</div>
+        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-1-name">Vennekveld</div>
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 490 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Én kveldssession for opptil 6 personer. 4 timer med levering og henting inkludert.</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-1-desc">Én kveldssession for opptil 6 personer. 4 timer med levering og henting inkludert.</div>
       </div>
-      <div class="gc-pack" onclick="selectGc(this,'Opplevelse',1990)" style="background:rgba(255,255,255,.02);border:2px solid var(--ember);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px">Opplevelse</div>
+      <div class="gc-pack" onclick="selectGc(this,'Opplevelse',1990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
+        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-2-name">Opplevelse</div>
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Kveldssession med kaldkulp inkludert. Perfekt for paret, bursdagsbarnet eller jubilanten.</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-2-desc">Kveldssession med kaldkulp inkludert. Perfekt for paret, bursdagsbarnet eller jubilanten.</div>
       </div>
       <div class="gc-pack" onclick="selectGc(this,'Hyttetur',2990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px">Du henter</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px">Hyttetur</div>
+        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-hen-name">Du henter</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-3-name">Hyttetur</div>
         <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">2 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Helg-utleie (2 dager) inkludert 2 vedsekker. Ta badstuen med på hytta eller i hagen.</div>
-      </div>
-      <div class="gc-pack" onclick="selectGc(this,'Bedrift',4990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px">Bedrift</div>
-        <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">4 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6">Dagsleie med levering og kaldkulp inkludert. Unik teambuilding for hele avdelingen.</div>
+        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-3-desc">Helg-utleie (2 dager) inkludert 2 vedsekker. Ta badstuen med på hytta eller i hagen.</div>
       </div>
     </div>
 
     <div style="background:rgba(255,255,255,.02);border:1px dashed rgba(200,169,110,.3);border-radius:12px;padding:2rem;margin-bottom:3rem">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--light);margin-bottom:6px">Eller velg ditt eget beløp</div>
-          <div style="color:var(--muted);font-size:.9rem">Fra 500 kr og oppover. Mottakeren kan bruke beløpet på hva de vil.</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--light);margin-bottom:6px" data-i18n="gc-custom-title">Eller velg ditt eget beløp</div>
+          <div style="color:var(--muted);font-size:.9rem" data-i18n="gc-custom-desc">Fra 500 kr og oppover. Mottakeren kan bruke beløpet på hva de vil.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
           <input type="number" id="gcCustom" min="500" step="100" placeholder="Beløp" style="background:var(--dark);border:1px solid rgba(200,169,110,.25);border-radius:8px;padding:14px 18px;color:var(--light);font-size:1.05rem;width:140px;font-family:inherit;outline:none" oninput="updateCustomGc()">
@@ -547,8 +549,8 @@ footer a{color:var(--sand);text-decoration:none}
     </div>
 
     <div style="text-align:center">
-      <button onclick="openGcModal()" style="padding:16px 40px;font-size:.85rem;letter-spacing:.1em;background:var(--ember);color:var(--dark);border:none;border-radius:50px;cursor:pointer;font-weight:500;text-transform:uppercase;transition:all .2s;font-family:inherit">Kjøp gavekort →</button>
-      <p style="color:var(--muted);font-size:.8rem;margin-top:1rem">Betales med Vipps eller kort · Sendes umiddelbart på e-post</p>
+      <button onclick="openGcModal()" style="padding:16px 40px;font-size:.85rem;letter-spacing:.1em;background:var(--ember);color:var(--dark);border:none;border-radius:50px;cursor:pointer;font-weight:500;text-transform:uppercase;transition:all .2s;font-family:inherit" data-i18n="gc-buy">Kjøp gavekort →</button>
+      <p style="color:var(--muted);font-size:.8rem;margin-top:1rem" data-i18n="gc-pay-note">Betales med Vipps eller kort · Sendes umiddelbart på e-post</p>
     </div>
   </div>
 </section>
@@ -564,40 +566,49 @@ footer a{color:var(--sand);text-decoration:none}
 <div id="gcModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:1rem">
   <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto">
     <button onclick="closeGcModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer">×</button>
-    <div class="section-label">Kjøp gavekort</div>
-    <h3 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.6rem;margin:.5rem 0 2rem;font-weight:500" id="gcSelectedTitle">Velg pakke først</h3>
+    <div class="section-label" data-i18n="gc-buy">Kjøp gavekort</div>
+    <h3 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.6rem;margin:.5rem 0 2rem;font-weight:500" id="gcSelectedTitle" data-i18n="gc-modal-placeholder">Velg pakke først</h3>
     <div style="margin-bottom:1.2rem">
-      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Din e-post (kjøper)</div>
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="gc-field-buyer">Din e-post (kjøper)</div>
       <input type="email" id="gcBuyerEmail" placeholder="din@epost.no" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
     </div>
     <div style="margin-bottom:1.2rem">
-      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Mottakerens navn</div>
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="gc-field-recip-name">Mottakerens navn</div>
       <input type="text" id="gcRecipientName" placeholder="Ole Olsen" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
     </div>
     <div style="margin-bottom:1.2rem">
-      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Mottakerens e-post</div>
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="gc-field-recip-email">Mottakerens e-post</div>
       <input type="email" id="gcRecipientEmail" placeholder="mottaker@epost.no" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
     </div>
     <div style="margin-bottom:1.5rem">
-      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px">Hilsen (valgfritt)</div>
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="gc-field-msg">Hilsen (valgfritt)</div>
       <textarea id="gcMessage" placeholder="Gratulerer med dagen! Nyt varmen og utsikten ❤️" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;min-height:80px;resize:vertical;outline:none;box-sizing:border-box"></textarea>
     </div>
     <div style="background:rgba(255,255,255,.03);border-radius:8px;padding:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center">
       <div>
-        <div style="font-size:.75rem;color:var(--muted)">Total</div>
+        <div style="font-size:.75rem;color:var(--muted)" data-i18n="gc-total">Total</div>
         <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--ember);font-weight:500" id="gcTotal">—</div>
       </div>
       <div style="text-align:right;font-size:.8rem;color:var(--muted)">
-        <div>Sendes umiddelbart<br>etter betaling</div>
+        <div data-i18n-html="gc-send-note">Sendes umiddelbart<br>etter betaling</div>
       </div>
     </div>
-    <button onclick="submitGc(this)" style="width:100%;padding:16px;background:var(--ember);color:var(--dark);border:none;border-radius:50px;font-weight:500;cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-family:inherit">Bekreft bestilling →</button>
-    <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-top:1rem">Vi kontakter deg på e-post for betaling via Vipps</p>
+    <button onclick="submitGc(this)" style="width:100%;padding:16px;background:var(--ember);color:var(--dark);border:none;border-radius:50px;font-weight:500;cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-family:inherit" data-i18n="gc-confirm">Bekreft bestilling →</button>
+    <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-top:1rem" data-i18n="gc-vipps-note">Vi kontakter deg på e-post for betaling via Vipps</p>
   </div>
 </div>
 
 <script>
 let selectedGc=null,selectedGcPrice=0;
+const GC_NAMES_EN={'Vennekveld':"Friends' Evening",'Opplevelse':'Experience','Hyttetur':'Cabin Trip','Bedrift':'Corporate','Egendefinert':'Custom'};
+const PKG_NAMES_EN={'Kveldssession':'Evening session','Dagsleie':'Day rental','Bedrift':'Corporate'};
+let galleryOpen=false;
+function toggleGallery(){
+  galleryOpen=!galleryOpen;
+  document.querySelectorAll('.gallery-extra').forEach(f=>f.classList.toggle('visible',galleryOpen));
+  const btn=document.getElementById('galleryBtn');
+  if(btn)btn.textContent=galleryOpen?(currentLang==='en'?'Show less':'Vis færre'):(currentLang==='en'?'Show all':'Vis alle');
+}
 function selectGc(el,name,price){
   document.querySelectorAll('.gc-pack').forEach(c=>c.classList.remove('sel'));
   el.classList.add('sel');
@@ -612,8 +623,9 @@ function updateCustomGc(){
   }
 }
 function openGcModal(){
-  if(!selectedGc){alert('Velg en pakke eller skriv inn et beløp først');return;}
-  document.getElementById('gcSelectedTitle').textContent=selectedGc+' — '+selectedGcPrice.toLocaleString('nb-NO')+' kr';
+  if(!selectedGc){alert(currentLang==='en'?'Choose a package or enter an amount first':'Velg en pakke eller skriv inn et beløp først');return;}
+  const displayName=currentLang==='en'?(GC_NAMES_EN[selectedGc]||selectedGc):selectedGc;
+  document.getElementById('gcSelectedTitle').textContent=displayName+' — '+selectedGcPrice.toLocaleString('nb-NO')+' kr';
   document.getElementById('gcTotal').textContent=selectedGcPrice.toLocaleString('nb-NO')+' kr';
   document.getElementById('gcModal').style.display='flex';
 }
@@ -623,9 +635,9 @@ async function submitGc(btn){
   const rn=document.getElementById('gcRecipientName').value.trim();
   const re=document.getElementById('gcRecipientEmail').value.trim();
   const msg=document.getElementById('gcMessage').value.trim();
-  if(!be||!rn||!re){alert('Fyll ut alle obligatoriske felt');return;}
-  if(!selectedGc){alert('Velg en pakke eller skriv inn et beløp først');return;}
-  const orig=btn.textContent;btn.disabled=true;btn.textContent='Sender...';
+  if(!be||!rn||!re){alert(currentLang==='en'?'Please fill in all required fields':'Fyll ut alle obligatoriske felt');return;}
+  if(!selectedGc){alert(currentLang==='en'?'Choose a package or enter an amount first':'Velg en pakke eller skriv inn et beløp først');return;}
+  const orig=btn.textContent;btn.disabled=true;btn.textContent=currentLang==='en'?'Sending...':'Sender...';
   const payload={
     Type:'Gavekort',
     Pakke:selectedGc,
@@ -645,18 +657,18 @@ async function submitGc(btn){
     if(!res.ok)throw new Error('http '+res.status);
     closeGcModal();
     btn.disabled=false;btn.textContent=orig;
-    alert('Takk! Bestillingen er mottatt. Vi sender deg en Vipps-link på '+be+' for betaling. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
+    alert(currentLang==='en'?'Thank you! Your order has been received. We\'ll send you a payment link to '+be+'. The gift card for '+rn+' will be sent as soon as payment is confirmed.':'Takk! Bestillingen er mottatt. Vi sender deg en Vipps-link på '+be+' for betaling. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
   }catch(e){
     btn.disabled=false;btn.textContent=orig;
-    alert('Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
+    alert(currentLang==='en'?'Sorry, something went wrong. Try again or contact us at kontakt@glodro.no':'Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
   }
 }
 </script>
 
 <section id="faq">
   <div class="container">
-    <div class="section-label">Spørsmål og svar</div>
-    <h2 class="section-title">Vanlige spørsmål</h2>
+    <div class="section-label" data-i18n="faq-label">Spørsmål og svar</div>
+    <h2 class="section-title" data-i18n="faq-title">Vanlige spørsmål</h2>
     <div class="divider"></div>
     <div id="faq-list"></div>
   </div>
@@ -664,8 +676,8 @@ async function submitGc(btn){
 
 <section class="booking-section" id="book">
   <div class="container">
-    <div class="section-label">Book nå</div>
-    <h2 class="section-title">Reserver din<br><em>badstu-opplevelse</em></h2>
+    <div class="section-label" data-i18n="book-label">Book nå</div>
+    <h2 class="section-title" data-i18n-html="book-title">Reserver din<br><em>badstu-opplevelse</em></h2>
     <div class="divider"></div>
     <div id="bk">
       <div class="progress">
@@ -677,30 +689,30 @@ async function submitGc(btn){
 
       <!-- Step 1 -->
       <div class="bk-step active" id="s1">
-        <h2 class="sh">Hvordan vil du booke?</h2>
-        <p class="sub">Velg om vi leverer og setter opp, eller om du henter selv</p>
+        <h2 class="sh" data-i18n="bk-s1-h">Hvordan vil du booke?</h2>
+        <p class="sub" data-i18n="bk-s1-sub">Velg om vi leverer og setter opp, eller om du henter selv</p>
         <div class="type-grid">
           <div class="tc tc-primary" id="tc-hen" onclick="bkType(this,'hen')">
             <div class="tc-icon">🎒</div>
-            <div class="tc-name">Du henter</div>
-            <div class="tc-desc">Hent hos oss, monter selv og ta badstuen med dit du vil — full frihet over tid og sted.</div>
-            <span class="tc-flag">Mest fleksibelt</span>
+            <div class="tc-name" data-i18n="bk-hen-name">Du henter</div>
+            <div class="tc-desc" data-i18n="bk-hen-desc">Hent hos oss, monter selv og ta badstuen med dit du vil — full frihet over tid og sted.</div>
+            <span class="tc-flag" data-i18n="bk-flag">Mest fleksibelt</span>
           </div>
           <div class="tc" id="tc-lev" onclick="bkType(this,'lev')">
             <div class="tc-icon">🚐</div>
-            <div class="tc-name">Vi leverer</div>
-            <div class="tc-desc">Vi kjører ut, setter opp og fyrer opp. Du møter opp og nyter.</div>
+            <div class="tc-name" data-i18n="bk-lev-name">Vi leverer</div>
+            <div class="tc-desc" data-i18n="bk-lev-desc">Vi kjører ut, setter opp og fyrer opp. Du møter opp og nyter.</div>
           </div>
         </div>
-        <button class="bmain" id="b1" onclick="bkGo(2)" disabled>Gå videre →</button>
+        <button class="bmain" id="b1" onclick="bkGo(2)" disabled data-i18n="bk-go">Gå videre →</button>
       </div>
 
       <!-- Step 2A levering -->
       <div class="bk-step" id="s2a">
-        <span class="badge bl">Vi leverer</span>
-        <h2 class="sh">Velg dato og detaljer</h2>
-        <p class="sub">Dato, tidspunkt, pakke og lokasjon</p>
-        <div class="sl">Dato</div>
+        <span class="badge bl" data-i18n="bk-lev-name">Vi leverer</span>
+        <h2 class="sh" data-i18n="bk-s2a-h">Velg dato og detaljer</h2>
+        <p class="sub" data-i18n="bk-s2a-sub">Dato, tidspunkt, pakke og lokasjon</p>
+        <div class="sl" data-i18n="bk-sl-date">Dato</div>
         <div class="cal-header">
           <button class="cal-nav" onclick="bkPrev()">←</button>
           <span class="cal-title" id="ctA"></span>
@@ -709,62 +721,62 @@ async function submitGc(btn){
         <div class="cal-grid" id="cgA">
           <div class="cdl">Ma</div><div class="cdl">Ti</div><div class="cdl">On</div><div class="cdl">To</div><div class="cdl">Fr</div><div class="cdl">Lø</div><div class="cdl">Sø</div>
         </div>
-        <div class="sl">Tidspunkt</div>
+        <div class="sl" data-i18n="bk-sl-time">Tidspunkt</div>
         <div class="tg">
           <div class="ts" onclick="bkTime(this,'12:00–16:00')">12:00–16:00</div>
           <div class="ts" onclick="bkTime(this,'14:00–18:00')">14:00–18:00</div>
           <div class="ts una">16:00–20:00</div>
           <div class="ts" onclick="bkTime(this,'18:00–22:00')">18:00–22:00</div>
           <div class="ts" onclick="bkTime(this,'19:00–23:00')">19:00–23:00</div>
-          <div class="ts una">Opptatt</div>
+          <div class="ts una" data-i18n="bk-taken">Opptatt</div>
         </div>
-        <div class="sl">Pakke</div>
+        <div class="sl" data-i18n="bk-sl-pkg">Pakke</div>
         <div class="pkg-grid">
-          <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2">Opptil 6 pers · 4 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2">Opptil 8 pers · 8 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2">Tilpasset · faktura</div></div>
+          <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 8 pers · 8 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
         </div>
-        <div class="sl">Velg telt</div>
+        <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
-            <div class="tent-specs">4–6 pers · panoramavinduer · 90°C</div>
-            <div class="tent-desc">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
+            <div class="tent-specs" data-i18n="bk-tent-specs-a">4–6 pers · panoramavinduer · 90°C</div>
+            <div class="tent-desc" data-i18n="bk-tent-desc-a">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
           </div>
         </div>
-        <div class="sl">Antall personer</div>
-        <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)">personer</span></div>
-        <div class="sl">Inkludert</div>
+        <div class="sl" data-i18n="bk-sl-ppl">Antall personer</div>
+        <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)" data-i18n="bk-ppl">personer</span></div>
+        <div class="sl" data-i18n="bk-sl-incl">Inkludert</div>
         <div class="kulp-wrap active" style="cursor:default">
           <div class="kulp-left">
             <div class="kulp-icon">🧊</div>
             <div>
-              <div class="kulp-name">Kaldkulp</div>
-              <div class="kulp-desc">Inkludert i prisen — ingen ekstra kostnad</div>
+              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
+              <div class="kulp-desc" data-i18n="bk-kulp-incl">Inkludert i prisen — ingen ekstra kostnad</div>
             </div>
           </div>
           <div class="kulp-check">✓</div>
         </div>
-        <div class="sl">Lokasjon</div>
+        <div class="sl" data-i18n="bk-sl-loc">Lokasjon</div>
         <div class="lo">
           <label class="lopt" onclick="bkLoc(this,'Sjøkanten, Bodø')"><input type="radio" name="loc"> Sjøkanten, Bodø</label>
           <label class="lopt" onclick="bkLoc(this,'Saltstraumen')"><input type="radio" name="loc"> Saltstraumen</label>
-          <label class="lopt" onclick="bkLoc(this,'Egen adresse')"><input type="radio" name="loc"> Egen adresse</label>
+          <label class="lopt" onclick="bkLoc(this,'Egen adresse')"><input type="radio" name="loc"> <span data-i18n="bk-own-addr">Egen adresse</span></label>
         </div>
         <div class="brow">
-          <button class="bback" onclick="bkGo(1)">← Tilbake</button>
-          <button class="bmain" id="b2a" onclick="bkGo(3)" disabled>Kontaktinfo →</button>
+          <button class="bback" onclick="bkGo(1)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b2a" onclick="bkGo(3)" disabled data-i18n="bk-next-contact">Kontaktinfo →</button>
         </div>
       </div>
 
       <!-- Step 2B henting -->
       <div class="bk-step" id="s2b">
-        <span class="badge bh">Du henter</span>
-        <h2 class="sh">Velg dato og varighet</h2>
-        <p class="sub">Hent hos oss i Bodø — ta med dit du vil!</p>
-        <div class="infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting. Depositum på 1 000 kr refunderes ved retur i god stand.</div>
-        <div class="sl">Hentedato</div>
+        <span class="badge bh" data-i18n="bk-hen-name">Du henter</span>
+        <h2 class="sh" data-i18n="bk-s2b-h">Velg dato og varighet</h2>
+        <p class="sub" data-i18n="bk-s2b-sub">Hent hos oss i Bodø — ta med dit du vil!</p>
+        <div class="infobox" data-i18n="bk-infobox">Teltet monteres på ca. 20 min for 2 personer. Du får instruksjonsvideo og kvittering ved henting.</div>
+        <div class="sl" data-i18n="bk-sl-pickup-date">Hentedato</div>
         <div class="cal-header">
           <button class="cal-nav" onclick="bkPrev()">←</button>
           <span class="cal-title" id="ctB"></span>
@@ -773,63 +785,63 @@ async function submitGc(btn){
         <div class="cal-grid" id="cgB">
           <div class="cdl">Ma</div><div class="cdl">Ti</div><div class="cdl">On</div><div class="cdl">To</div><div class="cdl">Fr</div><div class="cdl">Lø</div><div class="cdl">Sø</div>
         </div>
-        <div class="sl">Leieperiode</div>
+        <div class="sl" data-i18n="bk-sl-duration">Leieperiode</div>
         <div class="dg">
-          <div class="ds" onclick="bkDur(this,1,790)"><div>1 dag</div><div class="dsp">790 kr</div></div>
-          <div class="ds" onclick="bkDur(this,2,1190)"><div>2 dager</div><div class="dsp">1 190 kr</div></div>
-          <div class="ds" onclick="bkDur(this,3,1490)"><div>3 dager</div><div class="dsp">1 490 kr</div></div>
-          <div class="ds" onclick="bkDur(this,7,3490)"><div>1 uke</div><div class="dsp">3 490 kr</div></div>
+          <div class="ds" onclick="bkDur(this,1,790)"><div data-i18n="bk-dur-1d">1 dag</div><div class="dsp">790 kr</div></div>
+          <div class="ds" onclick="bkDur(this,2,1190)"><div data-i18n="bk-dur-2d">2 dager</div><div class="dsp">1 190 kr</div></div>
+          <div class="ds" onclick="bkDur(this,3,1490)"><div data-i18n="bk-dur-3d">3 dager</div><div class="dsp">1 490 kr</div></div>
+          <div class="ds" onclick="bkDur(this,7,3490)"><div data-i18n="bk-dur-1w">1 uke</div><div class="dsp">3 490 kr</div></div>
         </div>
-        <div class="sl">Tilvalg</div>
+        <div class="sl" data-i18n="bk-sl-addons">Tilvalg</div>
         <div class="kulp-wrap" onclick="bkKulp()" id="kulpBtnB">
           <div class="kulp-left">
             <div class="kulp-icon">🧊</div>
             <div>
-              <div class="kulp-name">Kaldkulp</div>
-              <div class="kulp-desc">Oppblåsbar · klar på 5 min · +400 kr</div>
+              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
+              <div class="kulp-desc" data-i18n="bk-kulp-addon">Oppblåsbar · klar på 5 min · +400 kr</div>
             </div>
           </div>
           <div class="kulp-check" id="kulpCheckB"></div>
         </div>
-        <div class="sl">Velg telt</div>
+        <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
-            <div class="tent-specs">4–6 pers · panoramavinduer</div>
-            <div class="tent-desc">Norskutviklet med unike panoramavinduer.</div>
+            <div class="tent-specs" data-i18n="bk-tent-specs-b">4–6 pers · panoramavinduer</div>
+            <div class="tent-desc" data-i18n="bk-tent-desc-b">Norskutviklet med unike panoramavinduer.</div>
           </div>
         </div>
-        <div class="sl">Hentetidspunkt</div>
+        <div class="sl" data-i18n="bk-sl-pickup-time">Hentetidspunkt</div>
         <div class="tg" style="margin-bottom:1.5rem">
           <div class="ts" onclick="bkPickup(this,'09:00')">09:00</div>
           <div class="ts" onclick="bkPickup(this,'11:00')">11:00</div>
           <div class="ts" onclick="bkPickup(this,'13:00')">13:00</div>
           <div class="ts" onclick="bkPickup(this,'15:00')">15:00</div>
           <div class="ts" onclick="bkPickup(this,'17:00')">17:00</div>
-          <div class="ts una">Stengt</div>
+          <div class="ts una" data-i18n="bk-closed">Stengt</div>
         </div>
         <div class="brow">
-          <button class="bback" onclick="bkGo(1)">← Tilbake</button>
-          <button class="bmain" id="b2b" onclick="bkGo(3)" disabled>Kontaktinfo →</button>
+          <button class="bback" onclick="bkGo(1)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b2b" onclick="bkGo(3)" disabled data-i18n="bk-next-contact">Kontaktinfo →</button>
         </div>
       </div>
 
       <!-- Step 3 -->
       <div class="bk-step" id="s3">
-        <h2 class="sh">Kontaktinfo</h2>
-        <p class="sub">Vi bekrefter innen 24 timer</p>
+        <h2 class="sh" data-i18n="bk-s3-h">Kontaktinfo</h2>
+        <p class="sub" data-i18n="bk-s3-sub">Vi bekrefter innen 24 timer</p>
         <div class="sumcard" id="sumBox"></div>
         <div class="fg">
-          <div><label>Navn</label><input type="text" id="fN" placeholder="Ola Nordmann" oninput="bkChk3()"/></div>
-          <div><label>Telefon</label><input type="tel" id="fT" placeholder="+47 000 00 000" oninput="bkChk3()"/></div>
-          <div class="full"><label>E-post</label><input type="email" id="fE" placeholder="ola@eksempel.no" oninput="bkChk3()"/></div>
-          <div class="full"><label>Melding (valgfritt)</label><textarea id="fM" placeholder="Spørsmål eller ønsker..."></textarea></div>
+          <div><label data-i18n="bk-label-name">Navn</label><input type="text" id="fN" placeholder="Ola Nordmann" oninput="bkChk3()"/></div>
+          <div><label data-i18n="bk-label-phone">Telefon</label><input type="tel" id="fT" placeholder="+47 000 00 000" oninput="bkChk3()"/></div>
+          <div class="full"><label data-i18n="bk-label-email">E-post</label><input type="email" id="fE" placeholder="ola@eksempel.no" oninput="bkChk3()"/></div>
+          <div class="full"><label data-i18n="bk-label-msg">Melding (valgfritt)</label><textarea id="fM" placeholder="Spørsmål eller ønsker..."></textarea></div>
         </div>
-        <p id="b3err" style="display:none;color:var(--ember);font-size:.85rem;margin:0 0 .75rem">Beklager, noe gikk galt. Prøv igjen eller kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.</p>
+        <p id="b3err" style="display:none;color:var(--ember);font-size:.85rem;margin:0 0 .75rem" data-i18n-html="bk-err">Beklager, noe gikk galt. Prøv igjen eller kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.</p>
         <div class="brow">
-          <button class="bback" onclick="bkGo(2)">← Tilbake</button>
-          <button class="bmain" id="b3" onclick="bkSubmit()" disabled>Send forespørsel →</button>
+          <button class="bback" onclick="bkGo(2)" data-i18n="bk-back">← Tilbake</button>
+          <button class="bmain" id="b3" onclick="bkSubmit()" disabled data-i18n="bk-send">Send forespørsel →</button>
         </div>
       </div>
 
@@ -839,8 +851,8 @@ async function submitGc(btn){
           <div class="cficon">
             <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#c96b2a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
           </div>
-          <h2 class="sh" style="font-size:1.6rem;margin-bottom:.5rem">Forespørsel sendt!</h2>
-          <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem">Vi tar kontakt innen 24 timer for å bekrefte.</p>
+          <h2 class="sh" style="font-size:1.6rem;margin-bottom:.5rem" data-i18n="bk-sent-h">Forespørsel sendt!</h2>
+          <p style="font-size:.9rem;color:var(--muted);margin-bottom:1.5rem" data-i18n="bk-sent-p">Vi tar kontakt innen 24 timer for å bekrefte.</p>
           <div class="sumcard" id="cfBox" style="text-align:left"></div>
         </div>
       </div>
@@ -850,7 +862,7 @@ async function submitGc(btn){
 
 <footer>
   <div class="footer-logo"><img src="/icon.png" alt=""/>Glødro</div>
-  <p>Mobil badstu-utleie i Bodø og Trondheim · <a href="#book">Book nå</a></p>
+  <p><span data-i18n="footer-tagline">Mobil badstu-utleie i Bodø og Trondheim</span> · <a href="#book" data-i18n="footer-book">Book nå</a></p>
   <p style="margin-top:.5rem">✉️ <a href="mailto:Kontakt@glodro.no">Kontakt@glodro.no</a></p>
   <div style="margin-top:1rem;display:flex;justify-content:center;gap:2.5rem;flex-wrap:wrap;font-size:.8rem;color:var(--muted)">
     <div>
@@ -874,17 +886,28 @@ async function submitGc(btn){
       <a href="tel:+4740695519">+47 40 69 55 19</a>
     </div>
   </div>
-  <p style="margin-top:1.5rem;font-size:.75rem">Badstutelt fra Kuno</p>
-  <p style="margin-top:.5rem">© 2026 Glødro AS · <a href="#personvern" onclick="document.getElementById('pvModal').style.display='flex'" style="color:var(--muted);text-decoration:underline">Personvernerklæring</a></p>
+  <div style="margin-top:2rem">
+    <div style="font-size:.65rem;letter-spacing:.22em;color:var(--sand);text-transform:uppercase;margin-bottom:.9rem" data-i18n="footer-find-us">Finn oss</div>
+    <div style="display:flex;justify-content:center;gap:1.6rem">
+      <a href="https://www.instagram.com/glodrosauna/" target="_blank" rel="noopener" style="color:var(--muted);transition:color .25s" onmouseover="this.style.color='var(--sand)'" onmouseout="this.style.color='var(--muted)'" aria-label="Instagram">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.5" cy="6.5" r=".6" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://www.facebook.com/profile.php?id=61590444582348" target="_blank" rel="noopener" style="color:var(--muted);transition:color .25s" onmouseover="this.style.color='var(--sand)'" onmouseout="this.style.color='var(--muted)'" aria-label="Facebook">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+      </a>
+    </div>
+  </div>
+  <p style="margin-top:1.5rem;font-size:.75rem" data-i18n="footer-tents">Badstutelt fra Kuno</p>
+  <p style="margin-top:.5rem">© 2026 Glødro AS · <a href="#personvern" onclick="document.getElementById('pvModal').style.display='flex'" style="color:var(--muted);text-decoration:underline" data-i18n="footer-privacy">Personvernerklæring</a></p>
 </footer>
 
 <!-- Personvernerklæring Modal -->
 <div id="pvModal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.85);z-index:10000;justify-content:center;align-items:center;padding:20px">
   <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:700px;width:100%;max-height:85vh;overflow-y:auto;padding:2.5rem;position:relative">
     <button onclick="document.getElementById('pvModal').style.display='none'" style="position:absolute;top:16px;right:20px;background:none;border:none;color:var(--sand);font-size:1.5rem;cursor:pointer">&times;</button>
-    <h2 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.5rem;margin-bottom:.5rem">Personvernerklæring</h2>
-    <p style="color:var(--ember);font-size:.8rem;margin-bottom:1.5rem">Glødro AS · Sist oppdatert: April 2026</p>
-    <div style="color:var(--muted);font-size:.85rem;line-height:1.8">
+    <h2 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.5rem;margin-bottom:.5rem" data-i18n="pv-title">Personvernerklæring</h2>
+    <p style="color:var(--ember);font-size:.8rem;margin-bottom:1.5rem" data-i18n="pv-updated">Glødro AS · Sist oppdatert: April 2026</p>
+    <div style="color:var(--muted);font-size:.85rem;line-height:1.8" data-i18n-html="pv-body">
       <h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">1. Behandlingsansvarlig</h3>
       <p>Glødro AS er behandlingsansvarlig for personopplysninger som samles inn via denne nettsiden. Kontakt oss på <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> ved spørsmål om personvern.</p>
       <h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">2. Hvilke opplysninger samler vi inn?</h3>
@@ -907,11 +930,12 @@ async function submitGc(btn){
 
 <script>
 const MN=['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'];
+const MN_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
 let cur=new Date();cur.setDate(1);
 let vType=null,vDate=null,vTime=null,vPkg=null,vPrice=0,vPpl=4,vLoc=null,vDur=null,vDurP=0,vPickup=null,vKulp=false,vTent=null;
 const bkd=['2026-04-19','2026-04-20','2026-04-26','2026-05-03','2026-05-10'];
 
-function fmt(iso){const[y,m,d]=iso.split('-');return parseInt(d)+'. '+MN[parseInt(m)-1]+' '+y;}
+function fmt(iso){const[y,m,d]=iso.split('-');return currentLang==='en'?parseInt(d)+' '+MN_EN[parseInt(m)-1]+' '+y:parseInt(d)+'. '+MN[parseInt(m)-1]+' '+y;}
 
 function renderCal(tId,gId){
   const y=cur.getFullYear(),m=cur.getMonth();
@@ -967,13 +991,38 @@ function chk2(){if(vType==='lev')document.getElementById('b2a').disabled=!(vDate
 function bkChk3(){const n=document.getElementById('fN').value.trim(),e=document.getElementById('fE').value.trim();document.getElementById('b3').disabled=!(n&&e);}
 
 function buildSum(el){
+  const isEN=currentLang==='en';
+  const s={
+    type:isEN?'Type':'Type',
+    deliver:isEN?'We deliver':'Vi leverer',
+    pickup:isEN?'You pick up':'Du henter',
+    date:isEN?'Date':'Dato',
+    time:isEN?'Time':'Tidspunkt',
+    pkg:isEN?'Package':'Pakke',
+    tent:isEN?'Tent':'Telt',
+    num:isEN?'Number':'Antall',
+    ppl:isEN?'people':'personer',
+    loc:isEN?'Location':'Lokasjon',
+    total:isEN?'Total':'Totalt',
+    agreed:isEN?'To be agreed':'Avtales',
+    inclKulp:isEN?'incl. cold plunge':'inkl. kaldkulp',
+    pickupDate:isEN?'Pickup date':'Hentedato',
+    pickupTime:isEN?'Pickup time':'Hentetid',
+    period:isEN?'Rental period':'Leieperiode',
+    ret:isEN?'Return':'Retur',
+    coldPlunge:isEN?'cold plunge':'kaldkulp',
+  };
+  function dur(n){return n===1?(1+' '+(isEN?'day':'dag')):(n+' '+(isEN?'days':'dager'));}
+  function row(l,v){return'<div class="sr"><span>'+l+'</span><span>'+v+'</span></div>';}
   let h='';
   if(vType==='lev'){
-    const totalPrice=vPrice;const p=vPrice===0?'Avtales':totalPrice.toLocaleString('nb-NO')+' kr (inkl. kaldkulp)';
-    h='<div class="sr"><span>Type</span><span>Vi leverer</span></div><div class="sr"><span>Dato</span><span>'+fmt(vDate)+'</span></div><div class="sr"><span>Tidspunkt</span><span>'+vTime+'</span></div><div class="sr"><span>Pakke</span><span>'+vPkg+'</span></div><div class="sr"><span>Telt</span><span>'+vTent+'</span></div><div class="sr"><span>Antall</span><span>'+vPpl+' personer</span></div><div class="sr"><span>Lokasjon</span><span>'+vLoc+'</span></div><div class="sr"><span>Totalt</span><span>'+p+'</span></div>';
+    const p=vPrice===0?s.agreed:vPrice.toLocaleString('nb-NO')+' kr ('+s.inclKulp+')';
+    const pkgDisplay=isEN?(PKG_NAMES_EN[vPkg]||vPkg):vPkg;
+    h=row(s.type,s.deliver)+row(s.date,fmt(vDate))+row(s.time,vTime)+row(s.pkg,pkgDisplay)+row(s.tent,vTent)+row(s.num,vPpl+' '+s.ppl)+row(s.loc,vLoc)+row(s.total,p);
   } else {
     const ret=new Date(vDate);ret.setDate(ret.getDate()+vDur);const ri=ret.toISOString().split('T')[0];
-    const kulpExtraH=vKulp?400:0;h='<div class="sr"><span>Type</span><span>Du henter</span></div><div class="sr"><span>Hentedato</span><span>'+fmt(vDate)+'</span></div><div class="sr"><span>Hentetid</span><span>'+vPickup+'</span></div><div class="sr"><span>Leieperiode</span><span>'+vDur+' dag'+(vDur>1?'er':'')+'</span></div><div class="sr"><span>Telt</span><span>'+vTent+'</span></div><div class="sr"><span>Retur</span><span>'+fmt(ri)+'</span></div><div class="sr"><span>Totalt</span><span>'+vDurP.toLocaleString('nb-NO')+' kr'+(vKulp?' + 400 kr kaldkulp':'')+' + 1 000 kr dep.</span></div>';
+    const totStr=vDurP.toLocaleString('nb-NO')+' kr'+(vKulp?' + 400 kr '+s.coldPlunge:'')+' + 1 000 kr '+s.dep;
+    h=row(s.type,s.pickup)+row(s.pickupDate,fmt(vDate))+row(s.pickupTime,vPickup)+row(s.period,dur(vDur))+row(s.tent,vTent)+row(s.ret,fmt(ri))+row(s.total,totStr);
   }
   el.innerHTML=h;
 }
@@ -985,7 +1034,7 @@ function bkGo(n){
   else document.getElementById('s'+n).classList.add('active');
   for(let i=1;i<=4;i++)document.getElementById('pd'+i).classList.toggle('done',i<=(n===2?2:n));
   if(n===3)buildSum(document.getElementById('sumBox'));
-  if(n===4){buildSum(document.getElementById('cfBox'));const cb=document.getElementById('cfBox');const navn=document.getElementById('fN').value;cb.innerHTML='<div class="sr"><span>Navn</span><span>'+navn+'</span></div>'+cb.innerHTML;}
+  if(n===4){buildSum(document.getElementById('cfBox'));const cb=document.getElementById('cfBox');const navn=document.getElementById('fN').value;cb.innerHTML='<div class="sr"><span>'+(currentLang==='en'?'Name':'Navn')+'</span><span>'+navn+'</span></div>'+cb.innerHTML;}
 }
 
 async function bkSubmit(){
@@ -1071,10 +1120,6 @@ const faqs = [
     a: "Absolutt! Vi tilbyr tilpassede pakker for bedrifter, teambuilding og events. Ta kontakt så setter vi opp noe som passer akkurat deres gruppe."
   },
   {
-    q: "Hva med depositum på hentealternativet?",
-    a: "Ved henting tar vi et depositum på 1 000 kr som refunderes når teltet er levert tilbake i god stand."
-  },
-  {
     q: "Hvor raskt får jeg svar på bookingen min?",
     a: "Vi bekrefter alle forespørsler innen 24 timer."
   }
@@ -1136,4 +1181,210 @@ function toggleFaq(i) {
 .faq-a { display: none; padding: 0 0 1.2rem; font-size: .875rem; color: var(--muted); line-height: 1.8; max-width: 680px; }
 </style>
 
+<script>
+// ── LANGUAGE TOGGLE ──────────────────────────────────────────────────────
+const EN = {
+  // Nav
+  'nav-om':'About','nav-galleri':'Gallery','nav-pris':'Pricing','nav-gavekort':'Gift Cards','nav-book':'Book',
+  // Hero
+  'hero-tag':'Now open · Bodø & Trondheim',
+  'hero-h1':'Sauna where<br><em>nature is the wall</em>',
+  'hero-sub':'Now operating in Bodø and Trondheim — book your mobile sauna today. Take it wherever you want, or let us deliver and fire it up.',
+  'hero-cta-1':'Book sauna now','hero-cta-2':'Learn more','scroll':'Scroll',
+  // Features
+  'feat-label':'What we offer','feat-title':'Authentic sauna,<br>no compromise',
+  'feat-1-h':'Over 100°C','feat-1-p':'Wood-burning stove delivering genuine, dry sauna heat.',
+  'feat-2-h':'Any location','feat-2-p':'By the sea, on the mountain, in your garden — we set up wherever you want in the Bodø or Trondheim area.',
+  'feat-3-h':'Cold plunge','feat-3-p':'No North Norwegian sauna experience is complete without a jump in the fjord afterwards.',
+  'feat-4-h':'Any occasion','feat-4-p':'Birthday, corporate team building, friend gathering or just an evening of warmth and relaxation.',
+  // Gallery
+  'gal-label':'Gallery','gal-title':'See the experience','gal-show-more':'Show all',
+  'gal-desc':'We offer sauna tents from <strong style="color:var(--sand)">Kuno</strong> — Norwegian-developed, with wood stove and top quality.',
+  // How it works
+  'how-label':'How it works','how-title':'Three simple steps',
+  'step-1-h':'Contact us','step-1-p':'Send us a message with your desired date, number of people and preferred location.',
+  'step-2-h':'We set up','step-2-p':'We deliver, set up and fire up the sauna — ready when you arrive.',
+  'step-3-h':'Enjoy the experience','step-3-p':'Sauna, fresh air, cold plunge — we pick everything up afterwards.',
+  // Pricing
+  'pris-label':'Pricing','pris-title':'Simple, transparent prices',
+  'hh-pickup-name':'Self pickup','hh-title':'Take the sauna wherever you want',
+  'hh-desc':'Pick up the tent from us, assemble in 20 minutes and fire it up anywhere — by the fjord, on the mountain, in your garden or at the cabin. Full freedom over time and place.',
+  'hh-cta':'Book pickup','hh-from':'From <strong>790 kr</strong>',
+  'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1 190 kr','pris-li-3':'3 days — 1 490 kr',
+  'pris-li-4':'1 week — 3 490 kr',
+  'delivery-label':'Want it served? We deliver, set up and fire it up.',
+  'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
+  'day-name':'Day rental','day-desc':'Up to 8 hours · up to 8 people',
+  'pkg-f1':'Delivery, setup and firing','pkg-f2':'Wood stove with birch wood',
+  'pkg-f3':'Cold plunge included','pkg-f4':'Location by agreement',
+  'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
+  'biz-price':'Price by agreement','biz-cta':'Get in touch',
+  // Gift cards – card preview
+  'gc-card-label':'Gift Card','gc-card-sub':'Mobile sauna',
+  'gc-card-value':'Value','gc-card-code':'Code',
+  'gc-card-valid':'Valid until','gc-card-validity':'12 months from purchase',
+  // Gift cards – section header
+  'gc-label':'Gift Cards','gc-title':'Give an <em>experience</em>',
+  'gc-desc':'The perfect gift for him who has everything, or her who needs a break. Gift cards from Glødro are valid for 12 months and can be used on all our services.',
+  'gc-buy':'Buy gift card →',
+  // Gift cards – how it works
+  'gc-how-title':'How it works',
+  'gc-step-1-h':'Choose amount','gc-step-1-p':'Choose from our preset packages, or decide yourself how much you want to give.',
+  'gc-step-2-h':'Personalise','gc-step-2-p':'Add a greeting to the recipient and choose whether it should be sent digitally or as a physical card.',
+  'gc-step-3-h':'Receive gift card','gc-step-3-p':'You receive the gift card by e-mail immediately, or by post within 3 days.',
+  // Gift cards – packages
+  'gc-velg-pakke':'Choose package',
+  'gc-pack-1-name':'Friends\' Evening','gc-pack-1-desc':'One evening session for up to 6 people. 4 hours with delivery and pickup included.',
+  'gc-pack-2-name':'Experience','gc-pack-2-desc':'Evening session with cold plunge included. Perfect for couples, birthday honorees or anniversaries.',
+  'gc-pack-3-name':'Cabin Trip','gc-pack-3-desc':'Weekend rental (2 days) including 2 bags of firewood. Take the sauna to the cabin or the garden.',
+  'gc-pack-4-name':'Corporate','gc-pack-4-desc':'Day rental with delivery and cold plunge included. Unique team building for the whole department.',
+  // Gift cards – custom amount
+  'gc-custom-title':'Or choose your own amount',
+  'gc-custom-desc':'From 500 kr and up. The recipient can use the amount on anything they like.',
+  'gc-pay-note':'Paid by Vipps or card · Sent immediately by e-mail',
+  // Gift cards – modal
+  'gc-modal-placeholder':'Choose a package first',
+  'gc-field-buyer':'Your e-mail (buyer)',
+  'gc-field-recip-name':'Recipient\'s name',
+  'gc-field-recip-email':'Recipient\'s e-mail',
+  'gc-field-msg':'Greeting (optional)',
+  'gc-total':'Total',
+  'gc-send-note':'Sent immediately<br>after payment',
+  'gc-confirm':'Confirm order →',
+  'gc-vipps-note':'We contact you by e-mail for payment via Vipps',
+  // FAQ
+  'faq-label':'Q & A','faq-title':'Frequently asked questions',
+  // Booking section header
+  'book-label':'Book now','book-title':'Reserve your<br><em>sauna experience</em>',
+  // Booking form – step 1
+  'bk-s1-h':'How would you like to book?',
+  'bk-s1-sub':'Choose whether we deliver and set up, or you pick up yourself',
+  'bk-hen-name':'You pick up',
+  'bk-hen-desc':'Pick up from us, assemble yourself and take the sauna wherever you want — full freedom over time and place.',
+  'bk-flag':'Most flexible',
+  'bk-lev-name':'We deliver',
+  'bk-lev-desc':'We drive out, set up and fire it up. You just show up and enjoy.',
+  'bk-go':'Continue →',
+  // Booking form – step 2A
+  'bk-s2a-h':'Choose date and details',
+  'bk-s2a-sub':'Date, time slot, package and location',
+  'bk-sl-date':'Date','bk-sl-time':'Time slot',
+  'bk-taken':'Taken',
+  'bk-sl-pkg':'Package',
+  'bk-pkg-eve':'Evening session','bk-pkg-eve-sub':'Up to 6 pers · 4 hours',
+  'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 8 pers · 8 hours',
+  'bk-pkg-biz':'Corporate','bk-pkg-biz-sub':'Custom · invoice',
+  'bk-sl-tent':'Choose tent',
+  'bk-tent-specs-a':'4–6 pers · panoramic windows · 90°C',
+  'bk-tent-desc-a':'Norwegian-developed with unique panoramic windows. Perfect view of the flames and nature.',
+  'bk-sl-ppl':'Number of people','bk-ppl':'people',
+  'bk-sl-incl':'Included',
+  'bk-kulp-name':'Cold plunge',
+  'bk-kulp-incl':'Included in the price — no extra cost',
+  'bk-sl-loc':'Location',
+  'bk-own-addr':'Own address',
+  'bk-back':'← Back',
+  'bk-next-contact':'Contact info →',
+  // Booking form – step 2B
+  'bk-s2b-h':'Choose date and duration',
+  'bk-s2b-sub':'Pick up from us in Bodø — take it wherever you want!',
+  'bk-infobox':'The tent is assembled in about 20 min for 2 people. You receive an instruction video and receipt at pickup.',
+  'bk-sl-pickup-date':'Pickup date',
+  'bk-sl-duration':'Rental period',
+  'bk-dur-1d':'1 day','bk-dur-2d':'2 days','bk-dur-3d':'3 days','bk-dur-1w':'1 week',
+  'bk-sl-addons':'Add-ons',
+  'bk-kulp-addon':'Inflatable · ready in 5 min · +400 kr',
+  'bk-tent-specs-b':'4–6 pers · panoramic windows',
+  'bk-tent-desc-b':'Norwegian-developed with unique panoramic windows.',
+  'bk-sl-pickup-time':'Pickup time',
+  'bk-closed':'Closed',
+  // Booking form – step 3
+  'bk-s3-h':'Contact information',
+  'bk-s3-sub':'We confirm within 24 hours',
+  'bk-label-name':'Name','bk-label-phone':'Phone',
+  'bk-label-email':'E-mail','bk-label-msg':'Message (optional)',
+  'bk-err':'Sorry, something went wrong. Try again or contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a>.',
+  'bk-send':'Send request →',
+  // Booking form – step 4
+  'bk-sent-h':'Request sent!',
+  'bk-sent-p':'We\'ll get in touch within 24 hours to confirm.',
+  // Privacy policy modal
+  'pv-title':'Privacy Policy',
+  'pv-updated':'Glødro AS · Last updated: April 2026',
+  'pv-body':'<h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">1. Data Controller</h3><p>Glødro AS is the data controller for personal data collected through this website. Contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> for any privacy-related questions.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">2. What data do we collect?</h3><p>We collect information you voluntarily provide through the booking form: name, phone number, e-mail address and any message. We do not collect sensitive personal data.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">3. Purpose of processing</h3><p>The information is used solely to respond to your enquiry, confirm bookings, send payment information and provide relevant information about the service you have ordered. The legal basis is GDPR Article 6(1)(b) (performance of a contract).</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">4. Sharing of data</h3><p>We do not share your personal data with third parties, except to the payment provider (Vipps) for processing payments.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">5. Retention and deletion</h3><p>Personal data is stored for as long as necessary to fulfil the purpose for which it was collected, and deleted no later than 12 months after the last customer contact, unless accounting legislation requires longer retention.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">6. Your rights</h3><p>You have the right to access, correct and delete your personal data. You may also request restriction of processing, object to processing and request data portability. Contact us at <a href="mailto:Kontakt@glodro.no" style="color:var(--ember)">Kontakt@glodro.no</a> to exercise your rights.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">7. Cookies</h3><p>This website uses only technically necessary cookies for the website to function. We do not use analytics or tracking tools.</p><h3 style="color:var(--sand);font-size:.95rem;margin:1.2rem 0 .5rem">8. Right to complain</h3><p>If you believe our processing of personal data violates applicable law, you may lodge a complaint with the Norwegian Data Protection Authority. See <a href="https://www.datatilsynet.no" target="_blank" style="color:var(--ember)">datatilsynet.no</a> for more information.</p>',
+  // Footer
+  'footer-tagline':'Mobile sauna rental in Bodø and Trondheim',
+  'footer-book':'Book now','footer-tents':'Sauna tents from Kuno','footer-privacy':'Privacy Policy',
+  'footer-find-us':'Find us',
+};
+
+const faqsEN = [
+  { q:'How long does it take to set up the tent?', a:'We set up the tent and fire up the stove — everything is ready when you arrive. If you choose the pickup option, assembly takes about 20 minutes for two people.' },
+  { q:'How many people fit in the tent?', a:'Depending on package: up to 6 people for the evening session and up to 8 for the day rental. Get in touch if you are a larger group — we\'ll find a solution.' },
+  { q:'How hot does it get?', a:'The wood stove reaches temperatures above 100°C — genuine, dry sauna heat. Exactly as it should be.' },
+  { q:'What happens in bad weather?', a:'The tent is designed for Nordic climate and handles wind and rain well. In fact, bathing in a sauna while a storm rages outside is something special! In extreme weather we contact you and find a solution.' },
+  { q:'Can we choose the location ourselves?', a:'Yes! We deliver to any location in the Bodø area and the Trondheim area. Whether you want the sauna by the fjord, on the mountain or in your garden — we set up wherever you want.' },
+  { q:'What is included in the price?', a:'Delivery, setup, firewood and firing of the stove, as well as teardown and pickup afterwards. You don\'t need to do anything other than show up and enjoy.' },
+  { q:'How do I pay?', a:'We accept payment via Vipps or invoice. Details are agreed when we confirm the booking.' },
+  { q:'Can we book for a company or larger event?', a:'Absolutely! We offer tailored packages for companies, team building and events. Get in touch and we\'ll put together something that fits your group perfectly.' },
+  { q:'How quickly do I get a reply to my booking?', a:'We confirm all enquiries within 24 hours.' }
+];
+
+let NO_TEXT = {}, NO_HTML = {}, NO_FAQS = null;
+let currentLang = 'no';
+
+function snapshot() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    NO_TEXT[el.getAttribute('data-i18n')] = el.textContent;
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    NO_HTML[el.getAttribute('data-i18n-html')] = el.innerHTML;
+  });
+}
+
+function renderFAQ(list) {
+  const container = document.getElementById('faq-list');
+  container.innerHTML = '';
+  list.forEach((item, i) => {
+    const div = document.createElement('div');
+    div.className = 'faq-item';
+    div.innerHTML = '<div class="faq-q" onclick="toggleFaq(' + i + ')">' +
+      item.q + '<span class="faq-arrow" id="arrow' + i + '">+</span></div>' +
+      '<div class="faq-a" id="faq' + i + '">' + item.a + '</div>';
+    container.appendChild(div);
+    const ans = document.getElementById('faq' + i);
+    ans.style.display = 'none';
+  });
+}
+
+function applyLang(lang) {
+  const isEN = lang === 'en';
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    el.textContent = isEN ? (EN[key] ?? el.textContent) : (NO_TEXT[key] ?? el.textContent);
+  });
+  document.querySelectorAll('[data-i18n-html]').forEach(el => {
+    const key = el.getAttribute('data-i18n-html');
+    el.innerHTML = isEN ? (EN[key] ?? el.innerHTML) : (NO_HTML[key] ?? el.innerHTML);
+  });
+  renderFAQ(isEN ? faqsEN : (NO_FAQS || faqs));
+  // Gallery button text (reset to collapsed state on language switch)
+  const gb=document.getElementById('galleryBtn');
+  if(gb)gb.textContent=isEN?'Show all':'Vis alle';
+  galleryOpen=false;document.querySelectorAll('.gallery-extra').forEach(f=>f.classList.remove('visible'));
+  // Placeholders
+  [['gcCustom',isEN?'Amount':'Beløp'],['fM',isEN?'Questions or requests...':'Spørsmål eller ønsker...'],['gcMessage',isEN?'Happy birthday! Enjoy the warmth and the view ❤️':'Gratulerer med dagen! Nyt varmen og utsikten ❤️']].forEach(([id,ph])=>{const el=document.getElementById(id);if(el)el.placeholder=ph;});
+  document.getElementById('langBtn').textContent = isEN ? 'NORSK' : 'ENGLISH';
+  document.documentElement.lang = isEN ? 'en' : 'no';
+}
+
+function toggleLang() {
+  currentLang = currentLang === 'no' ? 'en' : 'no';
+  applyLang(currentLang);
+}
+
+snapshot();
+NO_FAQS = faqs;
+if (currentLang === 'en') applyLang('en');
+</script>
 </body></html>
