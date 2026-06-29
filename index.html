@@ -14,8 +14,8 @@
 <meta property="og:title" content="Glødro – Badstueutleie i Bodø og Trondheim | Mobil badstutelt"/>
 <meta property="og:description" content="Lei et mobilt badstuetelt i Bodø og Trondheim. Ta den med dit du vil, eller la oss levere og fyre. Åpent for booking nå."/>
 <meta property="og:image" content="https://glodro.no/galleri-badstu-fjord.webp"/>
-<meta property="og:image:width" content="1080"/>
-<meta property="og:image:height" content="1080"/>
+<meta property="og:image:width" content="1600"/>
+<meta property="og:image:height" content="1067"/>
 <meta property="og:locale" content="nb_NO"/>
 <meta property="og:site_name" content="Glødro"/>
 <meta name="twitter:card" content="summary_large_image"/>
@@ -591,7 +591,7 @@ footer a{color:var(--sand);text-decoration:none}
         <div>Sendes umiddelbart<br>etter betaling</div>
       </div>
     </div>
-    <button onclick="submitGc()" style="width:100%;padding:16px;background:var(--ember);color:var(--dark);border:none;border-radius:50px;font-weight:500;cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-family:inherit">Bekreft bestilling →</button>
+    <button onclick="submitGc(this)" style="width:100%;padding:16px;background:var(--ember);color:var(--dark);border:none;border-radius:50px;font-weight:500;cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-family:inherit">Bekreft bestilling →</button>
     <p style="text-align:center;color:var(--muted);font-size:.75rem;margin-top:1rem">Vi kontakter deg på e-post for betaling via Vipps</p>
   </div>
 </div>
@@ -618,13 +618,38 @@ function openGcModal(){
   document.getElementById('gcModal').style.display='flex';
 }
 function closeGcModal(){document.getElementById('gcModal').style.display='none';}
-function submitGc(){
-  const be=document.getElementById('gcBuyerEmail').value;
-  const rn=document.getElementById('gcRecipientName').value;
-  const re=document.getElementById('gcRecipientEmail').value;
+async function submitGc(btn){
+  const be=document.getElementById('gcBuyerEmail').value.trim();
+  const rn=document.getElementById('gcRecipientName').value.trim();
+  const re=document.getElementById('gcRecipientEmail').value.trim();
+  const msg=document.getElementById('gcMessage').value.trim();
   if(!be||!rn||!re){alert('Fyll ut alle obligatoriske felt');return;}
-  alert('Takk! Vi sender deg en Vipps-link på '+be+' innen 15 minutter. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
-  closeGcModal();
+  if(!selectedGc){alert('Velg en pakke eller skriv inn et beløp først');return;}
+  const orig=btn.textContent;btn.disabled=true;btn.textContent='Sender...';
+  const payload={
+    Type:'Gavekort',
+    Pakke:selectedGc,
+    Beløp:selectedGcPrice.toLocaleString('nb-NO')+' kr',
+    'Kjøpers e-post':be,
+    'Mottakers navn':rn,
+    'Mottakers e-post':re,
+    Hilsen:msg||'(ingen)',
+    _subject:'Ny gavekort-bestilling: '+selectedGc+' ('+selectedGcPrice.toLocaleString('nb-NO')+' kr)'
+  };
+  try{
+    const res=await fetch('https://formspree.io/f/xvzyykgn',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok)throw new Error('http '+res.status);
+    closeGcModal();
+    btn.disabled=false;btn.textContent=orig;
+    alert('Takk! Bestillingen er mottatt. Vi sender deg en Vipps-link på '+be+' for betaling. Gavekortet til '+rn+' sendes så snart betalingen er bekreftet.');
+  }catch(e){
+    btn.disabled=false;btn.textContent=orig;
+    alert('Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
+  }
 }
 </script>
 
