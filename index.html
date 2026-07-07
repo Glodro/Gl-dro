@@ -324,7 +324,7 @@ footer a{color:var(--sand);text-decoration:none}
 <body>
 
 <nav id="nav">
-  <a class="nav-logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><img src="/icon.png" alt=""/>Glødro</a>
+  <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer"><img src="/icon.png" alt=""/>Glødro</div>
   <ul class="nav-links">
     <li><a href="#om" data-i18n="nav-om">Om</a></li>
     <li><a href="#galleri" data-i18n="nav-galleri">Galleri</a></li>
@@ -513,14 +513,14 @@ footer a{color:var(--sand);text-decoration:none}
       </div>
     </div>
 
-    <div class="section-label" style="margin-bottom:1.5rem" data-i18n="gc-velg-pakke">Velg pakke</div>
+
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem">
     </div>
 
     <div style="background:rgba(255,255,255,.02);border:1px dashed rgba(200,169,110,.3);border-radius:12px;padding:2rem;margin-bottom:3rem">
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1.5rem">
         <div>
-          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--light);margin-bottom:6px" data-i18n="gc-custom-title">Eller velg ditt eget beløp</div>
+          <div style="font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--light);margin-bottom:6px" data-i18n="gc-custom-title">Velg ditt eget beløp</div>
           <div style="color:var(--muted);font-size:.9rem" data-i18n="gc-custom-desc">Fra 500 kr og oppover. Mottakeren kan bruke beløpet på hva de vil.</div>
         </div>
         <div style="display:flex;align-items:center;gap:10px">
@@ -1221,7 +1221,7 @@ const EN = {
   'gc-pack-3-name':'Cabin Trip','gc-pack-3-desc':'Weekend rental (2 days) including 2 bags of firewood. Take the sauna to the cabin or the garden.',
   'gc-pack-4-name':'Corporate','gc-pack-4-desc':'Day rental with delivery and cold plunge included. Unique team building for the whole department.',
   // Gift cards – custom amount
-  'gc-custom-title':'Or choose your own amount',
+  'gc-custom-title':'Choose your own amount',
   'gc-custom-desc':'From 500 kr and up. The recipient can use the amount on anything they like.',
   'gc-pay-note':'Paid by Vipps or card · Sent immediately by e-mail',
   // Gift cards – modal
