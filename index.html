@@ -140,7 +140,13 @@ nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8
 .nav-links{display:flex;gap:2rem;list-style:none}
 .nav-links a{font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--light);text-decoration:none;transition:color .25s}
 .nav-links a:hover{color:var(--sand)}
-@media(max-width:600px){.nav-links{display:none}}
+@media(max-width:600px){.nav-links{display:none}.nav-links.mob-open{display:flex;flex-direction:column;position:fixed;inset:0;background:rgba(26,22,18,.98);z-index:200;justify-content:center;align-items:center;gap:2rem;padding:2rem}.nav-links.mob-open li{list-style:none}.nav-links.mob-open a{font-size:1.1rem;letter-spacing:.18em}.nav-links.mob-open .lang-btn{font-size:.85rem;padding:.5em 1.4em}}
+.hamburger{display:none;flex-direction:column;justify-content:center;gap:5px;background:none;border:none;cursor:pointer;padding:6px;z-index:300}
+.hamburger span{display:block;width:22px;height:2px;background:var(--light);border-radius:2px;transition:transform .3s,opacity .3s}
+.hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+@media(max-width:600px){.hamburger{display:flex}}
 .lang-btn{background:none;border:1px solid rgba(200,169,110,.4);color:var(--light);font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;padding:.3em .85em;border-radius:3px;cursor:pointer;font-family:'Jost',sans-serif;transition:all .25s;white-space:nowrap}
 .lang-btn:hover{border-color:var(--sand);color:var(--sand)}
 
@@ -296,6 +302,21 @@ section{padding:6rem 1.5rem}
 #bk .cfwrap{text-align:center;padding:2rem 0}
 #bk .cficon{width:60px;height:60px;border-radius:50%;background:rgba(201,107,42,.12);border:1px solid rgba(201,107,42,.3);display:flex;align-items:center;justify-content:center;margin:0 auto 1.2rem}
 @media(max-width:500px){#bk .type-grid{grid-template-columns:1fr}#bk .fg{grid-template-columns:1fr}#bk .dg{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){
+  section{padding:3.5rem 1.2rem}
+  .hero-cta{flex-direction:column;align-items:stretch;gap:.75rem}
+  .hero-cta .btn-primary,.hero-cta .btn-outline{text-align:center;padding:.85rem 1.5rem}
+  #bk .tg{grid-template-columns:repeat(2,1fr)}
+  #bk .pkg-grid{grid-template-columns:1fr}
+  #bk .brow{flex-direction:column-reverse}
+  #bk .brow .bmain{flex:none;width:100%}
+  #bk .bback{width:100%;text-align:center}
+  .pricing-cards{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .hh-title{font-size:1.7rem}
+  .biz-stripe{flex-direction:column;align-items:flex-start;gap:1rem}
+  .features-grid{grid-template-columns:1fr}
+}
 
 /* FOOTER */
 footer{padding:3rem 1.5rem;border-top:1px solid rgba(200,169,110,.12);text-align:center}
@@ -325,15 +346,18 @@ footer a{color:var(--sand);text-decoration:none}
 
 <nav id="nav">
   <div class="nav-logo" onclick="window.scrollTo({top:0,behavior:'smooth'})" style="cursor:pointer"><img src="/icon.png" alt=""/>Glødro</div>
-  <ul class="nav-links">
-    <li><a href="#om" data-i18n="nav-om">Om</a></li>
-    <li><a href="#galleri" data-i18n="nav-galleri">Galleri</a></li>
-    <li><a href="#pris" data-i18n="nav-pris">Pris</a></li>
-    <li><a href="#faq">FAQ</a></li>
-    <li><a href="#gavekort" data-i18n="nav-gavekort">Gavekort</a></li>
-    <li><a href="#book" data-i18n="nav-book">Book</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#om" onclick="closeMobileMenu()" data-i18n="nav-om">Om</a></li>
+    <li><a href="#galleri" onclick="closeMobileMenu()" data-i18n="nav-galleri">Galleri</a></li>
+    <li><a href="#pris" onclick="closeMobileMenu()" data-i18n="nav-pris">Pris</a></li>
+    <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+    <li><a href="#gavekort" onclick="closeMobileMenu()" data-i18n="nav-gavekort">Gavekort</a></li>
+    <li><a href="#book" onclick="closeMobileMenu()" data-i18n="nav-book">Book</a></li>
     <li><button id="langBtn" onclick="toggleLang()" class="lang-btn">ENGLISH</button></li>
   </ul>
+  <button class="hamburger" id="hamburger" onclick="toggleMobileMenu()" aria-label="Meny">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <section class="hero">
@@ -1363,6 +1387,18 @@ function applyLang(lang) {
 function toggleLang() {
   currentLang = currentLang === 'no' ? 'en' : 'no';
   applyLang(currentLang);
+}
+function toggleMobileMenu(){
+  const nav=document.getElementById('navLinks');
+  const btn=document.getElementById('hamburger');
+  const open=nav.classList.toggle('mob-open');
+  btn.classList.toggle('open',open);
+  document.body.style.overflow=open?'hidden':'';
+}
+function closeMobileMenu(){
+  document.getElementById('navLinks').classList.remove('mob-open');
+  document.getElementById('hamburger').classList.remove('open');
+  document.body.style.overflow='';
 }
 
 snapshot();
