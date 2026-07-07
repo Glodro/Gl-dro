@@ -324,7 +324,7 @@ footer a{color:var(--sand);text-decoration:none}
 <body>
 
 <nav id="nav">
-  <div class="nav-logo"><img src="/icon.png" alt=""/>Glødro</div>
+  <a class="nav-logo" href="#" onclick="window.scrollTo({top:0,behavior:'smooth'});return false;"><img src="/icon.png" alt=""/>Glødro</a>
   <ul class="nav-links">
     <li><a href="#om" data-i18n="nav-om">Om</a></li>
     <li><a href="#galleri" data-i18n="nav-galleri">Galleri</a></li>
@@ -515,24 +515,6 @@ footer a{color:var(--sand);text-decoration:none}
 
     <div class="section-label" style="margin-bottom:1.5rem" data-i18n="gc-velg-pakke">Velg pakke</div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.2rem;margin-bottom:2rem">
-      <div class="gc-pack" onclick="selectGc(this,'Vennekveld',1490)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-1-name">Vennekveld</div>
-        <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 490 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-1-desc">Én kveldssession for opptil 6 personer. 4 timer med levering og henting inkludert.</div>
-      </div>
-      <div class="gc-pack" onclick="selectGc(this,'Opplevelse',1990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s;position:relative">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-lev-name">Vi leverer</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-2-name">Opplevelse</div>
-        <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">1 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-2-desc">Kveldssession med kaldkulp inkludert. Perfekt for paret, bursdagsbarnet eller jubilanten.</div>
-      </div>
-      <div class="gc-pack" onclick="selectGc(this,'Hyttetur',2990)" style="background:rgba(255,255,255,.02);border:1px solid rgba(200,169,110,.2);border-radius:12px;padding:2rem;cursor:pointer;transition:all .25s">
-        <div style="font-size:.7rem;letter-spacing:.2em;color:var(--sand);text-transform:uppercase;margin-bottom:12px" data-i18n="bk-hen-name">Du henter</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--light);font-weight:500;margin-bottom:6px" data-i18n="gc-pack-3-name">Hyttetur</div>
-        <div style="font-size:1.8rem;font-weight:500;color:var(--ember);margin:1rem 0">2 990 <span style="font-size:.8rem;color:var(--muted);font-weight:400">kr</span></div>
-        <div style="font-size:.85rem;color:var(--muted);line-height:1.6" data-i18n="gc-pack-3-desc">Helg-utleie (2 dager) inkludert 2 vedsekker. Ta badstuen med på hytta eller i hagen.</div>
-      </div>
     </div>
 
     <div style="background:rgba(255,255,255,.02);border:1px dashed rgba(200,169,110,.3);border-radius:12px;padding:2rem;margin-bottom:3rem">
@@ -984,7 +966,7 @@ function bkKulp(){
   vKulp=!vKulp;
   ['kulpBtn','kulpBtnB'].forEach(function(id){
     const el=document.getElementById(id);
-    if(el){el.classList.toggle('active',vKulp);el.querySelector('.kulp-check').textContent=vKulp?'✓':'';}
+    if(el){el.classList.toggle('active',vKulp);}
   });
 }
 function chk2(){if(vType==='lev')document.getElementById('b2a').disabled=!(vDate&&vTime&&vPkg&&vLoc&&vTent);else document.getElementById('b2b').disabled=!(vDate&&vDur&&vPickup&&vTent);}
