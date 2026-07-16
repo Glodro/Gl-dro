@@ -86,7 +86,7 @@
           "name": "Hvor mange får plass i badstuteltet?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Avhengig av pakke: opptil 6 personer på kveldssession og opptil 8 på dagsleie. Ta kontakt om dere er flere — vi finner en løsning."
+            "text": "Avhengig av pakke: opptil 6 personer på kveldssession og opptil 6 på dagsleie. Ta kontakt om dere er flere — vi finner en løsning."
           }
         },
         {
@@ -153,6 +153,7 @@ nav.scrolled{background:rgba(26,22,18,.95);backdrop-filter:blur(10px);padding:.8
 /* HERO */
 .hero{position:relative;height:100vh;min-height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;animation:slowZoom 20s ease-in-out infinite alternate}
+  @media(max-width:600px){.hero-bg{background-position:33% center}}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(to bottom,rgba(0,0,0,.62) 0%,rgba(0,0,0,.45) 50%,rgba(26,22,18,.97) 100%)}
 @keyframes slowZoom{from{transform:scale(1.05)}to{transform:scale(1.12)}}
 @keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
@@ -361,7 +362,7 @@ footer a{color:var(--sand);text-decoration:none}
 </nav>
 
 <section class="hero">
-  <div class="hero-bg" id="heroBg" style="background-image:url('/galleri-badstu-fjord.webp')"></div>
+  <div class="hero-bg" id="heroBg" style="background-image:url('/galleri-telt-fjord.webp')"></div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-tag" data-i18n="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
@@ -396,20 +397,20 @@ footer a{color:var(--sand);text-decoration:none}
     <div class="divider"></div>
     <p style="font-size:.85rem;color:var(--muted);margin-bottom:1.5rem" data-i18n-html="gal-desc">Vi tilbyr badstutelt fra <strong style="color:var(--sand)">Kuno</strong> — norskutviklet, med vedovn og topp kvalitet.</p>
     <div class="gallery-grid">
-      <figure><img src="/galleri-badstu-fjord.webp" loading="lazy" alt="Mobil badstu ved fjorden med utsikt til fjell"/></figure>
-      <figure><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></figure>
-      <figure><img src="/galleri-interior-vedovn.webp" loading="lazy" alt="Innvendig i badstuteltet med vedovn og fjordutsikt"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-musken-brygge.jpg" loading="lazy" alt="Badstuteltet ved brygga i Musken"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-telt-fjord-panorama.jpg" loading="lazy" alt="Badstuteltet ved fjorden med panoramavinduer"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-interior-ovn-panorama.jpg" loading="lazy" alt="Innvendig med vedovn og fjordutsikt gjennom panoramavinduer"/></figure>
+      <figure><img src="/galleri-musken-brygge.jpg" loading="lazy" alt="Badstuteltet ved brygga i Musken"/></figure>
+      <figure><img src="/galleri-telt-fjord-panorama.jpg" loading="lazy" alt="Badstuteltet ved fjorden med panoramavinduer"/></figure>
+      <figure><img src="/galleri-interior-ovn-panorama.jpg" loading="lazy" alt="Innvendig med vedovn og fjordutsikt gjennom panoramavinduer"/></figure>
       <figure class="gallery-extra"><img src="/galleri-vedovn-brennende.jpg" loading="lazy" alt="Vedovn med brennende flamme og fjordutsikt"/></figure>
       <figure class="gallery-extra"><img src="/galleri-telt-fjord-benk.jpg" loading="lazy" alt="Badstuteltet ved fjorden med utebenk"/></figure>
       <figure class="gallery-extra"><img src="/galleri-telt-atv-fjord.jpg" loading="lazy" alt="Badstuteltet ved fjorden"/></figure>
       <figure class="gallery-extra"><img src="/galleri-telt-landsby-fjell.jpg" loading="lazy" alt="Badstuteltet i naturskjønne omgivelser med fjell"/></figure>
       <figure class="gallery-extra"><img src="/galleri-interior-benker.jpg" loading="lazy" alt="Innvendig i badstuteltet med L-formede benker"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-badstu-fjord.webp" loading="lazy" alt="Mobil badstu ved fjorden med utsikt til fjell"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-interior-vedovn.webp" loading="lazy" alt="Innvendig i badstuteltet med vedovn og fjordutsikt"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></figure>
+      <figure class="gallery-extra"><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></figure>
     </div>
     <div style="margin-top:.75rem">
       <button id="galleryBtn" onclick="toggleGallery()" class="lang-btn" style="font-size:.75rem;padding:.5em 1.4em" data-i18n="gal-show-more">Vis alle</button>
@@ -464,7 +465,7 @@ footer a{color:var(--sand);text-decoration:none}
       <div class="price-card price-card--soft">
         <div class="price-name" data-i18n="day-name">Dagsleie</div>
         <div class="price-amount">2 490 <span>kr</span></div>
-        <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 8 pers.</div>
+        <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 6 pers.</div>
         <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
     </div>
@@ -747,7 +748,7 @@ async function submitGc(btn){
         <div class="sl" data-i18n="bk-sl-pkg">Pakke</div>
         <div class="pkg-grid">
           <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 8 pers · 8 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 6 pers · 8 timer</div></div>
           <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
         </div>
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
@@ -1107,7 +1108,7 @@ const faqs = [
   },
   {
     q: "Hvor mange får plass i teltet?",
-    a: "Avhengig av pakke: opptil 6 personer på kveldssession og opptil 8 på dagsleie. Ta kontakt om dere er flere — vi finner en løsning."
+    a: "Avhengig av pakke: opptil 6 personer på kveldssession og opptil 6 på dagsleie. Ta kontakt om dere er flere — vi finner en løsning."
   },
   {
     q: "Hvor varmt blir det?",
@@ -1228,7 +1229,7 @@ const EN = {
   'pris-li-4':'1 week — 3 490 kr',
   'delivery-label':'Want it served? We deliver, set up and fire it up.',
   'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
-  'day-name':'Day rental','day-desc':'Up to 8 hours · up to 8 people',
+  'day-name':'Day rental','day-desc':'Up to 8 hours · up to 6 people',
   'pkg-f1':'Delivery, setup and firing','pkg-f2':'Wood stove with birch wood',
   'pkg-f3':'Cold plunge included','pkg-f4':'Location by agreement',
   'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
@@ -1286,7 +1287,7 @@ const EN = {
   'bk-taken':'Taken',
   'bk-sl-pkg':'Package',
   'bk-pkg-eve':'Evening session','bk-pkg-eve-sub':'Up to 6 pers · 4 hours',
-  'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 8 pers · 8 hours',
+  'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 6 pers · 8 hours',
   'bk-pkg-biz':'Corporate','bk-pkg-biz-sub':'Custom · invoice',
   'bk-sl-tent':'Choose tent',
   'bk-tent-specs-a':'4–6 pers · panoramic windows · 90°C',
@@ -1334,7 +1335,7 @@ const EN = {
 
 const faqsEN = [
   { q:'How long does it take to set up the tent?', a:'We set up the tent and fire up the stove — everything is ready when you arrive. If you choose the pickup option, assembly takes about 20 minutes for two people.' },
-  { q:'How many people fit in the tent?', a:'Depending on package: up to 6 people for the evening session and up to 8 for the day rental. Get in touch if you are a larger group — we\'ll find a solution.' },
+  { q:'How many people fit in the tent?', a:'Depending on package: up to 6 people for the evening session and up to 6 for the day rental. Get in touch if you are a larger group — we\'ll find a solution.' },
   { q:'How hot does it get?', a:'The wood stove reaches temperatures above 100°C — genuine, dry sauna heat. Exactly as it should be.' },
   { q:'What happens in bad weather?', a:'The tent is designed for Nordic climate and handles wind and rain well. In fact, bathing in a sauna while a storm rages outside is something special! In extreme weather we contact you and find a solution.' },
   { q:'Can we choose the location ourselves?', a:'Yes! We deliver to any location in the Bodø area and the Trondheim area. Whether you want the sauna by the fjord, on the mountain or in your garden — we set up wherever you want.' },
