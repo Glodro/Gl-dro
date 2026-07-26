@@ -409,7 +409,6 @@ footer a{color:var(--sand);text-decoration:none}
       <figure class="gallery-extra"><img src="/galleri-host-venner.webp" loading="lazy" alt="To venner ved badstuteltet en høstdag"/></figure>
       <figure class="gallery-extra"><img src="/galleri-interior-vedovn.webp" loading="lazy" alt="Innvendig i badstuteltet med vedovn og fjordutsikt"/></figure>
       <figure class="gallery-extra"><img src="/galleri-sommer-vann.webp" loading="lazy" alt="Smilende gjest i badstutelt ved vannet"/></figure>
-      <figure class="gallery-extra"><img src="/galleri-hage-kaldkulp.webp" loading="lazy" alt="Badstutelt med kaldkulp i hagen"/></figure>
       <figure class="gallery-extra"><img src="/galleri-vedovn-flamme.webp" loading="lazy" alt="Vedovn med levende flammer"/></figure>
     </div>
     <div style="margin-top:.75rem">
@@ -460,13 +459,13 @@ footer a{color:var(--sand);text-decoration:none}
         <div class="price-name" data-i18n="eve-name">Kveldssession</div>
         <div class="price-amount">1 490 <span>kr</span></div>
         <div class="price-desc" data-i18n="eve-desc">Inntil 4 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
       <div class="price-card price-card--soft">
         <div class="price-name" data-i18n="day-name">Dagsleie</div>
         <div class="price-amount">2 490 <span>kr</span></div>
         <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f3">Kaldkulp inkludert</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
+        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
       </div>
     </div>
 
@@ -740,10 +739,9 @@ async function submitGc(btn){
         <div class="tg">
           <div class="ts" onclick="bkTime(this,'12:00–16:00')">12:00–16:00</div>
           <div class="ts" onclick="bkTime(this,'14:00–18:00')">14:00–18:00</div>
-          <div class="ts una">16:00–20:00</div>
+          <div class="ts" onclick="bkTime(this,'16:00–20:00')">16:00–20:00</div>
           <div class="ts" onclick="bkTime(this,'18:00–22:00')">18:00–22:00</div>
           <div class="ts" onclick="bkTime(this,'19:00–23:00')">19:00–23:00</div>
-          <div class="ts una" data-i18n="bk-taken">Opptatt</div>
         </div>
         <div class="sl" data-i18n="bk-sl-pkg">Pakke</div>
         <div class="pkg-grid">
@@ -753,7 +751,7 @@ async function submitGc(btn){
         </div>
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
-          <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
+          <div class="tent-card sel" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
             <div class="tent-specs" data-i18n="bk-tent-specs-a">4–6 pers · panoramavinduer · 90°C</div>
@@ -762,17 +760,6 @@ async function submitGc(btn){
         </div>
         <div class="sl" data-i18n="bk-sl-ppl">Antall personer</div>
         <div class="ppl-row"><div class="ppl-ctrl"><button class="pb" onclick="bkPpl(-1)">−</button><span class="pnum" id="pnum">4</span><button class="pb" onclick="bkPpl(1)">+</button></div><span style="font-size:.875rem;color:var(--muted)" data-i18n="bk-ppl">personer</span></div>
-        <div class="sl" data-i18n="bk-sl-incl">Inkludert</div>
-        <div class="kulp-wrap active" style="cursor:default">
-          <div class="kulp-left">
-            <div class="kulp-icon">🧊</div>
-            <div>
-              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
-              <div class="kulp-desc" data-i18n="bk-kulp-incl">Inkludert i prisen — ingen ekstra kostnad</div>
-            </div>
-          </div>
-          <div class="kulp-check">✓</div>
-        </div>
         <div class="sl" data-i18n="bk-sl-loc">Lokasjon</div>
         <div class="lo">
           <label class="lopt" onclick="bkLoc(this,'Sjøkanten, Bodø')"><input type="radio" name="loc"> Sjøkanten, Bodø</label>
@@ -807,20 +794,9 @@ async function submitGc(btn){
           <div class="ds" onclick="bkDur(this,3,1490)"><div data-i18n="bk-dur-3d">3 dager</div><div class="dsp">1 490 kr</div></div>
           <div class="ds" onclick="bkDur(this,7,3490)"><div data-i18n="bk-dur-1w">1 uke</div><div class="dsp">3 490 kr</div></div>
         </div>
-        <div class="sl" data-i18n="bk-sl-addons">Tilvalg</div>
-        <div class="kulp-wrap" onclick="bkKulp()" id="kulpBtnB">
-          <div class="kulp-left">
-            <div class="kulp-icon">🧊</div>
-            <div>
-              <div class="kulp-name" data-i18n="bk-kulp-name">Kaldkulp</div>
-              <div class="kulp-desc" data-i18n="bk-kulp-addon">Oppblåsbar · klar på 5 min · +400 kr</div>
-            </div>
-          </div>
-          <div class="kulp-check" id="kulpCheckB"></div>
-        </div>
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
-          <div class="tent-card" onclick="bkTent(this,'Kuno Panorama')">
+          <div class="tent-card sel" onclick="bkTent(this,'Kuno Panorama')">
             <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
             <div class="tent-specs" data-i18n="bk-tent-specs-b">4–6 pers · panoramavinduer</div>
@@ -947,8 +923,8 @@ async function submitGc(btn){
 const MN=['Januar','Februar','Mars','April','Mai','Juni','Juli','August','September','Oktober','November','Desember'];
 const MN_EN=['January','February','March','April','May','June','July','August','September','October','November','December'];
 let cur=new Date();cur.setDate(1);
-let vType=null,vDate=null,vTime=null,vPkg=null,vPrice=0,vPpl=4,vLoc=null,vDur=null,vDurP=0,vPickup=null,vKulp=false,vTent=null;
-const bkd=['2026-04-19','2026-04-20','2026-04-26','2026-05-03','2026-05-10'];
+let vType=null,vDate=null,vTime=null,vPkg=null,vPrice=0,vPpl=4,vLoc=null,vDur=null,vDurP=0,vPickup=null,vTent='Kuno Panorama';
+const bkd=[];
 
 function fmt(iso){const[y,m,d]=iso.split('-');return currentLang==='en'?parseInt(d)+' '+MN_EN[parseInt(m)-1]+' '+y:parseInt(d)+'. '+MN[parseInt(m)-1]+' '+y;}
 
@@ -995,13 +971,6 @@ function bkTent(el,name){
   vTent=name;chk2();
 }
 function bkPpl(d){vPpl=Math.max(1,Math.min(15,vPpl+d));document.getElementById('pnum').textContent=vPpl;}
-function bkKulp(){
-  vKulp=!vKulp;
-  ['kulpBtn','kulpBtnB'].forEach(function(id){
-    const el=document.getElementById(id);
-    if(el){el.classList.toggle('active',vKulp);}
-  });
-}
 function chk2(){if(vType==='lev')document.getElementById('b2a').disabled=!(vDate&&vTime&&vPkg&&vLoc&&vTent);else document.getElementById('b2b').disabled=!(vDate&&vDur&&vPickup&&vTent);}
 function bkChk3(){const n=document.getElementById('fN').value.trim(),e=document.getElementById('fE').value.trim();document.getElementById('b3').disabled=!(n&&e);}
 
@@ -1020,23 +989,21 @@ function buildSum(el){
     loc:isEN?'Location':'Lokasjon',
     total:isEN?'Total':'Totalt',
     agreed:isEN?'To be agreed':'Avtales',
-    inclKulp:isEN?'incl. cold plunge':'inkl. kaldkulp',
     pickupDate:isEN?'Pickup date':'Hentedato',
     pickupTime:isEN?'Pickup time':'Hentetid',
     period:isEN?'Rental period':'Leieperiode',
     ret:isEN?'Return':'Retur',
-    coldPlunge:isEN?'cold plunge':'kaldkulp',
   };
   function dur(n){return n===1?(1+' '+(isEN?'day':'dag')):(n+' '+(isEN?'days':'dager'));}
   function row(l,v){return'<div class="sr"><span>'+l+'</span><span>'+v+'</span></div>';}
   let h='';
   if(vType==='lev'){
-    const p=vPrice===0?s.agreed:vPrice.toLocaleString('nb-NO')+' kr ('+s.inclKulp+')';
+    const p=vPrice===0?s.agreed:vPrice.toLocaleString('nb-NO')+' kr';
     const pkgDisplay=isEN?(PKG_NAMES_EN[vPkg]||vPkg):vPkg;
     h=row(s.type,s.deliver)+row(s.date,fmt(vDate))+row(s.time,vTime)+row(s.pkg,pkgDisplay)+row(s.tent,vTent)+row(s.num,vPpl+' '+s.ppl)+row(s.loc,vLoc)+row(s.total,p);
   } else {
     const ret=new Date(vDate);ret.setDate(ret.getDate()+vDur);const ri=ret.toISOString().split('T')[0];
-    const totStr=vDurP.toLocaleString('nb-NO')+' kr'+(vKulp?' + 400 kr '+s.coldPlunge:'')+' + 1 000 kr '+s.dep;
+    const totStr=vDurP.toLocaleString('nb-NO')+' kr';
     h=row(s.type,s.pickup)+row(s.pickupDate,fmt(vDate))+row(s.pickupTime,vPickup)+row(s.period,dur(vDur))+row(s.tent,vTent)+row(s.ret,fmt(ri))+row(s.total,totStr);
   }
   el.innerHTML=h;
@@ -1069,7 +1036,7 @@ async function bkSubmit(){
     if(vPkg)d.Pakke=vPkg;
     if(vLoc)d.Lokasjon=vLoc;
     const total=vPrice;
-    d.Pris=vPrice===0?'Avtales':total.toLocaleString('nb-NO')+' kr (inkl. kaldkulp)';
+    d.Pris=vPrice===0?'Avtales':total.toLocaleString('nb-NO')+' kr';
   }else{
     if(vDur)d.Varighet=vDur+' døgn';
     if(vPickup)d.Hentetidspunkt=vPickup;
@@ -1177,17 +1144,6 @@ function toggleFaq(i) {
 #bk .tent-specs{font-size:.72rem;color:var(--sand);margin-bottom:6px}
 #bk .tent-desc{font-size:.75rem;color:var(--muted);line-height:1.5}
 @media(max-width:500px){#bk .tent-grid{grid-template-columns:1fr}}
-#bk .kulp-wrap{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;border:1px solid rgba(200,169,110,.2);border-radius:8px;cursor:pointer;margin-bottom:1.5rem;background:rgba(255,255,255,.02);transition:border-color .2s}
-#bk .kulp-wrap:hover{border-color:rgba(200,169,110,.5)}
-#bk .kulp-wrap.active{border:2px solid #4a9eda;background:rgba(74,158,218,.06)}
-#bk .kulp-left{display:flex;align-items:center;gap:12px}
-#bk .kulp-icon{font-size:1.5rem}
-#bk .kulp-name{font-size:.95rem;font-weight:500;color:var(--light);margin-bottom:2px}
-#bk .kulp-desc{font-size:.75rem;color:var(--muted)}
-#bk .kulp-check{width:22px;height:22px;border-radius:50%;border:1px solid rgba(200,169,110,.3);display:flex;align-items:center;justify-content:center;font-size:.8rem;transition:all .2s}
-#bk .kulp-wrap.active .kulp-check{background:#4a9eda;border-color:#4a9eda;color:#fff}
-#bk .kulp-check::after{content:''}
-#bk .kulp-wrap.active .kulp-check::after{content:'✓'}
 #faq { background: var(--dark); }
 .faq-item { border-bottom: 1px solid rgba(200,169,110,.15); }
 .faq-q { display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 0; cursor: pointer; font-size: .95rem; color: var(--light); transition: color .2s; gap: 1rem; }
@@ -1231,7 +1187,7 @@ const EN = {
   'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
   'day-name':'Day rental','day-desc':'Up to 8 hours · up to 6 people',
   'pkg-f1':'Delivery, setup and firing','pkg-f2':'Wood stove with birch wood',
-  'pkg-f3':'Cold plunge included','pkg-f4':'Location by agreement',
+  'pkg-f4':'Location by agreement',
   'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
   'biz-price':'Price by agreement','biz-cta':'Get in touch',
   // Gift cards – card preview
@@ -1284,7 +1240,6 @@ const EN = {
   'bk-s2a-h':'Choose date and details',
   'bk-s2a-sub':'Date, time slot, package and location',
   'bk-sl-date':'Date','bk-sl-time':'Time slot',
-  'bk-taken':'Taken',
   'bk-sl-pkg':'Package',
   'bk-pkg-eve':'Evening session','bk-pkg-eve-sub':'Up to 6 pers · 4 hours',
   'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 6 pers · 8 hours',
@@ -1293,9 +1248,6 @@ const EN = {
   'bk-tent-specs-a':'4–6 pers · panoramic windows · 90°C',
   'bk-tent-desc-a':'Norwegian-developed with unique panoramic windows. Perfect view of the flames and nature.',
   'bk-sl-ppl':'Number of people','bk-ppl':'people',
-  'bk-sl-incl':'Included',
-  'bk-kulp-name':'Cold plunge',
-  'bk-kulp-incl':'Included in the price — no extra cost',
   'bk-sl-loc':'Location',
   'bk-own-addr':'Own address',
   'bk-back':'← Back',
@@ -1307,8 +1259,6 @@ const EN = {
   'bk-sl-pickup-date':'Pickup date',
   'bk-sl-duration':'Rental period',
   'bk-dur-1d':'1 day','bk-dur-2d':'2 days','bk-dur-3d':'3 days','bk-dur-1w':'1 week',
-  'bk-sl-addons':'Add-ons',
-  'bk-kulp-addon':'Inflatable · ready in 5 min · +400 kr',
   'bk-tent-specs-b':'4–6 pers · panoramic windows',
   'bk-tent-desc-b':'Norwegian-developed with unique panoramic windows.',
   'bk-sl-pickup-time':'Pickup time',
