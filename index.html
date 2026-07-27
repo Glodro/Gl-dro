@@ -747,12 +747,11 @@ async function submitGc(btn){
         <div class="pkg-grid">
           <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
           <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 6 pers · 8 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
+          <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp" data-i18n-html="bk-pkg-biz-price">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
         </div>
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card sel" onclick="bkTent(this,'Kuno Panorama')">
-            <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
             <div class="tent-specs" data-i18n="bk-tent-specs-a">4–6 pers · panoramavinduer · 90°C</div>
             <div class="tent-desc" data-i18n="bk-tent-desc-a">Norskutviklet med unike panoramavinduer. Perfekt utsikt til flammene og naturen.</div>
@@ -797,7 +796,6 @@ async function submitGc(btn){
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
         <div class="tent-grid">
           <div class="tent-card sel" onclick="bkTent(this,'Kuno Panorama')">
-            <div class="tent-badge">🇳🇴 Norsk</div>
             <div class="tent-name">Kuno Panorama</div>
             <div class="tent-specs" data-i18n="bk-tent-specs-b">4–6 pers · panoramavinduer</div>
             <div class="tent-desc" data-i18n="bk-tent-desc-b">Norskutviklet med unike panoramavinduer.</div>
@@ -1243,7 +1241,7 @@ const EN = {
   'bk-sl-pkg':'Package',
   'bk-pkg-eve':'Evening session','bk-pkg-eve-sub':'Up to 6 pers · 4 hours',
   'bk-pkg-day':'Day rental','bk-pkg-day-sub':'Up to 6 pers · 8 hours',
-  'bk-pkg-biz':'Corporate','bk-pkg-biz-sub':'Custom · invoice',
+  'bk-pkg-biz':'Corporate','bk-pkg-biz-sub':'Custom · invoice','bk-pkg-biz-price':'Custom <span>price</span>',
   'bk-sl-tent':'Choose tent',
   'bk-tent-specs-a':'4–6 pers · panoramic windows · 90°C',
   'bk-tent-desc-a':'Norwegian-developed with unique panoramic windows. Perfect view of the flames and nature.',
