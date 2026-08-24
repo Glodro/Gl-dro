@@ -375,7 +375,7 @@ footer a{color:var(--sand);text-decoration:none}
   <div class="hero-content">
     <div class="hero-tag" data-i18n="hero-tag">Åpent for booking · Bodø &amp; Trondheim</div>
     <h1 data-i18n-html="hero-h1">Badstu der<br><em>naturen er veggen</em></h1>
-    <p class="hero-sub" data-i18n="hero-sub">Vi er i gang i Bodø og Trondheim — book din mobile badstu i dag. Ta den med dit du vil, eller la oss levere og fyre.</p>
+    <p class="hero-sub" data-i18n="hero-sub">Nå kan du leie badstutelt i både Bodø og Trondheim. Ta det med deg hvor du vil, eller la oss sette det opp for deg.</p>
     <div class="hero-cta">
       <a href="#book" class="btn-primary" data-i18n="hero-cta-1">Book badstu nå</a>
       <a href="#om" class="btn-outline" data-i18n="hero-cta-2">Les mer</a>
@@ -461,19 +461,14 @@ footer a{color:var(--sand);text-decoration:none}
       </div>
     </div>
 
-    <div class="delivery-label" data-i18n="delivery-label">Vil du ha det servert? Vi leverer, rigger og fyrer.</div>
-    <div class="delivery-row">
-      <div class="price-card price-card--soft">
-        <div class="price-name" data-i18n="eve-name">Kveldssession</div>
-        <div class="price-amount">1 490 <span>kr</span></div>
-        <div class="price-desc" data-i18n="eve-desc">Inntil 4 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
+    <div class="biz-stripe">
+      <div>
+        <div class="price-name" style="margin-bottom:.4rem" data-i18n="delivery-name">Vi leverer og setter opp</div>
+        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0" data-i18n="delivery-desc">Vi kjører ut, rigger og fyrer opp badstuen der du vil. Pris avhenger av sted og varighet.</p>
       </div>
-      <div class="price-card price-card--soft">
-        <div class="price-name" data-i18n="day-name">Dagsleie</div>
-        <div class="price-amount">2 490 <span>kr</span></div>
-        <div class="price-desc" data-i18n="day-desc">Inntil 8 timer · opptil 6 pers.</div>
-        <ul class="price-features"><li data-i18n="pkg-f1">Levering, oppsett og fyring</li><li data-i18n="pkg-f2">Vedovn med bjørkved</li><li data-i18n="pkg-f4">Lokasjon etter avtale</li></ul>
+      <div class="biz-right">
+        <div class="biz-price" data-i18n="delivery-price">Pris etter avtale</div>
+        <a href="#book" class="btn-outline" style="padding:.7rem 1.6rem" data-i18n="delivery-cta">Ta kontakt</a>
       </div>
     </div>
 
@@ -753,8 +748,8 @@ async function submitGc(btn){
         </div>
         <div class="sl" data-i18n="bk-sl-pkg">Pakke</div>
         <div class="pkg-grid">
-          <div class="pc" onclick="bkPkg(this,'Kveldssession',1490)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp">1 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
-          <div class="pc" onclick="bkPkg(this,'Dagsleie',2490)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp">2 490 <span>kr</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 6 pers · 8 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Kveldssession',0)"><div class="pn" data-i18n="bk-pkg-eve">Kveldssession</div><div class="pp" data-i18n-html="bk-pkg-biz-price">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-eve-sub">Opptil 6 pers · 4 timer</div></div>
+          <div class="pc" onclick="bkPkg(this,'Dagsleie',0)"><div class="pn" data-i18n="bk-pkg-day">Dagsleie</div><div class="pp" data-i18n-html="bk-pkg-biz-price">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-day-sub">Opptil 6 pers · 8 timer</div></div>
           <div class="pc" onclick="bkPkg(this,'Bedrift',0)"><div class="pn" data-i18n="bk-pkg-biz">Bedrift</div><div class="pp" data-i18n-html="bk-pkg-biz-price">Avtale <span>pris</span></div><div class="pd2" data-i18n="bk-pkg-biz-sub">Tilpasset · faktura</div></div>
         </div>
         <div class="sl" data-i18n="bk-sl-tent">Velg telt</div>
@@ -1193,11 +1188,8 @@ const EN = {
   'hh-cta':'Book pickup','hh-from':'From <strong>790 kr</strong>',
   'pris-li-1':'1 day — 790 kr','pris-li-2':'2 days — 1 190 kr','pris-li-3':'3 days — 1 490 kr',
   'pris-li-4':'1 week — 3 490 kr',
-  'delivery-label':'Want it served? We deliver, set up and fire it up.',
-  'eve-name':'Evening session','eve-desc':'Up to 4 hours · up to 6 people',
-  'day-name':'Day rental','day-desc':'Up to 8 hours · up to 6 people',
-  'pkg-f1':'Delivery, setup and firing','pkg-f2':'Wood stove with birch wood',
-  'pkg-f4':'Location by agreement',
+  'delivery-name':'We deliver and set up','delivery-desc':'We drive out, rig up and fire up the sauna wherever you want. Price depends on location and duration.',
+  'delivery-price':'Price by agreement','delivery-cta':'Get in touch',
   'biz-name':'Corporate / Event','biz-desc':'Tailored package for groups, team building and events — with invoice and custom program.',
   'biz-price':'Price by agreement','biz-cta':'Get in touch',
   // Gift cards – card preview
