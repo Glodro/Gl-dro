@@ -1,0 +1,21 @@
+# Glødro – Netlify-oppsett (Kit CC: B018)
+# Publiserer rotmappen som den er. Ingen byggesteg (B005).
+[build]
+  publish = "."
+
+# Sikkerhetshoder for alle sider.
+# Legger dere til analyse (f.eks. Plausible), må domenet legges til i script-src og connect-src.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://formspree.io; base-uri 'self'; form-action 'self' https://formspree.io; frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    X-Frame-Options = "DENY"
+
+# Bilder og ikon kan mellomlagres lenge i nettleseren.
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"
