@@ -461,6 +461,7 @@ footer a{color:var(--sand);text-decoration:none}
     <li><a href="#galleri" onclick="closeMobileMenu()" data-i18n="nav-galleri">Galleri</a></li>
     <li><a href="#pris" onclick="closeMobileMenu()" data-i18n="nav-pris">Pris</a></li>
     <li><a href="#faq" onclick="closeMobileMenu()">FAQ</a></li>
+    <li><a href="#kjop" onclick="closeMobileMenu()" data-i18n="nav-kjop">Kjøp badstu</a></li>
     <li><a href="#gavekort" onclick="closeMobileMenu()" data-i18n="nav-gavekort">Gavekort</a></li>
     <li><a href="#book" onclick="closeMobileMenu()" data-i18n="nav-book">Book</a></li>
     <li><button id="langBtn" onclick="toggleLang()" class="lang-btn">ENGLISH</button></li>
@@ -638,6 +639,31 @@ footer a{color:var(--sand);text-decoration:none}
 </section>
 
 
+<section id="kjop">
+  <div class="container">
+    <div class="section-label" data-i18n="kjop-label">Kjøp badstu</div>
+    <h2 class="section-title" data-i18n="kjop-title">Få din egen badstu</h2>
+    <div class="divider"></div>
+    <div class="henting-hero">
+      <div class="hh-left">
+        <div class="price-name" data-i18n="kjop-name">Badstutelt med vedovn</div>
+        <h3 class="hh-title" data-i18n="kjop-h">Badstu du eier selv</h3>
+        <p class="hh-desc" data-i18n="kjop-desc">Kjøp et vedfyrt badstutelt fra Kuno og ta det med på hytta, i hagen eller på tur. Vi viser deg hvordan du setter det opp og fyrer.</p>
+        <button type="button" class="btn-primary" onclick="openBuyModal()" data-i18n="kjop-cta">Kjøp badstu</button>
+      </div>
+      <div class="hh-right">
+        <div class="hh-from"><strong>18 999 kr</strong></div>
+        <ul class="price-features">
+          <li data-i18n="kjop-li-1">Plass til 4–6 personer</li>
+          <li data-i18n="kjop-li-2">Panoramavinduer</li>
+          <li data-i18n="kjop-li-3">Varmes til ca. 90 °C</li>
+          <li class="pl-sub" data-i18n="kjop-li-4">Hent i Bodø eller Trondheim, eller avtal levering</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
 <section id="gavekort" style="background:linear-gradient(135deg,#211d18 0%,#1a1612 100%);position:relative;overflow:hidden">
   <div style="position:absolute;top:0;right:0;width:500px;height:500px;background:radial-gradient(circle,rgba(201,107,42,.08) 0%,transparent 70%);pointer-events:none"></div>
   <div style="max-width:1100px;margin:0 auto;position:relative">
@@ -750,6 +776,43 @@ footer a{color:var(--sand);text-decoration:none}
   #gcPreview{grid-template-columns:1fr !important;gap:2rem !important}
 }
 </style>
+
+<div id="buyModal" role="dialog" aria-modal="true" aria-label="Kjøp badstu" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:1rem">
+  <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto">
+    <button aria-label="Lukk" onclick="closeBuyModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer">×</button>
+    <div class="section-label" data-i18n="kjop-label">Kjøp badstu</div>
+    <h3 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.6rem;margin:.5rem 0 2rem;font-weight:500" data-i18n="kjop-modal-h">Badstutelt — 18 999 kr</h3>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-name">Navn</div>
+      <input type="text" id="buyName" aria-label="Navn" placeholder="Ola Nordmann" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-email">E-post</div>
+      <input type="email" id="buyEmail" aria-label="E-post" placeholder="ola@eksempel.no" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-phone">Telefon (valgfritt)</div>
+      <input type="tel" id="buyPhone" aria-label="Telefon" placeholder="+47 000 00 000" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-city">Henting</div>
+      <select id="buyCity" aria-label="Henting" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box"><option value="Bodø">Bodø</option><option value="Trondheim">Trondheim</option><option value="Levering" data-i18n="kjop-f-deliv">Ønsker levering</option></select>
+    </div>
+    <div style="margin-bottom:1.2rem">
+      <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-msg">Melding (valgfritt)</div>
+      <textarea id="buyMsg" aria-label="Melding" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box;min-height:80px;resize:vertical"></textarea>
+    </div>
+    <div style="background:rgba(255,255,255,.03);border-radius:8px;padding:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div style="font-size:.75rem;color:var(--muted)" data-i18n="gc-total">Total</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--ember);font-weight:500">18 999 kr</div>
+      </div>
+      <div style="text-align:right;font-size:.8rem;color:var(--muted)" data-i18n-html="kjop-pay-note">Betaling med Vipps<br>eller faktura på e-post</div>
+    </div>
+    <button onclick="submitBuy(this)" style="width:100%;padding:16px;background:var(--ember);color:var(--dark);border:none;border-radius:50px;font-weight:500;cursor:pointer;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;font-family:inherit" data-i18n="kjop-confirm">Bekreft kjøp →</button>
+    <p class="pv-note" style="text-align:center" data-i18n-html="pv-note-kjop">Opplysningene brukes bare til å gjennomføre kjøpet. Les <a href="#personvern" onclick="openPv(event)">personvernerklæringen</a>.</p>
+  </div>
+</div>
 
 <div id="gcModal" role="dialog" aria-modal="true" aria-label="Kjøp gavekort" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.85);z-index:1000;align-items:center;justify-content:center;padding:1rem">
   <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto">
@@ -1246,6 +1309,39 @@ function bizMailto(e){
   const body=en?'Hi,\n\nHow about a sauna event for the team? Glødro delivers, sets up and fires a wood-fired sauna tent wherever we want in Bodø or Trondheim.\n\n- Up to 6 people at a time, groups can take turns\n- Delivery, setup, firewood and pickup included\n- Invoice to the company\n- Price by agreement, based on place and duration\n\nRead more and send a request: https://glodro.no/#pris\nContact: Kontakt@glodro.no\n':'Hei,\n\nHva med badstu for teamet? Glødro leverer, rigger og fyrer opp et vedfyrt badstutelt der vi vil i Bodø eller Trondheim.\n\n- Opptil 6 personer om gangen, større grupper kan bytte på\n- Levering, oppsett, ved og henting er inkludert\n- Faktura til bedriften\n- Pris etter avtale, ut fra sted og varighet\n\nLes mer og send forespørsel: https://glodro.no/#pris\nKontakt: Kontakt@glodro.no\n';
   window.location.href='mailto:?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
 }
+function openBuyModal(){document.getElementById('buyModal').style.display='flex';document.getElementById('buyName').focus();}
+function closeBuyModal(){document.getElementById('buyModal').style.display='none';}
+async function submitBuy(btn){
+  const en=isEN();
+  const nm=document.getElementById('buyName').value.trim();
+  const em=document.getElementById('buyEmail').value.trim();
+  const ph=document.getElementById('buyPhone').value.trim();
+  const city=document.getElementById('buyCity').value;
+  const msg=document.getElementById('buyMsg').value.trim();
+  if(!nm||!em){alert(en?'Please fill in name and e-mail':'Fyll ut navn og e-post');return;}
+  const orig=btn.textContent;btn.disabled=true;btn.textContent=en?'Sending...':'Sender...';
+  const ref=mkRef('KB');
+  const payload={
+    Referanse:ref,Type:'Kjøp av badstu',Pris:'18 999 kr',
+    Navn:nm,'E-post':em,Telefon:ph||'(ikke oppgitt)',Henting:city,Melding:msg||'(ingen)',
+    Kampanje:CAMPAIGN||'(ingen)',
+    _subject:'Nytt kjøp av badstu '+ref+' (18 999 kr) fra '+nm
+  };
+  try{
+    const res=await fetch('https://formspree.io/f/xvzyykgn',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify(payload)
+    });
+    if(!res.ok)throw new Error('http '+res.status);
+    closeBuyModal();
+    btn.disabled=false;btn.textContent=orig;
+    alert(en?'Thank you! Your purchase ('+ref+') has been received. We will contact you at '+em+' within 24 hours with payment details and to agree on pickup or delivery.':'Takk! Kjøpet ('+ref+') er mottatt. Vi kontakter deg på '+em+' innen 24 timer med betalingsinfo og for å avtale henting eller levering.');
+  }catch(e){
+    btn.disabled=false;btn.textContent=orig;
+    alert(en?'Sorry, something went wrong. Try again or contact us at kontakt@glodro.no':'Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
+  }
+}
 function openPv(e){if(e)e.preventDefault();const m=document.getElementById('pvModal');m.style.display='flex';const b=m.querySelector('button');if(b)b.focus();}
 function closePv(){document.getElementById('pvModal').style.display='none';}
 function buildNext(){
@@ -1329,7 +1425,7 @@ function kbify(root){
   });
 }
 document.addEventListener('keydown',function(e){
-  if(e.key==='Escape'){closePv();if(typeof closeGcModal==='function')closeGcModal();closeMobileMenu();return;}
+  if(e.key==='Escape'){closePv();if(typeof closeGcModal==='function')closeGcModal();closeBuyModal();closeMobileMenu();return;}
   if((e.key==='Enter'||e.key===' ')&&e.target.getAttribute&&e.target.getAttribute('role')==='button'&&e.target.tagName!=='BUTTON'){e.preventDefault();e.target.click();}
 });
 renderAll();kbify();
@@ -1404,7 +1500,7 @@ function toggleFaq(i) {
 // ── LANGUAGE TOGGLE ──────────────────────────────────────────────────────
 const EN = {
   // Nav
-  'nav-om':'About','nav-galleri':'Gallery','nav-pris':'Pricing','nav-gavekort':'Gift Cards','nav-book':'Book',
+  'nav-om':'About','nav-galleri':'Gallery','nav-pris':'Pricing','nav-gavekort':'Gift Cards','nav-kjop':'Buy a sauna','nav-book':'Book',
   // Hero
   'hero-tag':'Now open · Bodø & Trondheim',
   'hero-h1':'Sauna where<br><em>nature is the wall</em>',
@@ -1446,6 +1542,7 @@ const EN = {
   'pris-li-1':'Day (24 hours) — 790 kr','pris-li-2':'Weekend (Friday–Sunday) — 1 690 kr','pris-li-3':'Week (7 days) — 3 490 kr',
   'pris-li-4':'Extra weekday +400 kr · Extra bag of firewood 150 kr',
   'biz-share':'Send proposal to your manager',
+  'kjop-label':'Buy a sauna','kjop-title':'Get your own sauna','kjop-name':'Sauna tent with wood stove','kjop-h':'A sauna you own yourself','kjop-desc':'Buy a wood-fired sauna tent from Kuno and take it to the cabin, the garden or on a trip. We show you how to set it up and fire it.','kjop-cta':'Buy sauna','kjop-li-1':'Room for 4–6 people','kjop-li-2':'Panoramic windows','kjop-li-3':'Heats to about 90 °C','kjop-li-4':'Pick up in Bodø or Trondheim, or arrange delivery','kjop-modal-h':'Sauna tent — 18 999 kr','kjop-f-name':'Name','kjop-f-email':'E-mail','kjop-f-phone':'Phone (optional)','kjop-f-city':'Pickup','kjop-f-deliv':'I want delivery','kjop-f-msg':'Message (optional)','kjop-pay-note':'Payment with Vipps<br>or invoice by e-mail','kjop-confirm':'Confirm purchase →','pv-note-kjop':'The information is only used to complete the purchase. Read the <a href="#personvern" onclick="openPv(event)">privacy policy</a>.',
   'bk-helg-warn':'Weekend rentals are picked up on Friday. Choose a Friday in the calendar.',
   'bk-addon-ved':'Extra bag of firewood (+150 kr)',
   'bk-label-code':'Discount code (optional)',
