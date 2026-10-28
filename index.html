@@ -649,7 +649,7 @@ footer a{color:var(--sand);text-decoration:none}
         <div class="price-name" data-i18n="kjop-name">Badstutelt med vedovn</div>
         <h3 class="hh-title" data-i18n="kjop-h">Badstu du eier selv</h3>
         <p class="hh-desc" data-i18n="kjop-desc">Kjøp et vedfyrt badstutelt fra Kuno og ta det med på hytta, i hagen eller på tur. Vi viser deg hvordan du setter det opp og fyrer.</p>
-        <button type="button" class="btn-primary" onclick="openBuyModal()" data-i18n="kjop-cta">Kjøp badstu</button>
+        <button type="button" class="btn-primary" onclick="openBuyModal('kjop')" data-i18n="kjop-cta">Kjøp badstu</button>
       </div>
       <div class="hh-right">
         <div class="hh-from"><strong>18 999 kr</strong></div>
@@ -660,6 +660,26 @@ footer a{color:var(--sand);text-decoration:none}
           <li class="pl-sub" data-i18n="kjop-li-4">Hent i Bodø eller Trondheim, eller avtal levering</li>
         </ul>
       </div>
+    </div>
+
+    <div class="biz-stripe">
+      <div>
+        <div class="price-name" style="margin-bottom:.4rem" data-i18n="leie-name">Lei teltet i en måned</div>
+        <p style="font-size:.88rem;color:var(--muted);max-width:46ch;margin:0" data-i18n="leie-desc">Prøv badstuen hjemme før du bestemmer deg. Kjøper du teltet etterpå, trekkes leien fra kjøpsprisen.</p>
+      </div>
+      <div class="biz-right">
+        <div class="biz-price" data-i18n="leie-price">4 500 kr / mnd</div>
+        <button type="button" class="btn-outline" style="padding:.7rem 1.6rem" onclick="openBuyModal('leie')" data-i18n="leie-cta">Lei en måned</button>
+      </div>
+    </div>
+
+    <div class="gallery-grid">
+      <figure><img src="/galleri-telt-fjord-panorama.webp" width="1170" height="1560" loading="lazy" decoding="async" alt="Badstuteltet ved fjorden med panoramavinduer"/></figure>
+      <figure><img src="/galleri-interior-ovn-panorama.webp" width="1170" height="1560" loading="lazy" decoding="async" alt="Innvendig med vedovn og fjordutsikt gjennom panoramavinduer"/></figure>
+      <figure><img src="/galleri-interior-benker.webp" width="1200" height="1600" loading="lazy" decoding="async" alt="Innvendig i badstuteltet med L-formede benker"/></figure>
+      <figure><img src="/leie-badstue-bodo-badstutelt-strand.webp" width="1170" height="1560" loading="lazy" decoding="async" alt="Badstuteltet på sandstranda i kveldslys"/></figure>
+      <figure><img src="/galleri-vedovn-flamme.webp" width="1067" height="1600" loading="lazy" decoding="async" alt="Vedovn med levende flammer"/></figure>
+      <figure><img src="/galleri-telt-landsby-fjell.webp" width="1560" height="1170" loading="lazy" decoding="async" alt="Badstuteltet i naturskjønne omgivelser med fjell"/></figure>
     </div>
   </div>
 </section>
@@ -781,7 +801,12 @@ footer a{color:var(--sand);text-decoration:none}
   <div style="background:var(--dark);border:1px solid rgba(200,169,110,.2);border-radius:16px;max-width:500px;width:100%;padding:2.5rem;position:relative;max-height:90vh;overflow-y:auto">
     <button aria-label="Lukk" onclick="closeBuyModal()" style="position:absolute;top:1rem;right:1rem;background:none;border:none;color:var(--muted);font-size:1.5rem;cursor:pointer">×</button>
     <div class="section-label" data-i18n="kjop-label">Kjøp badstu</div>
-    <h3 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.6rem;margin:.5rem 0 2rem;font-weight:500" data-i18n="kjop-modal-h">Badstutelt — 18 999 kr</h3>
+    <h3 style="font-family:'Playfair Display',serif;color:var(--light);font-size:1.6rem;margin:.5rem 0 2rem;font-weight:500" data-i18n="kjop-modal-h">Badstutelt fra Kuno</h3>
+    <div style="margin-bottom:1.2rem">
+      <label style="display:block;margin-bottom:.5rem;color:var(--light);font-size:.95rem;cursor:pointer"><input type="radio" name="buyMode" value="kjop" checked onchange="buyModeChange()"> <span data-i18n="kjop-opt-buy">Kjøp teltet — 18 999 kr</span></label>
+      <label style="display:block;color:var(--light);font-size:.95rem;cursor:pointer"><input type="radio" name="buyMode" value="leie" onchange="buyModeChange()"> <span data-i18n="kjop-opt-rent">Lei i en måned — 4 500 kr</span></label>
+      <p style="font-size:.8rem;color:var(--muted);margin:.6rem 0 0" data-i18n="kjop-rent-note">Kjøper du teltet etter leieperioden, trekkes leien fra prisen.</p>
+    </div>
     <div style="margin-bottom:1.2rem">
       <div style="font-size:.75rem;color:var(--sand);letter-spacing:.1em;text-transform:uppercase;margin-bottom:8px" data-i18n="kjop-f-name">Navn</div>
       <input type="text" id="buyName" aria-label="Navn" placeholder="Ola Nordmann" style="background:rgba(255,255,255,.03);border:1px solid rgba(200,169,110,.2);border-radius:8px;padding:12px;color:var(--light);width:100%;font-family:inherit;font-size:.95rem;outline:none;box-sizing:border-box">
@@ -805,7 +830,7 @@ footer a{color:var(--sand);text-decoration:none}
     <div style="background:rgba(255,255,255,.03);border-radius:8px;padding:1rem;margin-bottom:1.5rem;display:flex;justify-content:space-between;align-items:center">
       <div>
         <div style="font-size:.75rem;color:var(--muted)" data-i18n="gc-total">Total</div>
-        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--ember);font-weight:500">18 999 kr</div>
+        <div style="font-family:'Playfair Display',serif;font-size:1.6rem;color:var(--ember);font-weight:500" id="buyTotal">18 999 kr</div>
       </div>
       <div style="text-align:right;font-size:.8rem;color:var(--muted)" data-i18n-html="kjop-pay-note">Betaling med Vipps<br>eller faktura på e-post</div>
     </div>
@@ -1309,7 +1334,10 @@ function bizMailto(e){
   const body=en?'Hi,\n\nHow about a sauna event for the team? Glødro delivers, sets up and fires a wood-fired sauna tent wherever we want in Bodø or Trondheim.\n\n- Up to 6 people at a time, groups can take turns\n- Delivery, setup, firewood and pickup included\n- Invoice to the company\n- Price by agreement, based on place and duration\n\nRead more and send a request: https://glodro.no/#pris\nContact: Kontakt@glodro.no\n':'Hei,\n\nHva med badstu for teamet? Glødro leverer, rigger og fyrer opp et vedfyrt badstutelt der vi vil i Bodø eller Trondheim.\n\n- Opptil 6 personer om gangen, større grupper kan bytte på\n- Levering, oppsett, ved og henting er inkludert\n- Faktura til bedriften\n- Pris etter avtale, ut fra sted og varighet\n\nLes mer og send forespørsel: https://glodro.no/#pris\nKontakt: Kontakt@glodro.no\n';
   window.location.href='mailto:?subject='+encodeURIComponent(sub)+'&body='+encodeURIComponent(body);
 }
-function openBuyModal(){document.getElementById('buyModal').style.display='flex';document.getElementById('buyName').focus();}
+const BUY_PRICE={kjop:18999,leie:4500};
+function buyMode(){return document.querySelector('input[name="buyMode"]:checked').value;}
+function buyModeChange(){document.getElementById('buyTotal').textContent=BUY_PRICE[buyMode()].toLocaleString('nb-NO')+' kr';}
+function openBuyModal(mode){document.querySelector('input[name="buyMode"][value="'+(mode||'kjop')+'"]').checked=true;buyModeChange();document.getElementById('buyModal').style.display='flex';document.getElementById('buyName').focus();}
 function closeBuyModal(){document.getElementById('buyModal').style.display='none';}
 async function submitBuy(btn){
   const en=isEN();
@@ -1320,12 +1348,14 @@ async function submitBuy(btn){
   const msg=document.getElementById('buyMsg').value.trim();
   if(!nm||!em){alert(en?'Please fill in name and e-mail':'Fyll ut navn og e-post');return;}
   const orig=btn.textContent;btn.disabled=true;btn.textContent=en?'Sending...':'Sender...';
-  const ref=mkRef('KB');
+  const leie=buyMode()==='leie';
+  const pris=BUY_PRICE[buyMode()].toLocaleString('nb-NO')+' kr';
+  const ref=mkRef(leie?'LB':'KB');
   const payload={
-    Referanse:ref,Type:'Kjøp av badstu',Pris:'18 999 kr',
+    Referanse:ref,Type:leie?'Leie av badstu i en måned':'Kjøp av badstu',Pris:pris,
     Navn:nm,'E-post':em,Telefon:ph||'(ikke oppgitt)',Henting:city,Melding:msg||'(ingen)',
     Kampanje:CAMPAIGN||'(ingen)',
-    _subject:'Nytt kjøp av badstu '+ref+' (18 999 kr) fra '+nm
+    _subject:(leie?'Ny månedsleie av badstu ':'Nytt kjøp av badstu ')+ref+' ('+pris+') fra '+nm
   };
   try{
     const res=await fetch('https://formspree.io/f/xvzyykgn',{
@@ -1336,7 +1366,7 @@ async function submitBuy(btn){
     if(!res.ok)throw new Error('http '+res.status);
     closeBuyModal();
     btn.disabled=false;btn.textContent=orig;
-    alert(en?'Thank you! Your purchase ('+ref+') has been received. We will contact you at '+em+' within 24 hours with payment details and to agree on pickup or delivery.':'Takk! Kjøpet ('+ref+') er mottatt. Vi kontakter deg på '+em+' innen 24 timer med betalingsinfo og for å avtale henting eller levering.');
+    alert(en?'Thank you! Your order ('+ref+') has been received. We will contact you at '+em+' within 24 hours with payment details and to agree on pickup or delivery.':'Takk! Bestillingen ('+ref+') er mottatt. Vi kontakter deg på '+em+' innen 24 timer med betalingsinfo og for å avtale henting eller levering.');
   }catch(e){
     btn.disabled=false;btn.textContent=orig;
     alert(en?'Sorry, something went wrong. Try again or contact us at kontakt@glodro.no':'Beklager, noe gikk galt. Prøv igjen, eller kontakt oss på kontakt@glodro.no');
@@ -1542,7 +1572,7 @@ const EN = {
   'pris-li-1':'Day (24 hours) — 790 kr','pris-li-2':'Weekend (Friday–Sunday) — 1 690 kr','pris-li-3':'Week (7 days) — 3 490 kr',
   'pris-li-4':'Extra weekday +400 kr · Extra bag of firewood 150 kr',
   'biz-share':'Send proposal to your manager',
-  'kjop-label':'Buy a sauna','kjop-title':'Get your own sauna','kjop-name':'Sauna tent with wood stove','kjop-h':'A sauna you own yourself','kjop-desc':'Buy a wood-fired sauna tent from Kuno and take it to the cabin, the garden or on a trip. We show you how to set it up and fire it.','kjop-cta':'Buy sauna','kjop-li-1':'Room for 4–6 people','kjop-li-2':'Panoramic windows','kjop-li-3':'Heats to about 90 °C','kjop-li-4':'Pick up in Bodø or Trondheim, or arrange delivery','kjop-modal-h':'Sauna tent — 18 999 kr','kjop-f-name':'Name','kjop-f-email':'E-mail','kjop-f-phone':'Phone (optional)','kjop-f-city':'Pickup','kjop-f-deliv':'I want delivery','kjop-f-msg':'Message (optional)','kjop-pay-note':'Payment with Vipps<br>or invoice by e-mail','kjop-confirm':'Confirm purchase →','pv-note-kjop':'The information is only used to complete the purchase. Read the <a href="#personvern" onclick="openPv(event)">privacy policy</a>.',
+  'kjop-label':'Buy a sauna','kjop-title':'Get your own sauna','kjop-name':'Sauna tent with wood stove','kjop-h':'A sauna you own yourself','kjop-desc':'Buy a wood-fired sauna tent from Kuno and take it to the cabin, the garden or on a trip. We show you how to set it up and fire it.','kjop-cta':'Buy sauna','kjop-li-1':'Room for 4–6 people','kjop-li-2':'Panoramic windows','kjop-li-3':'Heats to about 90 °C','kjop-li-4':'Pick up in Bodø or Trondheim, or arrange delivery','kjop-modal-h':'Sauna tent from Kuno','kjop-opt-buy':'Buy the tent — 18 999 kr','kjop-opt-rent':'Rent for one month — 4 500 kr','kjop-rent-note':'If you buy the tent after the rental period, the rent is deducted from the price.','leie-name':'Rent the tent for a month','leie-desc':'Try the sauna at home before you decide. If you buy the tent afterwards, the rent is deducted from the purchase price.','leie-price':'4 500 kr / month','leie-cta':'Rent for a month','kjop-f-name':'Name','kjop-f-email':'E-mail','kjop-f-phone':'Phone (optional)','kjop-f-city':'Pickup','kjop-f-deliv':'I want delivery','kjop-f-msg':'Message (optional)','kjop-pay-note':'Payment with Vipps<br>or invoice by e-mail','kjop-confirm':'Confirm purchase →','pv-note-kjop':'The information is only used to complete the purchase. Read the <a href="#personvern" onclick="openPv(event)">privacy policy</a>.',
   'bk-helg-warn':'Weekend rentals are picked up on Friday. Choose a Friday in the calendar.',
   'bk-addon-ved':'Extra bag of firewood (+150 kr)',
   'bk-label-code':'Discount code (optional)',
